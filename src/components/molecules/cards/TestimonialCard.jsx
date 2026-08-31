@@ -1,0 +1,26 @@
+import { ImageContainer } from "@/components/molecules/ImageContainer";
+
+const section = {
+  title: "Lorem Ipsum",
+  quote: "Lorem ipsum dolor sit amet consectetur. Varius elementum ac enim sem dolor sit. Nulla ultricies sit gravida.",
+  author: { name: "Ram Hari Sapkota", since: "Member since Nov 2025", avatar: "/favicon.jpg" },
+};
+
+export function TestimonialCard({ section: data = section, dark = false }) {
+  return (
+    <div className={`flex flex-col overflow-hidden rounded-2xl border border-gray-200 shadow-sm ${dark ? "bg-primary-blue-dark/5" : "bg-gray-50"}`}>
+        <div className="flex flex-col gap-6 p-6">
+            <h3 className="text-primary-blue-dark text-3xl font-extrabold">{data.title}</h3>
+            <p className="text-2xl text-black/50">&ldquo;{data.quote}&rdquo;</p>
+        </div>
+
+        <div className={`flex items-center gap-4 p-4 ${dark ? "bg-primary-blue-dark text-white" : "text-black"}`}>
+            <ImageContainer className="h-16 w-16 rounded-full border-2 border-white" src={data.author.avatar} alt={data.author.name} />
+            <div className="flex flex-col">
+            <span className="text-xl font-extrabold">{data.author.name}</span>
+            <span className="text-lg font-bold opacity-80">{data.author.since}</span>
+            </div>
+        </div>
+    </div>
+  );
+}
