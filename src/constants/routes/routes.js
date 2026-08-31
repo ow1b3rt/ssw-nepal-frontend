@@ -1,4 +1,3 @@
-
 const API_BASE = process.env.NEXT_PUBLIC_API;
 
 export const ROUTES = {
@@ -6,6 +5,9 @@ export const ROUTES = {
   ADMIN_DASHBOARD: "/admin",
 
   HOME: "/",
+
+  NOTICES: "/notices",
+  NOTICE: (id) => `/notices/${id}`,
 
   VISITOR_LOGIN: "/login",
   VISITOR_REGISTER: "/register",
@@ -66,5 +68,7 @@ export const ROUTES = {
     CONTACT: `${API_BASE}/contact`,
     BECOME_OUR_PARTNER: `${API_BASE}/partners`,
     CREATE_BLOG: `${API_BASE}/blogs`,
+    NOTICES: `${API_BASE}/notices`,
+    NOTICE: (id) => `${API_BASE}/notices/${id}`,
   },
 };

@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function Navbar() {
   return (
-    <header className="mx-auto flex w-full max-w-[1320px] items-center gap-4 px-5 py-4 sm:px-6 md:gap-6 md:py-5 lg:px-0">
+    <header className="container mx-auto flex w-full items-center justify-between gap-4 px-5 py-4 sm:px-6 md:gap-6 md:py-5 lg:px-0">
       {/* Logo */}
       <Link href="/" className="shrink-0">
         <Image
@@ -18,9 +18,9 @@ export default function Navbar() {
       </Link>
 
       {/* Navigation */}
-      <nav className="min-w-0 flex-1">
+      <nav className="min-w-0 flex-1 ">
         <div className="flex h-[52px] items-center rounded-full bg-white px-4 shadow-[0_4px_18px_rgba(0,0,0,0.12)] sm:h-[56px] sm:px-5 md:h-[58px] md:px-6">
-          <ul className="flex w-full items-center justify-between gap-3 overflow-x-auto whitespace-nowrap text-[11px] font-semibold text-black sm:gap-4 sm:text-xs md:text-sm [&_a]:transition-colors [&_a]:hover:text-[#D41920]">
+          <ul className="flex w-full items-center justify-between  gap-6 overflow-x-auto whitespace-nowrap text-[11px] font-semibold text-black sm:gap-4 sm:text-xs md:text-sm [&_a]:transition-colors [&_a]:hover:text-[#D41920]">
             <li>
               <Link href="/">Home</Link>
             </li>
