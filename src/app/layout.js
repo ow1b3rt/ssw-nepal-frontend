@@ -1,33 +1,26 @@
-import { Outfit } from "next/font/google";
+import Navbar from "@/components/navbar";
 
+import { Outfit } from "next/font/google";
 import "./globals.css";
 
+const outfit = Outfit({
+  subsets: ["latin"],
+});
 
-import { cn } from "@/packages/admin";
 
-const outFit = Outfit({ subsets: ["latin"], variable: "--font-sans" });
-
-export const metadata = {
-  title: "SSW Nepal",
-  icons: {
-    icon: "/images/enlighten-logo.svg",
-  },
-};
-
-const RootLayout = async ({
-  children,
-}) => {
+export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      suppressHydrationWarning
-      className={cn("antialiased", outFit.variable, "font-sans")}
+      className={outfit.className}
     >
-      <body>
-          {children}
-      </body>
+      <body className="min-h-full flex flex-col">
+        
+        <Navbar />
+        
+        {children}
+        
+        </body>
     </html>
   );
-};
-
-export default RootLayout;
+}
