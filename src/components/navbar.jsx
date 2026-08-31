@@ -1,83 +1,78 @@
 import Image from "next/image";
 import { Phone, ChevronDown } from "lucide-react";
-
 import Link from "next/link";
 
-
 export default function Navbar() {
-    return (
-        <header className="m-[29px] flex items-center gap-6">
-            <Image
-                src="/ssw.png"
-                alt="SSW logo"
-                width={170}
-                height={85}
-                priority
-                className="h-auto w-[170px] mx-[20px]"
-            />
-            <nav className="flex h-[60px] flex-1 mx-[30px] items-center rounded-[32px] bg-white p-[40px] shadow-[0_8px_24px_rgba(0,0,0,0.18)]">
-                <ul className="flex w-full items-center justify-between text-[20pt] font-semibold text-black [&_a]:transition-colors [&_a]:hover:text-[#D41920]">
-                    <li>
-                        <Link href="/">Home</Link>
-                    </li>
+  return (
+    <header className="mx-auto flex w-full max-w-[1320px] items-center gap-4 px-5 py-4 sm:px-6 md:gap-6 md:py-5 lg:px-0">
+      {/* Logo */}
+      <Link href="/" className="shrink-0">
+        <Image
+          src="/ssw.png"
+          alt="SSW logo"
+          width={150}
+          height={75}
+          priority
+          className="h-auto w-[105px] sm:w-[125px] md:w-[145px]"
+        />
+      </Link>
 
-                    <li>
-                        <Link href="/about" className="flex items-center gap-2">
-                            About Us
-                            <ChevronDown className="size-5 stroke-[2.5]" />
-                        </Link>
-                    </li>
+      {/* Navigation */}
+      <nav className="min-w-0 flex-1">
+        <div className="flex h-[52px] items-center rounded-full bg-white px-4 shadow-[0_4px_18px_rgba(0,0,0,0.12)] sm:h-[56px] sm:px-5 md:h-[58px] md:px-6">
+          <ul className="flex w-full items-center justify-between gap-3 overflow-x-auto whitespace-nowrap text-[11px] font-semibold text-black sm:gap-4 sm:text-xs md:text-sm [&_a]:transition-colors [&_a]:hover:text-[#D41920]">
+            <li>
+              <Link href="/">Home</Link>
+            </li>
 
-                    <li>
-                        <Link
-                            href="/language"
-                            className="flex items-center gap-2"
-                        >
-                            Language
-                            <ChevronDown className="size-5 stroke-[2.5]" />
-                        </Link>
-                    </li>
+            <li>
+              <Link href="/about" className="flex items-center gap-1">
+                About Us
+                <ChevronDown className="size-3.5 stroke-[2.5]" />
+              </Link>
+            </li>
 
-                    <li>
-                        <Link
-                            href="/training"
-                            className="flex items-center gap-2"
-                        >
-                            Training
-                            <ChevronDown className="size-5 stroke-[2.5]" />
-                        </Link>
-                    </li>
+            <li>
+              <Link href="/language" className="flex items-center gap-1">
+                Language
+                <ChevronDown className="size-3.5 stroke-[2.5]" />
+              </Link>
+            </li>
 
-                    <li>
-                        <Link
-                            href="/services"
-                            className="flex items-center gap-2"
-                        >
-                            Services
-                            <ChevronDown className="size-5 stroke-[2.5]" />
-                        </Link>
-                    </li>
+            <li>
+              <Link href="/training" className="flex items-center gap-1">
+                Training
+                <ChevronDown className="size-3.5 stroke-[2.5]" />
+              </Link>
+            </li>
 
-                    <li>
-                        <Link href="/blogs">Blogs</Link>
-                    </li>
+            <li>
+              <Link href="/services" className="flex items-center gap-1">
+                Services
+                <ChevronDown className="size-3.5 stroke-[2.5]" />
+              </Link>
+            </li>
 
-                    <li>
-                        <Link
-                            href="/others"
-                            className="flex items-center gap-2"
-                        >
-                            Others
-                            <ChevronDown className="size-5 stroke-[2.5]" />
-                        </Link>
-                    </li>
-                </ul>
-            </nav>
+            <li>
+              <Link href="/blogs">Blogs</Link>
+            </li>
 
-            <button className="flex h-[80px] mx-[20px] items-center gap-3 rounded-full bg-[#D41920] px-[20px] text-[20pt] font-semibold text-white">
-                <Phone className="size-6" />
-                01-5921567
-            </button>
-        </header>
-    );
+            <li>
+              <Link href="/others" className="flex items-center gap-1">
+                Others
+                <ChevronDown className="size-3.5 stroke-[2.5]" />
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      {/* Phone Button */}
+      <button className="flex h-[48px] shrink-0 items-center gap-2 rounded-full bg-[#D41920] px-4 text-xs font-semibold text-white sm:h-[52px] sm:px-5 sm:text-sm md:h-[56px]">
+        <Phone className="size-4 sm:size-5" />
+
+        <span>01-5921567</span>
+      </button>
+    </header>
+  );
 }
