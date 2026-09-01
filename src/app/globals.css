@@ -5,27 +5,27 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-heading: var(--font-sans);
-  --font-sans: var(--font-sans);
-  --color-primary-green: hsl(117 41% 47%);
-  --color-primary-green-dark: hsl(117 41% 32%);
+    --font-heading: var(--font-sans);
+    --font-sans: var(--font-sans);
+    --color-primary-green: hsl(117 41% 47%);
+    --color-primary-green-dark: hsl(117 41% 32%);
 
-  --color-primary-red: hsl(358 79% 46%);
-  --color-primary-red-dark: hsl(358 79% 31%);
+    --color-primary-red: hsl(358 79% 46%);
+    --color-primary-red-dark: hsl(358 79% 31%);
 
-  --color-primary-blue: hsl(223 89% 61%);
-  --color-primary-blue-dark: hsl(223 100% 21%);
+    --color-primary-blue: hsl(223 89% 61%);
+    --color-primary-blue-dark: hsl(223 100% 21%);
 
-  --radius-sm: calc(var(--radius) * 0.6);
-  --radius-md: calc(var(--radius) * 0.8);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.4);
-  --radius-2xl: calc(var(--radius) * 1.8);
-  --radius-3xl: calc(var(--radius) * 2.2);
-  --radius-4xl: calc(var(--radius) * 2.6);
-  --color-themeBlack: #2b2422;
-  --background-image-pattern: url("/images/background-whitsh.png");
-  --background-image-finance: url("/images/home/official-partners/finance-background.png");
+    --radius-sm: calc(var(--radius) * 0.6);
+    --radius-md: calc(var(--radius) * 0.8);
+    --radius-lg: var(--radius);
+    --radius-xl: calc(var(--radius) * 1.4);
+    --radius-2xl: calc(var(--radius) * 1.8);
+    --radius-3xl: calc(var(--radius) * 2.2);
+    --radius-4xl: calc(var(--radius) * 2.6);
+    --color-themeBlack: #2b2422;
+    --background-image-pattern: url("/images/background-whitsh.png");
+    --background-image-finance: url("/images/home/official-partners/finance-background.png");
 }
 
 :root {
@@ -101,13 +101,11 @@
     * {
         border-color: var(--border);
         outline-color: var(--ring);
-
     }
     body {
         background-color: var(--background);
         color: var(--foreground);
         overflow-x: clip; /* Clip horizontal scroll without breaking sticky scroll boundaries */
-
     }
     html {
         font-family: var(--font-sans);
@@ -118,13 +116,13 @@
         padding: 0.75em 1.5em;
     }
 
-  td {
-      padding: 0.5em 1.5em;
-  }
+    td {
+        padding: 0.5em 1.5em;
+    }
 
-  img {
-    object-fit: cover;
-  }
+    img {
+        object-fit: cover;
+    }
 }
 
 /* animations */
