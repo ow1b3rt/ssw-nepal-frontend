@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ROUTES } from "@/constants/routes/routes";
 import { FileText, ImageIcon } from "lucide-react";
+import { BlogCard } from "@/components/molecules/cards/BlogCard";
 
 export const metadata = {
   title: "Notice | Enlighten Int'l Education",
@@ -55,29 +56,22 @@ export default async function NoticePage() {
         </p>
       ) : (
         <ul className="mt-6 divide-y divide-gray-100 rounded-xl border border-gray-200 bg-white shadow-sm">
-          {notices.map((notice) => (
-            <li key={notice.id}>
-              <Link
-                href={ROUTES.NOTICE(notice.id)}
-                className="group flex items-start gap-4 px-5 py-4 transition-colors hover:bg-gray-50"
-              >
-                <NoticeTypeIcon type={notice.mediaType} />
-                <div className="min-w-0 flex-1">
-                  <p className="text-destructive group-hover:text-destructive/80 truncate font-semibold transition-colors">
-                    {notice.title}
-                  </p>
-                  {notice.description && (
-                    <p className="mt-0.5 line-clamp-2 text-sm text-gray-500">
-                      {notice.description}
-                    </p>
-                  )}
-                </div>
-                <span className="shrink-0 text-xs text-gray-400">
-                  {formatDate(notice.createdAt)}
-                </span>
-              </Link>
-            </li>
-          ))}
+          <div className="grid grid-cols-3 gap-6 ">
+            {notices.map((notice, index) => (
+              <BlogCard
+                key={index}
+                blog={{
+                  image: {
+                    src: `${process.env.NEXT_PUBLIC_HOST}${notice.mediaUrl}`,
+                    alt: notice.mediaAlt,
+                  },
+                  title: notice.title,
+                  desc: notice.description,
+                  url: `/notices/${notice.id}`,
+                }}
+              />
+            ))}
+          </div>
         </ul>
       )}
     </section>
