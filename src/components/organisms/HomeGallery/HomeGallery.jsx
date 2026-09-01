@@ -33,7 +33,7 @@ function GalleryCard({ image, label, height, theme = "lightblue" }) {
   );
 }
 
-export function OfficeGallery({ section: data = section }) {
+export function HomeGallery({ section: data = section }) {
   return (
     <div className="flex w-full flex-col items-center gap-2">
       <div className="relative flex w-full gap-4">

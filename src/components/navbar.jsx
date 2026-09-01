@@ -18,7 +18,7 @@ export default function Navbar() {
       </Link>
 
       {/* Navigation */}
-      <nav className="min-w-0">
+      <nav className="min-w-0 hidden md:flex">
         <div className="flex h-[52px] items-center rounded-full bg-white px-4 shadow-[0_4px_18px_rgba(0,0,0,0.12)] sm:h-[56px] sm:px-5 md:h-[58px] md:px-6">
           <ul className="flex text-lg xl:text-xl w-full items-center font-semibold text-black gap-8 [&_a]:transition-colors [&_a]:hover:text-primary-red">
             <li>

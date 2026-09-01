@@ -73,13 +73,13 @@ function ServiceCard({ icon, title, desc, theme }) {
     <div
       className={`group flex flex-col gap-4 rounded-3xl p-6 shadow-sm transition-colors duration-300 ${t.bg} ${t.hoverBg}`}
     >
-      <div className={`flex h-16 w-16 items-center justify-center rounded-2xl transition-colors duration-300 ${t.iconBg} ${t.iconHoverBg}`}>
+      <div className={`flex p-2 h-8 w-8 md:h-16 md:w-16 items-center justify-center rounded-md md:rounded-2xl transition-colors duration-300 ${t.iconBg} ${t.iconHoverBg}`}>
         {Icon && <Icon size={28} className={`transition-colors duration-300 ${t.iconColor} ${t.iconHoverColor}`} />}
       </div>
-      <h3 className="text-2xl font-extrabold text-white transition-colors duration-300 group-hover:text-black">
+      <h3 className="text-sm md:text-2xl font-extrabold text-white transition-colors duration-300 group-hover:text-black">
         {title}
       </h3>
-      <p className="text-lg text-white/70 transition-colors duration-300 group-hover:text-black/60">
+      <p className="text-xs md:text-lg text-white/70 transition-colors duration-300 group-hover:text-black/60">
         {desc}
       </p>
     </div>
@@ -88,7 +88,7 @@ function ServiceCard({ icon, title, desc, theme }) {
 
 export function ServicesGrid({ section: data = section }) {
   return (
-    <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+    <div className="grid grid-cols-2 gap-4">
       {data.list.map((item, i) => (
         <ServiceCard key={i} {...item} theme={data.theme} />
       ))}

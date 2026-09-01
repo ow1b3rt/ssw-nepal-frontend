@@ -1,9 +1,15 @@
+import { HomeAbout } from "@/components/organisms/HomeAbout/HomeAbout";
 import { HomeHero } from "@/components/organisms/HomeHero/HomeHero";
+import { HomeServices } from "@/components/organisms/HomeServices/HomeServices";
+import { HomeGallery } from "@/components/organisms/HomeGallery/HomeGallery";
 
 export default function Home() {
   return (
-    <div className='w-full p-5'>
+    <div className='flex flex-col gap-8 w-full p-5'>
       <HomeHero />
+      <HomeAbout />
+      <HomeServices />
+      <HomeGallery />
     </div>
   );
 }

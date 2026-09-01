@@ -1,5 +1,5 @@
-import SuccessStoryCard from "@/components/successStoryCard";
-import SuccessStoryText from "@/components/successStoryText";
+import SuccessStoryCard from "@/components/organisms/SuccessStories/successStoryCard";
+import SuccessStoryText from "@/components/organisms/SuccessStories/successStoryText";
 import { successStoryData } from "@/data/successStory";
 
 export default function SuccessStoryPage() {

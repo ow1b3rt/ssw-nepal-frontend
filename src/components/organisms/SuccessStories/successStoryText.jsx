@@ -4,7 +4,7 @@ export default function SuccessStoryText({
   description,
 }) {
   return (
-    <section className="flex flex-col pt-6">
+    <section className="flex flex-col flex-1 ">
       <h2 className="mb-1 text-[44px] font-black leading-none tracking-[-1.5px] text-[#df1f26] md:text-[52px]">
         {name}
       </h2>

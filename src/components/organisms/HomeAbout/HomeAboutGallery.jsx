@@ -36,7 +36,7 @@ export function HomeAboutGallery({ section: data = section, extraPercentWidth = 
   const notchHeight = 42; // % of image height
 
   return (
-    <div className={`relative flex aspect-square w-full px-4 ${IMAGE_POSITION[notchCorner]}`}>
+    <div className={`relative flex aspect-square w-full flex-1 px-4 ${IMAGE_POSITION[notchCorner]}`}>
       <NotchedImage
         src={data.mainImage.src}
         alt={data.mainImage.alt}
