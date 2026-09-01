@@ -101,13 +101,13 @@
     * {
         border-color: var(--border);
         outline-color: var(--ring);
-        @apply border-border outline-ring/50;
+
     }
     body {
         background-color: var(--background);
         color: var(--foreground);
         overflow-x: clip; /* Clip horizontal scroll without breaking sticky scroll boundaries */
-        @apply bg-background text-foreground;
+
     }
     html {
         font-family: var(--font-sans);
@@ -175,35 +175,3 @@
     animation-timing-function: ease-out;
 }
 
-/* 1. Make the total scrollbar width large enough for the full emoji */
-::-webkit-scrollbar {
-    width: 5px;
-}
-
-/* 2. Draw a narrow 8px vertical track line in the middle */
-::-webkit-scrollbar-track {
-    background-color: transparent;
-    background-image: linear-gradient(
-        to right,
-        transparent 10px,
-        var(--destructive) 10px,
-        var(--destructive) 18px,
-        transparent 18px
-    );
-}
-
-/* 3. Display the large emoji floating over the narrow track */
-::-webkit-scrollbar-thumb {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='80'%3E%3C/text%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 24px 24px;
-    border-radius: 10px;
-    background-color: #dedede; /* Transparent so only the emoji is visible */
-    min-height: 32px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    /* Optional slight scale-up effect */
-    background-size: 28px 28px;
-}
