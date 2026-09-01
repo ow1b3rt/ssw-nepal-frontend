@@ -4,16 +4,15 @@ import Link from "next/link";
 
 export default function Navbar() {
   return (
-    <header className="flex w-full items-center justify-between gap-4 px-5 py-4 md:gap-6">
-      {/* Logo */}
+    <header className="flex flex-col lg:flex-row w-full items-center container mx-auto justify-between gap-4 px-5 py-2 md:gap-6 ">
       <Link href="/" className="shrink-0">
         <Image
-          src="/ssw.png"
+          src="/logo.png"
           alt="SSW logo"
           width={150}
           height={75}
           priority
-          className="h-auto w-[105px] sm:w-[125px] md:w-[145px]"
+          className="h-auto w-26.25 sm:w-31.25 md:w-36.25"
         />
       </Link>
 
