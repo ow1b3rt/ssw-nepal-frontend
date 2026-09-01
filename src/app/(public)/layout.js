@@ -7,8 +7,8 @@ export default function PublicLayout({ children }) {
   return (
     <div className="flex min-h-screen flex-col justify-between front">
       <Navbar />
-      <main className="container mx-auto ">
-        <div className="px-4 lg:px-0">
+      <main className="flex flex-col max-w-[1440px] items-center">
+        <div className="">
           <Breadcrumb />
         </div>
         {children}

@@ -1,9 +1,9 @@
-import Hero from "@/components/hero";
+import { HomeHero } from "@/components/organisms/HomeHero/HomeHero";
 
 export default function Home() {
   return (
-    <main>
-      <Hero />
-    </main>
+    <div className='w-full p-5'>
+      <HomeHero />
+    </div>
   );
 }
