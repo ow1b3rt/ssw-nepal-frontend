@@ -15,7 +15,7 @@ const section = {
 
 const COLUMNS = ["left", "center", "right"];
 
-function GalleryCard({ image, label, height, theme = "lightblue" }) {
+export function GalleryCard({ image, label, height, theme = "lightblue" }) {
   const THEMES = {
     lightblue: "bg-primary-blue-dark/10 text-primary-blue-dark",
     darkblue: "bg-primary-blue-dark text-white",
