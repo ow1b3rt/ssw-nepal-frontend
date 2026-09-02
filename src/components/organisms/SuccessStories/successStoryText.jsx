@@ -4,7 +4,7 @@ import Divider from "@/components/ui/divider";
 
 export default function SuccessStoryText({ name, batch, description }) {
   return (
-    <section className="flex flex-col flex-1 bg-faint-red h-full gap-2 xl:gap-6 p-6 order-1 md:order-2 rounded-lg md:ml-5">
+    <section className="flex flex-col flex-1 bg-faint-red h-full gap-2 xl:gap-6 p-6 order-1 md:order-2 rounded-lg">
       <AnimatedCard direction="up" distance={12} triggerOnView>
         <h2 className="mb-1 text-3xl font-black leading-none tracking-[-1.5px] text-primary-red md:text-4xl xl:text-5xl">
           {" "}
