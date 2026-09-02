@@ -54,6 +54,7 @@ const HomeEvents = () => {
           showControls={false}
           showChevronControls={false}
           showGradientMask={false}
+          draggable={false}
         />
       </div>
     </div>

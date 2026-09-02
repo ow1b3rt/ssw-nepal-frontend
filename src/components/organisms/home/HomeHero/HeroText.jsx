@@ -59,7 +59,7 @@ export function HeroText({ section: data = section }) {
 
       <Link
         href={data.ctaURL}
-        className="inline-flex items-center gap-2 rounded-2xl bg-black px-6 py-3 md:text-lg font-bold text-white"
+        className="inline-flex items-center gap-2 rounded-2xl bg-black hover:bg-primary-red transition duration-300 ease-in-out px-6 py-3 md:text-lg font-bold text-white"
       >
         <AnimatedWords
           text={data.ctaLabel}
