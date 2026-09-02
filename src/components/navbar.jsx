@@ -1,10 +1,154 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { Phone, ChevronDown } from "lucide-react";
 import Link from "next/link";
+import { Phone, ChevronDown, Menu, X } from "lucide-react";
+
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer";
+
+const NAV_CONFIG = [
+  { href: "/", label: "Home" },
+  {
+    href: "/about",
+    label: "About Us",
+    children: [{ href: "/about", label: "Overview" }],
+  },
+  {
+    href: "/language",
+    label: "Language",
+    children: [{ href: "/language", label: "Courses" }],
+  },
+  {
+    href: "/training",
+    label: "Training",
+    children: [{ href: "/training", label: "Programs" }],
+  },
+  {
+    href: "/services",
+    label: "Services",
+    children: [{ href: "/services", label: "All Services" }],
+  },
+  {
+    href: "/blogs",
+    label: "Blogs",
+    hideBetweenLgAndXl: true,
+    injectInto: "/others",
+  },
+  {
+    href: "/others",
+    label: "Others",
+    children: [
+      { href: "/others/option-1", label: "Option 1" },
+      { href: "/others/option-2", label: "Option 2" },
+    ],
+  },
+];
+
+const PHONE_NUMBER = "01-5921567";
+
+function DropdownItem({ item, extraChildren }) {
+  const [open, setOpen] = useState(false);
+  const closeTimer = useRef(null);
+  const containerRef = useRef(null);
+
+  const children = extraChildren
+    ? [...extraChildren, ...(item.children ?? [])]
+    : item.children;
+
+  const openNow = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    setOpen(true);
+  };
+
+  const closeSoon = () => {
+    closeTimer.current = setTimeout(() => setOpen(false), 120);
+  };
+
+  useEffect(() => {
+    function onClickOutside(e) {
+      if (containerRef.current && !containerRef.current.contains(e.target)) {
+        setOpen(false);
+      }
+    }
+    function onKeyDown(e) {
+      if (e.key === "Escape") setOpen(false);
+    }
+    document.addEventListener("mousedown", onClickOutside);
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("mousedown", onClickOutside);
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, []);
+
+  if (!children || children.length === 0) {
+    return (
+      <li>
+        <Link
+          href={item.href}
+          className="flex items-center gap-1 whitespace-nowrap"
+        >
+          {item.label}
+        </Link>
+      </li>
+    );
+  }
+
+  return (
+    <li
+      ref={containerRef}
+      className="relative"
+      onMouseEnter={openNow}
+      onMouseLeave={closeSoon}
+    >
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        aria-expanded={open}
+        className="flex items-center gap-1 whitespace-nowrap"
+      >
+        {item.label}
+        <ChevronDown
+          className={`size-3.5 stroke-[2.5] transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+        />
+      </button>
+
+      {open && (
+        <div className="absolute left-0 top-full pt-3">
+          <ul className="flex w-48 flex-col gap-0.5 rounded-xl bg-white p-1.5 shadow-[0_10px_30px_rgba(0,0,0,0.15)]">
+            {children.map((child) => (
+              <li
+                key={child.href}
+                className={child.hideAtXl ? "xl:hidden" : undefined}
+              >
+                <Link
+                  href={child.href}
+                  onClick={() => setOpen(false)}
+                  className="block rounded-lg px-3 py-2 text-base font-medium text-black transition-colors hover:bg-faint-red hover:text-primary-red"
+                >
+                  {child.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </li>
+  );
+}
 
 export default function Navbar() {
+  const [open, setOpen] = useState(false);
+
   return (
-    <header className="flex flex-col lg:flex-row w-full items-center container mx-auto justify-between gap-4 px-5 py-2 md:gap-6 ">
+    <header className="container mx-auto flex w-full items-center justify-between gap-4 px-5 py-2 md:gap-6 lg:px-4 xl:px-0">
       <Link href="/" className="shrink-0">
         <Image
           src="/logo.png"
@@ -16,62 +160,167 @@ export default function Navbar() {
         />
       </Link>
 
-      {/* Navigation */}
-      <nav className="min-w-0 hidden md:flex">
-        <div className="flex h-[52px] items-center rounded-full bg-white px-4 shadow-[0_4px_18px_rgba(0,0,0,0.12)] sm:h-[56px] sm:px-5 md:h-[58px] md:px-6">
-          <ul className="flex text-lg xl:text-xl w-full items-center font-semibold text-black gap-8 [&_a]:transition-colors [&_a]:hover:text-primary-red">
-            <li>
-              <Link href="/">Home</Link>
-            </li>
+      <nav className="hidden min-w-0 lg:flex">
+        <div className="flex h-13 items-center rounded-full bg-white px-4 shadow-[0_4px_18px_rgba(0,0,0,0.12)] sm:h-14 sm:px-5 md:h-14.5 md:px-6">
+          <ul className="flex w-full items-center gap-6 text-lg font-semibold text-black xl:gap-8 xl:text-xl">
+            {NAV_CONFIG.map((item) => {
+              const isOthers = item.href === "/others";
+              const injected = isOthers
+                ? NAV_CONFIG.filter((i) => i.injectInto === item.href)
+                : [];
 
-            <li>
-              <Link href="/about" className="flex items-center gap-1">
-                About Us
-                <ChevronDown className="size-3.5 stroke-[2.5]" />
-              </Link>
-            </li>
+              const extraChildren = injected.map((i) => ({
+                href: i.href,
+                label: i.label,
+                hideAtXl: true,
+              }));
 
-            <li>
-              <Link href="/language" className="flex items-center gap-1">
-                Language
-                <ChevronDown className="size-3.5 stroke-[2.5]" />
-              </Link>
-            </li>
-
-            <li>
-              <Link href="/training" className="flex items-center gap-1">
-                Training
-                <ChevronDown className="size-3.5 stroke-[2.5]" />
-              </Link>
-            </li>
-
-            <li>
-              <Link href="/services" className="flex items-center gap-1">
-                Services
-                <ChevronDown className="size-3.5 stroke-[2.5]" />
-              </Link>
-            </li>
-
-            <li>
-              <Link href="/blogs">Blogs</Link>
-            </li>
-
-            <li>
-              <Link href="/others" className="flex items-center gap-1">
-                Others
-                <ChevronDown className="size-3.5 stroke-[2.5]" />
-              </Link>
-            </li>
+              return (
+                <span key={item.href} className="contents">
+                  {item.hideBetweenLgAndXl ? (
+                    // Rendered as its own top-level link only from xl upward.
+                    <li className="hidden xl:block">
+                      <Link href={item.href} className="whitespace-nowrap">
+                        {item.label}
+                      </Link>
+                    </li>
+                  ) : (
+                    <DropdownItem
+                      item={item}
+                      extraChildren={isOthers ? extraChildren : undefined}
+                    />
+                  )}
+                </span>
+              );
+            })}
           </ul>
         </div>
       </nav>
 
-      {/* Phone Button */}
-      <button className="flex h-[48px] shrink-0 items-center gap-2 rounded-full bg-[#D41920] px-4 text-xs font-semibold text-white sm:h-[52px] sm:px-5 sm:text-sm md:h-[56px]">
-        <Phone className="size-4 sm:size-5" />
+      <div className="flex items-center justify-end">
+        <Link
+          href={`tel:${PHONE_NUMBER.replace(/-/g, "")}`}
+          className="hidden h-12 shrink-0 items-center gap-2 rounded-full bg-primary-red px-4 text-xs font-semibold text-white sm:h-13 sm:px-5 sm:text-sm md:h-14.5 md:px-6 md:text-lg lg:flex"
+        >
+          <Phone className="size-4 sm:size-5" />
+          <span>{PHONE_NUMBER}</span>
+        </Link>
 
-        <span>01-5921567</span>
-      </button>
+        <Drawer open={open} onOpenChange={setOpen} direction="right">
+          <DrawerTrigger asChild>
+            <button
+              type="button"
+              aria-label="Open menu"
+              className="flex size-12 shrink-0 items-center justify-center rounded-lg bg-white shadow-[0_4px_10px_rgba(0,0,0,0.12)] lg:hidden"
+            >
+              <Menu className="size-5" />
+            </button>
+          </DrawerTrigger>
+
+          <DrawerContent className="fixed bottom-0 right-0 ml-auto flex min-h-full w-full max-w-[85vw] flex-col rounded-none! border-l bg-white p-0 sm:max-w-sm">
+            <DrawerTitle className="sr-only">Navigation menu</DrawerTitle>
+
+            <div className="flex items-center justify-between border-b px-5 py-4">
+              <Link
+                href="/"
+                onClick={() => setOpen(false)}
+                className="shrink-0"
+              >
+                <Image
+                  src="/logo.png"
+                  alt="SSW logo"
+                  width={120}
+                  height={60}
+                  className="h-auto w-24"
+                />
+              </Link>
+
+              <DrawerClose asChild>
+                <button
+                  type="button"
+                  aria-label="Close menu"
+                  className="flex size-10 items-center justify-center rounded-full text-black/60 transition-colors hover:bg-black/5 hover:text-black"
+                >
+                  <X className="size-5" />
+                </button>
+              </DrawerClose>
+            </div>
+
+            <nav className="flex-1 overflow-y-auto px-5 py-2">
+              <ul className="flex flex-col divide-y divide-black/8 font-semibold text-black">
+                {NAV_CONFIG.map((item) => (
+                  <MobileNavRow
+                    key={item.href}
+                    item={item}
+                    onNavigate={() => setOpen(false)}
+                  />
+                ))}
+              </ul>
+            </nav>
+
+            <div className="border-t px-5 py-4">
+              <a
+                href={`tel:${PHONE_NUMBER.replace(/-/g, "")}`}
+                onClick={() => setOpen(false)}
+                className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-primary-red text-sm font-semibold text-white"
+              >
+                <Phone className="size-4" />
+                <span>{PHONE_NUMBER}</span>
+              </a>
+            </div>
+          </DrawerContent>
+        </Drawer>
+      </div>
     </header>
+  );
+}
+
+function MobileNavRow({ item, onNavigate }) {
+  const [expanded, setExpanded] = useState(false);
+
+  if (!item.children || item.children.length === 0) {
+    return (
+      <li>
+        <Link
+          href={item.href}
+          onClick={onNavigate}
+          className="flex items-center justify-between py-4 text-base transition-colors hover:text-primary-red"
+        >
+          {item.label}
+        </Link>
+      </li>
+    );
+  }
+
+  return (
+    <li>
+      <button
+        type="button"
+        onClick={() => setExpanded((v) => !v)}
+        aria-expanded={expanded}
+        className="flex w-full items-center justify-between py-4 text-base transition-colors hover:text-primary-red"
+      >
+        {item.label}
+        <ChevronDown
+          className={`size-4 stroke-[2.5] text-black/40 transition-transform duration-200 ${expanded ? "rotate-180" : ""}`}
+        />
+      </button>
+
+      {expanded && (
+        <ul className="flex flex-col gap-1 pb-3 pl-3">
+          {item.children.map((child) => (
+            <li key={child.href}>
+              <Link
+                href={child.href}
+                onClick={onNavigate}
+                className="block rounded-lg px-2 py-2 text-sm font-medium text-black/70 transition-colors hover:text-primary-red"
+              >
+                {child.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      )}
+    </li>
   );
 }

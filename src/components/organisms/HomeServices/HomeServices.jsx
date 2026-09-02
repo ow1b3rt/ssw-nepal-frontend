@@ -3,7 +3,7 @@ import { ServicesIntro } from "./HomeServicesIntro";
 
 export function HomeServices() {
     return (
-        <section className='flex flex-col md:flex-row gap-8 justify-between w-full items-center'>
+        <section className='grid lg:grid-cols-2 gap-8'>
             <ServicesIntro />
             <ServicesGrid />
         </section>

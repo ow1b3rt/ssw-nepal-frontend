@@ -21,7 +21,7 @@ const THEMES = {
   },
   blue: {
     bg: "bg-primary-blue-dark",
-    hoverBg: "hover:bg-primary-blue-dark/10",
+    hoverBg: "hover:bg-faint-blue",
     iconBg: "bg-white",
     iconHoverBg: "group-hover:bg-primary-blue-dark",
     iconColor: "text-primary-blue-dark",
@@ -71,15 +71,15 @@ function ServiceCard({ icon, title, desc, theme }) {
 
   return (
     <div
-      className={`group flex flex-col gap-4 rounded-3xl p-6 shadow-sm transition-colors duration-300 ${t.bg} ${t.hoverBg}`}
+      className={`group flex w-full flex-col gap-1 sm:gap-4 rounded-3xl p-4 sm:p-6 shadow-sm transition-colors duration-600 ${t.bg} ${t.hoverBg}`}
     >
-      <div className={`flex p-2 h-8 w-8 md:h-16 md:w-16 items-center justify-center rounded-md md:rounded-2xl transition-colors duration-300 ${t.iconBg} ${t.iconHoverBg}`}>
+      <div className={`flex p-2 h-8 w-8 md:h-16 md:w-16 lg:h-10 lg:w-10 xl:w-16 xl:h-16 items-center justify-center rounded-md md:rounded-2xl lg:rounded-xl xl:rounded-2xl transition-colors duration-300 ${t.iconBg} ${t.iconHoverBg}`}>
         {Icon && <Icon size={28} className={`transition-colors duration-300 ${t.iconColor} ${t.iconHoverColor}`} />}
       </div>
-      <h3 className="text-sm md:text-2xl font-extrabold text-white transition-colors duration-300 group-hover:text-black">
+      <h3 className="text-base md:text-2xl lg:text-xl xl:text-2xl font-extrabold text-white transition-colors duration-300 group-hover:text-black">
         {title}
       </h3>
-      <p className="text-xs md:text-lg text-white/70 transition-colors duration-300 group-hover:text-black/60">
+      <p className="text-sm md:text-lg lg:text-base xl:text-lg text-white/70 transition-colors duration-300 group-hover:text-black/60">
         {desc}
       </p>
     </div>
@@ -88,7 +88,7 @@ function ServiceCard({ icon, title, desc, theme }) {
 
 export function ServicesGrid({ section: data = section }) {
   return (
-    <div className="grid grid-cols-2 gap-4">
+    <div className="grid grid-cols-2 gap-2 sm:gap-4">
       {data.list.map((item, i) => (
         <ServiceCard key={i} {...item} theme={data.theme} />
       ))}

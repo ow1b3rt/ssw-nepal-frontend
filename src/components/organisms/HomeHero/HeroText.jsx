@@ -16,7 +16,7 @@ const section = {
 export function HeroText({ section: data = section }) {
   return (
     <div className="flex flex-col items-start gap-6">
-      <span className="rounded-2xl bg-primary-green px-6 py-3 text-lg font-bold text-white">
+      <span className="rounded-2xl bg-primary-green px-6 py-3 md:text-lg font-bold text-white">
         <AnimatedWords
           text={data.badge}
           animKey="badge"
@@ -26,7 +26,7 @@ export function HeroText({ section: data = section }) {
         />
       </span>
 
-      <h1 className="text-6xl font-extrabold leading-none xl:text-7xl">
+      <h1 className="text-4xl md:text-6xl font-extrabold leading-none xl:text-7xl">
         <span className="block text-black">
           <AnimatedWords
             text={data.titleBlack}
@@ -47,7 +47,7 @@ export function HeroText({ section: data = section }) {
         </span>
       </h1>
 
-      <p className="max-w-xl text-xl text-gray-500">
+      <p className="max-w-xl text-lg md:text-xl text-gray-500">
         <AnimatedWords
           text={data.description}
           animKey="description"
@@ -59,7 +59,7 @@ export function HeroText({ section: data = section }) {
 
       <Link
         href={data.ctaURL}
-        className="inline-flex items-center gap-2 rounded-2xl bg-black px-6 py-3 text-lg font-bold text-white"
+        className="inline-flex items-center gap-2 rounded-2xl bg-black px-6 py-3 md:text-lg font-bold text-white"
       >
         <AnimatedWords
           text={data.ctaLabel}

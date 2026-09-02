@@ -85,7 +85,7 @@ export function HomeAboutGallery({
           }}
         >
           <ImageContainer
-            className="h-full w-full"
+            className="h-full w-auto"
             src={data.secondaryImage.src}
             alt={data.secondaryImage.alt}
           />

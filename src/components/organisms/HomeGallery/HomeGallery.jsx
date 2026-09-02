@@ -36,7 +36,7 @@ function GalleryCard({ image, label, height, theme = "lightblue" }) {
 export function HomeGallery({ section: data = section }) {
   return (
     <div className="flex w-full flex-col items-center gap-2">
-      <div className="relative flex w-full gap-4">
+      <div className="relative flex flex-col md:flex-row w-full gap-4">
         {COLUMNS.map((column) => (
           <div key={column} className="flex flex-1 flex-col gap-4">
             {data.items
@@ -46,7 +46,7 @@ export function HomeGallery({ section: data = section }) {
               ))}
           </div>
         ))}
-        <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-white to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-1/3 bg-linear-to-t from-white to-transparent" />
       </div>
 
       <Link href={data.ctaURL} className="rounded-xl bg-primary-red px-8 py-4 text-lg font-bold text-white">
