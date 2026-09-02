@@ -9,7 +9,7 @@ import HomeBlogs from "@/components/organisms/home/HomeBlogs";
 
 export default function Home() {
   return (
-    <div className="flex flex-col gap-12 w-full pt-12 ">
+    <div className="flex flex-col w-full pt-12 gap-16">
       <HomeHero />
       <HomeEvents />
       <HomeAbout />

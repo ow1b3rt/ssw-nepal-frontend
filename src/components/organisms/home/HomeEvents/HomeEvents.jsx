@@ -32,7 +32,7 @@ const events = [
 
 const HomeEvents = () => {
   return (
-    <div className="flex flex-col items-center justify-center gap-y-8 xl:gap-y-16 md:py-10">
+    <div className="flex flex-col items-center justify-center gap-y-8 xl:gap-y-16 md:pt-10">
       <AnimatedCard
         className="bg-primary-blue rounded-lg py-2.5 px-10"
         direction="down"

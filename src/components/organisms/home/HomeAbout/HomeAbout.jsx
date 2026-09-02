@@ -12,11 +12,16 @@ const section = {
 
 export function HomeAbout({ data = section }) {
   return (
-    <section className="grid lg:grid-cols-2 gap-4 lg:gap-6 xl:gap-8 w-full items-center">
-      <AnimatedCard className="h-full" direction="up" distance={12} triggerOnView>
+    <section className="grid lg:grid-cols-2 gap-4 lg:gap-6 xl:gap-8 w-full items-center gap-y-8 xl:gap-y-16">
+      <AnimatedCard
+        className="h-full"
+        direction="up"
+        distance={12}
+        triggerOnView
+      >
         <HomeAboutGallery />
       </AnimatedCard>
-     
+
       <SuccessStoryText
         name={data.aboutDesc.title}
         description={data.aboutDesc.description}

@@ -48,7 +48,7 @@ export default function Breadcrumb() {
       <div className="flex flex-wrap items-center gap-2">
         <Button
           onClick={() => router.push("/")}
-          className="text-foreground hover:text-destructive flex cursor-pointer items-center gap-2 border-none bg-transparent p-0 outline-none hover:bg-transparent"
+          className="text-foreground hover:text-primary-red flex cursor-pointer items-center gap-2 border-none bg-transparent p-0 outline-none hover:bg-transparent"
         >
           <House size={14} className="text-foreground" />
           <span className="font-semibold sm:text-base">Home</span>
@@ -58,12 +58,12 @@ export default function Breadcrumb() {
           <div key={crumb.path} className="flex items-center gap-2">
             <ChevronRight size={18} className="text-foreground" />
             {i === crumbs.length - 1 ? (
-              <span className="breadcrumb__current text-destructive text-sm font-semibold sm:text-base">
+              <span className="breadcrumb__current text-primary-red text-sm font-semibold sm:text-base">
                 {crumb.label}
               </span>
             ) : (
               <button
-                className="breadcrumb-btn text-primaryBlue hover:text-destructive cursor-pointer text-sm font-semibold sm:text-base"
+                className="breadcrumb-btn text-primaryBlue hover:text-primary-red cursor-pointer text-sm font-semibold sm:text-base"
                 onClick={() => router.push(crumb.path)}
               >
                 {crumb.label}

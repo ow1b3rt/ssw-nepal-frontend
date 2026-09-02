@@ -1,5 +1,6 @@
 import { ServicesGrid } from "./HomeServices/HomeServicesGrid";
 import { ServicesIntro } from "./HomeServices/HomeServicesIntro";
+import AnimatedCard from "@/components/ui/animated-card";
 
 import {
   HardHat,
@@ -64,13 +65,30 @@ const section = {
 
 export default function HomeTrainings() {
   return (
-    <section className="grid lg:grid-cols-2 gap-8">
-      <ServicesGrid section={section} />
-      <ServicesIntro
-        className="bg-faint-red"
-        section={trainingIntro}
-        ctaClassName="bg-primary-red hover:bg-primary-red-dark"
-      />
+    <section
+      id="home-trainings"
+      className="grid lg:grid-cols-2 gap-8 gap-y-8 xl:gap-y-16 md:pt-10"
+    >
+      <AnimatedCard
+        className="order-2 lg:order-1"
+        direction="down"
+        distance={12}
+        triggerOnView
+      >
+        <ServicesGrid section={section} />
+      </AnimatedCard>
+      <AnimatedCard
+        className="order-1 lg:order-2"
+        direction="up"
+        distance={12}
+        triggerOnView
+      >
+        <ServicesIntro
+          className="bg-faint-red"
+          section={trainingIntro}
+          ctaClassName="bg-primary-red hover:bg-primary-red-dark"
+        />
+      </AnimatedCard>
     </section>
   );
 }

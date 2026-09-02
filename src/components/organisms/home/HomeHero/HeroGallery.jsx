@@ -38,7 +38,7 @@ function StatCard({ icon, number, label }) {
     <AnimatedCard
       direction="down"
       delay={50}
-      className="flex items-center justify-center gap-3 rounded-lg! bg-faint-blue p-4"
+      className="flex items-center justify-center gap-3 rounded-lg! bg-faint-blue p-2 md:p-4"
     >
       {Icon && (
         <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-900">
@@ -46,10 +46,10 @@ function StatCard({ icon, number, label }) {
         </div>
       )}
       <div>
-        <p className="text-2xl font-extrabold">
+        <p className="text-xl md:text-3xl font-extrabold">
           <AnimatedCounter end={number} suffix={"+"} start={0} />
         </p>
-        <p className="text-lg font-bold">{label}</p>
+        <p className="text-sm md:text-lg font-bold">{label}</p>
       </div>
     </AnimatedCard>
   );

@@ -1,10 +1,11 @@
 import { NotchedImage } from "@/components/molecules/NotchedImage";
 import { ImageContainer } from "@/components/molecules/ImageContainer";
+import { AnimatedCounter } from "@/components/ui/animated-counter";
 
 const section = {
   mainImage: { src: "/favicon.jpg", alt: "SSW office reception" },
   secondaryImage: { src: "/favicon.jpg", alt: "SSW classroom" },
-  badgeNumber: "5+",
+  badgeNumber: 5,
   badgeLabel: "Years Of Experience",
 };
 
@@ -69,7 +70,13 @@ export function HomeAboutGallery({
           className={`absolute z-10 ${BADGE_POSITION[notchCorner]} rounded-2xl bg-green-600 px-6 py-4 text-white shadow-lg`}
         >
           <p className="text-4xl font-extrabold leading-none">
-            {data.badgeNumber}
+            <AnimatedCounter
+              end={data.badgeNumber}
+              suffix={"+"}
+              start={0}
+              duration={2500}
+              triggerOnView
+            />
           </p>
           <p className="mt-1 text-lg font-bold">{data.badgeLabel}</p>
         </div>

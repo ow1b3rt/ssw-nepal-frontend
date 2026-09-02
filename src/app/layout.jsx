@@ -1,8 +1,6 @@
-import Navbar from "@/components/navbar";
-
 import { Outfit } from "next/font/google";
-import "./globals.css";
 import { Toaster } from "@/components/ui/toast";
+import "./globals.css";
 
 const outfit = Outfit({
   subsets: ["latin"],
