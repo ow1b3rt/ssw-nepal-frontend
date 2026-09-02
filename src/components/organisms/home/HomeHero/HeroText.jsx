@@ -16,7 +16,7 @@ const section = {
 export function HeroText({ section: data = section }) {
   return (
     <div className="flex flex-col items-start gap-6">
-      <span className="rounded-2xl bg-primary-green px-6 py-3 md:text-lg font-bold text-white">
+      <span className="rounded-2xl bg-primary-green px-7 py-2 md:text-lg font-medium text-white">
         <AnimatedWords
           text={data.badge}
           animKey="badge"

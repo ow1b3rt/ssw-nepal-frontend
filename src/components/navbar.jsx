@@ -162,7 +162,7 @@ export default function Navbar() {
 
       <nav className="hidden min-w-0 lg:flex">
         <div className="flex h-13 items-center rounded-full bg-white px-4 shadow-[0_4px_18px_rgba(0,0,0,0.12)] sm:h-14 sm:px-5 md:h-14.5 md:px-6">
-          <ul className="flex w-full items-center gap-6 text-lg font-semibold text-black xl:gap-8 xl:text-xl">
+          <ul className="flex w-full items-center gap-6 text-base font-semibold text-black xl:gap-8 xl:text-xl">
             {NAV_CONFIG.map((item) => {
               const isOthers = item.href === "/others";
               const injected = isOthers
@@ -178,7 +178,6 @@ export default function Navbar() {
               return (
                 <span key={item.href} className="contents">
                   {item.hideBetweenLgAndXl ? (
-                    // Rendered as its own top-level link only from xl upward.
                     <li className="hidden xl:block">
                       <Link href={item.href} className="whitespace-nowrap">
                         {item.label}
@@ -200,7 +199,7 @@ export default function Navbar() {
       <div className="flex items-center justify-end">
         <Link
           href={`tel:${PHONE_NUMBER.replace(/-/g, "")}`}
-          className="hidden h-12 shrink-0 items-center gap-2 rounded-full bg-primary-red px-4 text-xs font-semibold text-white sm:h-13 sm:px-5 sm:text-sm md:h-14.5 md:px-6 md:text-lg lg:flex"
+          className="hidden h-12 shrink-0 items-center gap-2 rounded-full bg-primary-red px-4 text-xs font-semibold text-white sm:h-13 sm:px-5 sm:text-sm md:h-14.5 md:px-6 md:text-base lg:text-lg lg:flex"
         >
           <Phone className="size-4 sm:size-5" />
           <span>{PHONE_NUMBER}</span>

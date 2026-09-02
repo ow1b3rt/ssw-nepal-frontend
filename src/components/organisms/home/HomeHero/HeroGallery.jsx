@@ -38,7 +38,7 @@ function StatCard({ icon, number, label }) {
     <AnimatedCard
       direction="down"
       delay={50}
-      className="flex items-center justify-center gap-3 rounded-lg! bg-gray-100 p-4"
+      className="flex items-center justify-center gap-3 rounded-lg! bg-faint-blue p-4"
     >
       {Icon && (
         <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-900">
