@@ -12,7 +12,7 @@ const section = {
 
 export function ServicesIntro({ section: data = section }) {
   return (
-    <div className="flex flex-col w-full justify-between gap-6 xl:gap-10 bg-faint-blue rounded-3xl px-4 md:px-7 pt-4 md:pt-7">
+    <div className="flex flex-col w-full justify-between gap-6 xl:gap-10 bg-faint-blue rounded-3xl px-4 md:px-8 pt-4 md:pt-6">
       <div className="flex flex-col gap-4 mt-5">
         <h2 className="text-4xl font-extrabold xl:text-6xl">{data.title}</h2>
         <p className="max-w-2xl text-lg md:text-2xl text-black/60">

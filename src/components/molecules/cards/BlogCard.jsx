@@ -16,7 +16,7 @@ export function BlogCard({ blog: data = section, CardIcon = ArrowUpRight }) {
       className="group flex flex-col rounded-3xl bg-primary-green/5 hover:bg-primary-red/5"
     >
       <ImageContainer
-        className="aspect-[4/3] w-full rounded-t-3xl"
+        className="aspect-4/3 w-full rounded-t-3xl"
         src={data.image.src}
         alt={data.image.alt}
       />
