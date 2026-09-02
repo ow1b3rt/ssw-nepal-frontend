@@ -1,3 +1,8 @@
+import { ChevronRight } from "lucide-react";
+
+import { AnimatedWords } from "@/components/ui/animated-words";
+import Link from "next/link";
+
 const section = {
   badge: "Welcome to SSW Training Centre Nepal",
   titleBlack: "Skills That Shape",
@@ -11,24 +16,62 @@ const section = {
 export function HeroText({ section: data = section }) {
   return (
     <div className="flex flex-col items-start gap-6">
-      <span className="rounded-2xl bg-green-600 px-6 py-3 text-lg font-bold text-white">
-        {data.badge}
+      <span className="rounded-2xl bg-primary-green px-6 py-3 md:text-lg font-bold text-white">
+        <AnimatedWords
+          text={data.badge}
+          animKey="badge"
+          durationMs={1000}
+          staggerMs={100}
+          direction="up"
+        />
       </span>
 
-      <h1 className="text-6xl font-extrabold leading-none xl:text-7xl">
-        <span className="block text-black">{data.titleBlack}</span>
-        <span className="block text-red-600">{data.titleRed}</span>
+      <h1 className="text-4xl md:text-6xl font-extrabold leading-none xl:text-7xl">
+        <span className="block text-black">
+          <AnimatedWords
+            text={data.titleBlack}
+            animKey="titleBlack"
+            durationMs={1000}
+            staggerMs={100}
+            direction="up"
+          />
+        </span>
+        <span className="block text-primary-red">
+          <AnimatedWords
+            text={data.titleRed}
+            animKey="titleRed"
+            durationMs={1000}
+            staggerMs={100}
+            direction="down"
+          />
+        </span>
       </h1>
 
-      <p className="max-w-xl text-xl text-gray-500">{data.description}</p>
+      <p className="max-w-xl text-lg md:text-xl text-gray-500">
+        <AnimatedWords
+          text={data.description}
+          animKey="description"
+          durationMs={800}
+          staggerMs={50}
+          direction="up"
+        />
+      </p>
 
-      <a
+      <Link
         href={data.ctaURL}
-        className="inline-flex items-center gap-2 rounded-2xl bg-black px-6 py-3 text-lg font-bold text-white"
+        className="inline-flex items-center gap-2 rounded-2xl bg-black px-6 py-3 md:text-lg font-bold text-white"
       >
-        {data.ctaLabel}
-        <span aria-hidden>→</span>
-      </a>
+        <AnimatedWords
+          text={data.ctaLabel}
+          animKey="ctaLabel"
+          durationMs={1000}
+          staggerMs={100}
+          direction="up"
+        />
+        <span aria-hidden>
+          <ChevronRight className="size-8 animate-accordion-up" />
+        </span>
+      </Link>
     </div>
   );
 }

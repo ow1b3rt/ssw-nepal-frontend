@@ -31,7 +31,11 @@ const CORNER_AXES = {
   "top-left": { x: "right", y: "bottom" },
 };
 
-export function HomeAboutGallery({ section: data = section, extraPercentWidth = 4, padPercent = 2 }) {
+export function HomeAboutGallery({
+  section: data = section,
+  extraPercentWidth = 4,
+  padPercent = 2,
+}) {
   const notchCorner = "bottom-right";
   const notchWidth = 42; // % of image width
   const notchHeight = 42; // % of image height
@@ -41,40 +45,52 @@ export function HomeAboutGallery({ section: data = section, extraPercentWidth = 
   const yValue = `${100 - notchHeight + padPercent}%`;
 
   return (
-    <div className="flex w-full flex-1">
-        <div className={`relative flex aspect-square m-8 ${IMAGE_POSITION[notchCorner]}`}
-            style={{ width: `${100 - extraPercentWidth - padPercent}%`, marginBottom: `${extraPercentWidth + padPercent}%` }}
+    <div className="flex w-full h-full flex-1 order-2 md:order-1">
+      <div
+        className={`relative flex aspect-square m-8 max-h-160  ${IMAGE_POSITION[notchCorner]}`}
+        style={{
+          width: `${100 - extraPercentWidth - padPercent}%`,
+          marginBottom: `${extraPercentWidth + padPercent}%`,
+        }}
+      >
+        <NotchedImage
+          src={data.mainImage.src}
+          alt={data.mainImage.alt}
+          aspectRatio={1 / 1}
+          radius={2}
+          notchWidth={notchWidth}
+          notchHeight={notchHeight}
+          notchRadius={2}
+          notchCorner={notchCorner}
+          className="h-full w-full"
+        />
+
+        <div
+          className={`absolute z-10 ${BADGE_POSITION[notchCorner]} rounded-2xl bg-green-600 px-6 py-4 text-white shadow-lg`}
         >
-            <NotchedImage
-                src={data.mainImage.src}
-                alt={data.mainImage.alt}
-                aspectRatio={1 / 1}
-                radius={2}
-                notchWidth={notchWidth}
-                notchHeight={notchHeight}
-                notchRadius={2}
-                notchCorner={notchCorner}
-                className="h-full w-full"
-            />
-
-            <div className={`absolute z-10 ${BADGE_POSITION[notchCorner]} rounded-2xl bg-green-600 px-6 py-4 text-white shadow-lg`}>
-                <p className="text-4xl font-extrabold leading-none">{data.badgeNumber}</p>
-                <p className="mt-1 text-lg font-bold">{data.badgeLabel}</p>
-            </div>
-
-            {/* position measured from the corner OPPOSITE the notch: (100% - notchSize - pad) */}
-            <div
-                className="absolute z-10 overflow-hidden rounded-sm shadow-xl"
-                style={{
-                width: `${notchWidth + extraPercentWidth - padPercent}%`,
-                height: `${notchHeight + extraPercentWidth - padPercent}%`,
-                [x]: xValue,
-                [y]: yValue,
-                }}
-            >
-                <ImageContainer className="h-full w-full" src={data.secondaryImage.src} alt={data.secondaryImage.alt} />
-            </div>
+          <p className="text-4xl font-extrabold leading-none">
+            {data.badgeNumber}
+          </p>
+          <p className="mt-1 text-lg font-bold">{data.badgeLabel}</p>
         </div>
+
+        {/* position measured from the corner OPPOSITE the notch: (100% - notchSize - pad) */}
+        <div
+          className="absolute z-10 overflow-hidden rounded-2xl shadow-xl"
+          style={{
+            width: `${notchWidth + extraPercentWidth - padPercent}%`,
+            height: `${notchHeight + extraPercentWidth - padPercent}%`,
+            [x]: xValue,
+            [y]: yValue,
+          }}
+        >
+          <ImageContainer
+            className="h-full w-auto"
+            src={data.secondaryImage.src}
+            alt={data.secondaryImage.alt}
+          />
+        </div>
+      </div>
     </div>
   );
 }
