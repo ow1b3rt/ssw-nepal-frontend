@@ -68,7 +68,16 @@ export const ROUTES = {
     CONTACT: `${API_BASE}/contact`,
     BECOME_OUR_PARTNER: `${API_BASE}/partners`,
     CREATE_BLOG: `${API_BASE}/blogs`,
-    NOTICES: `${API_BASE}/notices`,
+    BLOGS: (page = 1, limit = 9) =>
+      `${API_BASE}/blogs?page=${page}&limit=${limit}`,
+
+    BLOG: (slug) => `${API_BASE}/blogs/slug/${slug}`,
+    NOTICES: (page = 1, limit = 9) =>
+      `${API_BASE}/notices?page=${page}&limit=${limit}`,
     NOTICE: (id) => `${API_BASE}/notices/${id}`,
+
+    EVENTS: (page = 1, limit = 9) =>
+      `${API_BASE}/events?page=${page}&limit=${limit}`,
+    EVENT: (id) => `${API_BASE}/events/${id}`,
   },
 };
