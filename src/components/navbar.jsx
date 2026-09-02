@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Phone, ChevronDown, Menu, X } from "lucide-react";
 
 import {
@@ -53,14 +54,24 @@ const NAV_CONFIG = [
 
 const PHONE_NUMBER = "01-5921567";
 
+function isPathActive(pathname, href) {
+  if (href === "/") return pathname === "/";
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
+
 function DropdownItem({ item, extraChildren }) {
   const [open, setOpen] = useState(false);
   const closeTimer = useRef(null);
   const containerRef = useRef(null);
+  const pathname = usePathname();
 
   const children = extraChildren
     ? [...extraChildren, ...(item.children ?? [])]
     : item.children;
+
+  const isParentActive =
+    isPathActive(pathname, item.href) ||
+    children?.some((child) => isPathActive(pathname, child.href));
 
   const openNow = () => {
     if (closeTimer.current) clearTimeout(closeTimer.current);
@@ -89,11 +100,14 @@ function DropdownItem({ item, extraChildren }) {
   }, []);
 
   if (!children || children.length === 0) {
+    const isActive = isPathActive(pathname, item.href);
     return (
       <li>
         <Link
           href={item.href}
-          className="flex items-center gap-1 whitespace-nowrap"
+          className={`flex items-center gap-1 whitespace-nowrap transition-colors ${
+            isActive ? "text-primary-red" : "hover:text-primary-red"
+          }`}
         >
           {item.label}
         </Link>
@@ -112,31 +126,42 @@ function DropdownItem({ item, extraChildren }) {
         type="button"
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
-        className="flex items-center gap-1 whitespace-nowrap"
+        className={`flex items-center gap-1 whitespace-nowrap transition-colors ${
+          isParentActive ? "text-primary-red" : "hover:text-primary-red"
+        }`}
       >
         {item.label}
         <ChevronDown
-          className={`size-3.5 stroke-[2.5] transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+          className={`size-3.5 xl:size-6 stroke-[2.5] transition-transform duration-200 ${
+            open ? "rotate-180" : ""
+          }`}
         />
       </button>
 
       {open && (
         <div className="absolute left-0 top-full pt-3">
           <ul className="flex w-48 flex-col gap-0.5 rounded-xl bg-white p-1.5 shadow-[0_10px_30px_rgba(0,0,0,0.15)]">
-            {children.map((child) => (
-              <li
-                key={child.href}
-                className={child.hideAtXl ? "xl:hidden" : undefined}
-              >
-                <Link
-                  href={child.href}
-                  onClick={() => setOpen(false)}
-                  className="block rounded-lg px-3 py-2 text-base font-medium text-black transition-colors hover:bg-faint-red hover:text-primary-red"
+            {children.map((child) => {
+              const isChildActive = isPathActive(pathname, child.href);
+              return (
+                <li
+                  key={child.href}
+                  className={child.hideAtXl ? "xl:hidden" : undefined}
                 >
-                  {child.label}
-                </Link>
-              </li>
-            ))}
+                  <Link
+                    href={child.href}
+                    onClick={() => setOpen(false)}
+                    className={`block rounded-lg px-3 py-2 text-base font-medium transition-colors hover:bg-faint-red hover:text-primary-red ${
+                      isChildActive
+                        ? "bg-faint-red text-primary-red font-semibold"
+                        : "text-black"
+                    }`}
+                  >
+                    {child.label}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </div>
       )}
@@ -146,6 +171,7 @@ function DropdownItem({ item, extraChildren }) {
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <header className="container mx-auto flex w-full items-center justify-between gap-4 px-5 py-2 md:gap-6 lg:px-4 xl:px-0">
@@ -175,11 +201,20 @@ export default function Navbar() {
                 hideAtXl: true,
               }));
 
+              const isDirectActive = isPathActive(pathname, item.href);
+
               return (
                 <span key={item.href} className="contents">
                   {item.hideBetweenLgAndXl ? (
                     <li className="hidden xl:block">
-                      <Link href={item.href} className="whitespace-nowrap">
+                      <Link
+                        href={item.href}
+                        className={`whitespace-nowrap transition-colors ${
+                          isDirectActive
+                            ? "text-primary-red"
+                            : "hover:text-primary-red"
+                        }`}
+                      >
                         {item.label}
                       </Link>
                     </li>
@@ -206,7 +241,7 @@ export default function Navbar() {
         </Link>
 
         <Drawer open={open} onOpenChange={setOpen} direction="right">
-          <DrawerTrigger asChild>
+          <DrawerTrigger>
             <button
               type="button"
               aria-label="Open menu"
@@ -234,7 +269,7 @@ export default function Navbar() {
                 />
               </Link>
 
-              <DrawerClose asChild>
+              <DrawerClose>
                 <button
                   type="button"
                   aria-label="Close menu"
@@ -275,7 +310,13 @@ export default function Navbar() {
 }
 
 function MobileNavRow({ item, onNavigate }) {
-  const [expanded, setExpanded] = useState(false);
+  const pathname = usePathname();
+  const isDirectActive = isPathActive(pathname, item.href);
+  const isChildActive = item.children?.some((child) =>
+    isPathActive(pathname, child.href),
+  );
+
+  const [expanded, setExpanded] = useState(isDirectActive || isChildActive);
 
   if (!item.children || item.children.length === 0) {
     return (
@@ -283,7 +324,9 @@ function MobileNavRow({ item, onNavigate }) {
         <Link
           href={item.href}
           onClick={onNavigate}
-          className="flex items-center justify-between py-4 text-base transition-colors hover:text-primary-red"
+          className={`flex items-center justify-between py-4 text-base transition-colors ${
+            isDirectActive ? "text-primary-red" : "hover:text-primary-red"
+          }`}
         >
           {item.label}
         </Link>
@@ -297,27 +340,40 @@ function MobileNavRow({ item, onNavigate }) {
         type="button"
         onClick={() => setExpanded((v) => !v)}
         aria-expanded={expanded}
-        className="flex w-full items-center justify-between py-4 text-base transition-colors hover:text-primary-red"
+        className={`flex w-full items-center justify-between py-4 text-base transition-colors ${
+          isDirectActive || isChildActive
+            ? "text-primary-red"
+            : "hover:text-primary-red"
+        }`}
       >
         {item.label}
         <ChevronDown
-          className={`size-4 stroke-[2.5] text-black/40 transition-transform duration-200 ${expanded ? "rotate-180" : ""}`}
+          className={`size-4 stroke-[2.5] transition-transform duration-200 ${
+            expanded ? "rotate-180" : ""
+          } ${isDirectActive || isChildActive ? "text-primary-red" : "text-black/40"}`}
         />
       </button>
 
       {expanded && (
         <ul className="flex flex-col gap-1 pb-3 pl-3">
-          {item.children.map((child) => (
-            <li key={child.href}>
-              <Link
-                href={child.href}
-                onClick={onNavigate}
-                className="block rounded-lg px-2 py-2 text-sm font-medium text-black/70 transition-colors hover:text-primary-red"
-              >
-                {child.label}
-              </Link>
-            </li>
-          ))}
+          {item.children.map((child) => {
+            const isSubActive = isPathActive(pathname, child.href);
+            return (
+              <li key={child.href}>
+                <Link
+                  href={child.href}
+                  onClick={onNavigate}
+                  className={`block rounded-lg px-2 py-2 text-sm transition-colors ${
+                    isSubActive
+                      ? "font-semibold text-primary-red"
+                      : "font-medium text-black/70 hover:text-primary-red"
+                  }`}
+                >
+                  {child.label}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       )}
     </li>

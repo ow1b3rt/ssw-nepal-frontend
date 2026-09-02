@@ -14,26 +14,26 @@ const section = {
 
 export function HomeBlogCard({ section: data = section }) {
   return (
-    <article className="group flex flex-col gap-4">
-      <ImageContainer className="aspect-[4/3] w-full rounded-2xl" src={data.image.src} alt={data.image.alt} />
+    <article className="group flex flex-col gap-2">
+      <ImageContainer className="aspect-4/3 max-h-64 w-full rounded-2xl" src={data.image.src} alt={data.image.alt} />
 
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <ImageContainer className="h-10 w-10 rounded-full" src={data.author.avatar} alt={data.author.name} />
-          <span className="text-lg text-black/70">{data.author.name}</span>
+          <span className="text-base text-black/70">{data.author.name}</span>
         </div>
-        <span className="text-lg text-black/50">{data.date}</span>
+        <span className="text-sm text-black/50">{data.date}</span>
       </div>
 
-      <h3 className="text-3xl font-extrabold leading-snug">{data.title}</h3>
+      <h3 className="text-2xl font-extrabold leading-snug">{data.title}</h3>
       <p className="text-lg text-black/60">{data.desc}</p>
 
       <Link
         href={data.url}
-        className="inline-flex w-fit items-center gap-2 rounded-sm bg-black px-6 py-3 text-lg font-bold text-white group-hover:bg-primary-red"
+        className="inline-flex w-fit items-center gap-2 rounded-sm bg-black px-8 py-2 text-lg font-bold text-white group-hover:bg-primary-red transition duration-500 ease-in-out"
       >
         {data.ctaLabel}
-        <ArrowRight size={18} />
+        <ArrowRight size={24} />
       </Link>
     </article>
   );

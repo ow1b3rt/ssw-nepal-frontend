@@ -520,7 +520,7 @@ function DotControls({ count, selected, onSelect }) {
           onClick={() => onSelect(i)}
           className={cn(
             "h-2 w-2 rounded-full transition-colors",
-            i === selected ? "bg-primary" : "bg-muted",
+            i === selected ? "bg-primary-red" : "bg-black",
           )}
           aria-label={`Go to slide ${i + 1}`}
         />

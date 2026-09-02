@@ -13,10 +13,10 @@ export function BlogCard({ blog: data = section, CardIcon = ArrowUpRight }) {
   return (
     <Link
       href={data.url}
-      className="group flex flex-col rounded-3xl bg-primary-green/5 hover:bg-primary-red/5"
+      className="group flex flex-col rounded-3xl bg-faint-blue hover:bg-faint-red transition duration-600 ease-in-out"
     >
       <ImageContainer
-        className="aspect-4/3 w-full rounded-t-3xl"
+        className="aspect-4/3 max-h-72 w-full rounded-t-3xl"
         src={data.image.src}
         alt={data.image.alt}
       />
