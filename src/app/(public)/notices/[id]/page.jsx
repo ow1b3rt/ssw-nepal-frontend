@@ -12,7 +12,6 @@ async function getNotice(id) {
     const data = await res.json();
     return data.item ?? null;
   } catch {
-    console.log("muji lado");
     return null;
   }
 }

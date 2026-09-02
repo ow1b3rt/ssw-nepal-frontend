@@ -1,5 +1,5 @@
+import SuccessStoryText from "@/components/organisms/SuccessStories/successStoryText";
 import StatCard from "@/components/statImage";
-import SuccessStoryText from "@/components/successStoryText";
 
 import { whyChooseUsData } from "@/data/whyus";
 

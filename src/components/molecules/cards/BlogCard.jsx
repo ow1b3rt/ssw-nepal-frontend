@@ -9,7 +9,7 @@ const section = {
   url: "#",
 };
 
-export function BlogCard({ blog: data = section }) {
+export function BlogCard({ blog: data = section, CardIcon = ArrowUpRight }) {
   return (
     <Link
       href={data.url}
@@ -23,11 +23,11 @@ export function BlogCard({ blog: data = section }) {
 
       <div className="relative min-h-0.5 flex flex-col gap-3 p-6 pt-8">
         <h3 className="text-2xl font-extrabold leading-snug">{data.title}</h3>
-        <p className="text-lg text-black/60">{data.desc}</p>
+        <p className="text-lg text-black/60 line-clamp-3 ">{data.desc}</p>
 
         <div className="absolute top-0 right-0 -translate-y-1/2 flex w-14 p-2 rounded-l-full bg-white">
           <div className="p-2 rounded-full bg-black group-hover:bg-primary-green">
-            <ArrowUpRight className="text-white" size={24} />
+            <CardIcon className="text-white" size={24} />
           </div>
         </div>
       </div>

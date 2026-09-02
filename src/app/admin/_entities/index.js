@@ -7,6 +7,7 @@ import { blogs } from "./blogs.js";
 import { notices } from "./notices.js";
 import { faqs } from "./faqs.js";
 import { gallery } from "./gallery.js";
+import { events } from "./events.js";
 
 export const entities = defineEntities({
   users,
@@ -16,4 +17,5 @@ export const entities = defineEntities({
   notices,
   faqs,
   gallery,
+  events,
 });
