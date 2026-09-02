@@ -1,4 +1,5 @@
 const nextConfig = {
+  allowedDevOrigins: ['192.168.1.206'],
   images: {
     qualities: [75, 90],
     dangerouslyAllowLocalIP: true,
