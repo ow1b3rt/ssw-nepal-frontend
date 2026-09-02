@@ -1,16 +1,15 @@
-// src/components/footer.jsx
-
 import Image from "next/image";
 import Link from "next/link";
 import { MapPin, Phone, Mail } from "lucide-react";
+import Divider from "./ui/divider";
 
 export default function Footer({ data }) {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-gradient-to-b from-[#002b08] via-[#001d06] to-black text-white">
-      <div className="mx-auto max-w-[1720px] px-6 py-14 md:px-10 lg:px-16 xl:px-24">
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 xl:grid-cols-[1.15fr_1fr_0.85fr_0.85fr] xl:gap-20">
+    <footer className="bg-linear-to-b from-[#002b08] via-[#001d06] to-black text-white">
+      <div className="mx-auto container px-4 lg:px-0 ">
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 xl:grid-cols-[1.15fr_1fr_0.85fr_0.85fr] xl:gap-20 py-8 md:py-14 lg:py-20">
           {/* About */}
           <div>
             <Image
@@ -18,14 +17,12 @@ export default function Footer({ data }) {
               alt={data.logo.alt}
               width={data.logo.width}
               height={data.logo.height}
-              className="mb-8 h-auto w-[240px] object-contain"
+              className="mb-8 h-auto w-60 object-contain"
             />
 
-            <h3 className="mb-3 text-[22px] font-bold">
-              {data.about.title}
-            </h3>
+            <h3 className="mb-3 text-[22px] font-bold">{data.about.title}</h3>
 
-            <p className="max-w-[390px] text-[17px] leading-[1.55] text-white/65">
+            <p className="max-w-97.5 text-[17px] leading-[1.55] text-white/65">
               {data.about.description}
             </p>
           </div>
@@ -33,9 +30,7 @@ export default function Footer({ data }) {
           {/* Dynamic Columns */}
           {data.columns.map((column) => (
             <div key={column.title} className="xl:pt-3">
-              <h3 className="mb-7 text-[22px] font-bold">
-                {column.title}
-              </h3>
+              <h3 className="mb-7 text-[22px] font-bold">{column.title}</h3>
 
               <ul className="space-y-3">
                 {column.links.map((link) => (
@@ -54,9 +49,7 @@ export default function Footer({ data }) {
 
           {/* Contact */}
           <div className="xl:pt-3">
-            <h3 className="mb-7 text-[22px] font-bold">
-              {data.contact.title}
-            </h3>
+            <h3 className="mb-7 text-[22px] font-bold">{data.contact.title}</h3>
 
             <div className="space-y-5 text-[17px] text-white/60">
               {data.contact.items.map((item, index) => (
@@ -66,30 +59,32 @@ export default function Footer({ data }) {
           </div>
         </div>
 
-        <div className="mt-20 border-t border-white/35" />
+        <div>
+          <Divider backgroundColor="bg-white/30" className="mb-4" />
 
-        <div className="flex flex-col gap-8 py-7 md:flex-row md:items-center md:justify-between">
-          <p className="text-[16px] text-white/65">
-            Copyright ©{currentYear}{" "}
-            <span className="font-semibold text-white">
-              {data.copyright.company}
-            </span>{" "}
-            Design &amp; Maintained By{" "}
-            <span className="font-semibold text-white">
-              {data.copyright.maintainedBy}
-            </span>
-          </p>
+          <div className="flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
+            <p className="text-base text-white/65">
+              Copyright ©{currentYear}{" "}
+              <span className="font-semibold text-white">
+                {data.copyright.company}
+              </span>{" "}
+              Design &amp; Maintained By{" "}
+              <span className="font-semibold text-white">
+                {data.copyright.maintainedBy}
+              </span>
+            </p>
 
-          <div className="flex items-center gap-5">
-            {data.socials.map((social) => (
-              <SocialLink
-                key={social.name}
-                href={social.href}
-                label={social.name}
-              >
-                <SocialIcon type={social.type} />
-              </SocialLink>
-            ))}
+            <div className="flex items-center gap-5">
+              {data.socials.map((social) => (
+                <SocialLink
+                  key={social.name}
+                  href={social.href}
+                  label={social.name}
+                >
+                  <SocialIcon type={social.type} />
+                </SocialLink>
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -124,11 +119,7 @@ function ContactItem({ item }) {
     );
   }
 
-  return (
-    <div className="flex items-start gap-4">
-      {content}
-    </div>
-  );
+  return <div className="flex items-start gap-4">{content}</div>;
 }
 
 function SocialLink({ href, label, children }) {
@@ -185,13 +176,7 @@ function InstagramIcon() {
     >
       <rect x="3" y="3" width="18" height="18" rx="5" />
       <circle cx="12" cy="12" r="4" />
-      <circle
-        cx="17.5"
-        cy="6.5"
-        r="1"
-        fill="currentColor"
-        stroke="none"
-      />
+      <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
     </svg>
   );
 }

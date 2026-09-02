@@ -106,7 +106,7 @@ export function ContactForm() {
             body={
               <a
                 href="mailto:info@enlighten.edu.np"
-                className="text-muted-foreground transition-colors hover:text-destructive"
+                className="text-muted-foreground transition-colors hover:text-primary-red"
               >
                 ssw@gmail.com
               </a>
@@ -114,12 +114,12 @@ export function ContactForm() {
           />
 
           <ContactInfo
-            icon={<Phone className="h-6 w-6 text-destructive " />}
+            icon={<Phone className="h-6 w-6 text-primary-red " />}
             title="Phone"
             body={
               <a
                 href="tel:01-5342454"
-                className="text-muted-foreground transition-colors hover:text-destructive"
+                className="text-muted-foreground transition-colors hover:text-primary-red"
               >
                 01-5921567
               </a>
@@ -250,7 +250,7 @@ export function ContactForm() {
         </div>
 
         <Button
-          className="bg-primary hover:bg-destructive/90 text-background h-12 w-full cursor-pointer rounded-xl font-semibold shadow-md transition duration-200 disabled:cursor-not-allowed disabled:opacity-60"
+          className="bg-primary hover:bg-primary-red/90 text-background h-12 w-full cursor-pointer rounded-xl font-semibold shadow-md transition duration-200 disabled:cursor-not-allowed disabled:opacity-60"
           type="submit"
           disabled={loading}
         >

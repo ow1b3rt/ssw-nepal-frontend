@@ -3,6 +3,7 @@ import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 import { cn } from "@/lib/utils";
+import { AnimatedWords } from "@/components/ui/animated-words";
 
 const defaultSection = {
   title: "What We Offer",
@@ -24,7 +25,7 @@ export function ServicesIntro({
   return (
     <div
       className={cn(
-        "flex w-full flex-col justify-between gap-6 rounded-3xl px-4 pt-4 md:px-8 md:pt-6 xl:gap-10",
+        "flex w-full flex-col justify-between lg:h-full gap-6 rounded-3xl px-4 pt-4 md:px-8 md:pt-6 xl:gap-10",
         className,
       )}
     >
@@ -32,7 +33,13 @@ export function ServicesIntro({
         <h2
           className={cn("text-4xl font-extrabold xl:text-6xl", titleClassName)}
         >
-          {data.title}
+          <AnimatedWords
+            text={data.title}
+            animKey="title"
+            durationMs={1000}
+            staggerMs={100}
+            direction="left"
+          />
         </h2>
         <p
           className={cn(
@@ -57,7 +64,7 @@ export function ServicesIntro({
 
       <ImageContainer
         className={cn(
-          "aspect-video w-full rounded-3xl rounded-b-none lg:h-full lg:w-full",
+          "aspect-video w-full rounded-3xl rounded-b-none h-full lg:w-full",
           imageClassName,
         )}
         src={data.image.src}

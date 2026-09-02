@@ -69,7 +69,10 @@ export function GalleryCard({ image, label, height, theme = "lightblue" }) {
 
 export function HomeGallery({ section: data = section }) {
   return (
-    <div className="flex w-full flex-col items-center gap-2 space-y-8 lg:space-y-10">
+    <div
+      id="home-gallery"
+      className="flex w-full flex-col items-center gap-2 gap-y-8 xl:gap-y-16 md:pt-10 "
+    >
       <AnimatedCard
         className="bg-black rounded-lg py-2.5 px-10"
         direction="up"
@@ -80,7 +83,13 @@ export function HomeGallery({ section: data = section }) {
           Gallery
         </h2>
       </AnimatedCard>
-      <div className="relative flex flex-col md:flex-row w-full gap-4 lg:gap-8">
+
+      <AnimatedCard
+        className="relative flex flex-col md:flex-row w-full gap-4 lg:gap-8"
+        direction="down"
+        distance={12}
+        triggerOnView
+      >
         {COLUMNS.map((column) => (
           <div key={column} className="flex flex-1 flex-col gap-4 lg:gap-8">
             {data.items
@@ -91,14 +100,16 @@ export function HomeGallery({ section: data = section }) {
           </div>
         ))}
         <div className="absolute inset-x-0 bottom-0 h-1/3 bg-linear-to-t from-white to-transparent" />
-      </div>
+      </AnimatedCard>
 
-      <Link
-        href={data.ctaURL}
-        className="rounded-lg bg-primary-red px-10 py-4 text-lg font-bold text-white"
-      >
-        {data.ctaLabel}
-      </Link>
+      <AnimatedCard direction="up" distance={12} triggerOnView>
+        <Link
+          href={data.ctaURL}
+          className="rounded-lg bg-primary-red px-10 py-4 text-lg font-bold text-white"
+        >
+          {data.ctaLabel}
+        </Link>
+      </AnimatedCard>
     </div>
   );
 }

@@ -49,7 +49,10 @@ const blogPosts = [
 ];
 const HomeBlogs = () => {
   return (
-    <div className="flex flex-col items-center justify-center gap-y-8 xl:gap-y-10 md:py-10">
+    <div
+      id="home-blogs"
+      className="flex flex-col items-center justify-center gap-y-8 xl:gap-y-16 pb-16 md:pt-10"
+    >
       <AnimatedCard
         className="bg-primary-red rounded-lg py-2.5 px-10"
         direction="down"

@@ -118,9 +118,9 @@ function ServiceCard({ icon, title, desc, theme }) {
   );
 }
 
-export function ServicesGrid({ section: data = section }) {
+export function ServicesGrid({ section: data = section, className }) {
   return (
-    <div className="grid grid-cols-2 gap-2 sm:gap-4">
+    <div className={`grid grid-cols-2 gap-2 sm:gap-4 ${className}`}>
       {data.list.map((item, i) => (
         <ServiceCard key={i} {...item} theme={data.theme} />
       ))}
