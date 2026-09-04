@@ -1,54 +1,40 @@
-"use client";
-
 import AnimatedCard from "@/components/ui/animated-card";
 
 import BlogsList from "../BlogsList";
+import { getBlogs } from "@/lib/api/blogs";
+import { stripHtml } from "@/packages/admin/utils/utils";
+import { localDate } from "@/lib/utils";
 
-const blogPosts = [
-  {
-    image: { src: "/favicon.jpg", alt: "SSW team gifting a polo shirt" },
-    author: { name: "Bishad Kandel", avatar: "/favicon.jpg" },
-    date: "Jan 01, 2026",
-    title: "Lorem ipsum dolor sit amet consectetur.",
-    desc: "Lorem ipsum dolor sit amet consectetur. Gravida faucibus sit dignissim tortor lorem. Euismod at at vitae lorem aliquet auctor dignissim aliquam.",
-    ctaLabel: "Read More",
-    url: "/blogs/lorem-ipsum-dolor-sit-amet",
-  },
-  {
+const mapBlogItem = (item) => {
+  return {
     image: {
-      src: "/favicon.jpg",
-      alt: "Trainees in a classroom during Japanese language class",
+      src: item.media
+        ? `${process.env.NEXT_PUBLIC_HOST}${item.media.url}`
+        : "/favicon.jpg",
+      alt: item.media ? item.media.alt : item.title,
     },
-    author: { name: "Sunita Gurung", avatar: "/favicon.jpg" },
-    date: "Dec 18, 2025",
-    title: "5 Tips to Ace Your JLPT N5 Preparation.",
-    desc: "Preparing for the JLPT N5 can feel overwhelming, but with the right strategy and consistent practice, you can build a strong Japanese language foundation.",
-    ctaLabel: "Read More",
-    url: "/blogs/jlpt-n5-preparation-tips",
-  },
-  {
-    image: { src: "/favicon.jpg", alt: "Trainee receiving SSW visa documents" },
-    author: { name: "Bishad Kandel", avatar: "/favicon.jpg" },
-    date: "Dec 05, 2025",
-    title: "Understanding the SSW Visa Process Step by Step.",
-    desc: "Navigating the Specified Skilled Worker visa process can be complex. Here's a clear breakdown of every step, from application to departure.",
-    ctaLabel: "Read More",
-    url: "/blogs/understanding-ssw-visa-process",
-  },
-  {
-    image: {
-      src: "/favicon.jpg",
-      alt: "Group photo of SSW Training Centre graduates",
+    author: {
+      name: item.author?.name || item.author?.fullName || "SSW Team",
+      avatar:
+        item.author?.avatar ||
+        item.author?.profileImage ||
+        item.author?.image ||
+        "/favicon.jpg",
     },
-    author: { name: "Anita Thapa", avatar: "/favicon.jpg" },
-    date: "Nov 22, 2025",
-    title: "How Career Counselling Shapes Your Future in Japan.",
-    desc: "Good career counselling goes beyond test scores. Discover how personalized guidance helps trainees choose the right path for long-term success.",
+    date: localDate(item.publishedAt || item.createdAt),
+    title: item.title,
+    desc:
+      stripHtml(item.content).slice(0, 160) +
+      (stripHtml(item.content).length > 160 ? "..." : ""),
     ctaLabel: "Read More",
-    url: "/blogs/career-counselling-shapes-your-future",
-  },
-];
-const HomeBlogs = () => {
+    url: `/blogs/${item.slug}`,
+  };
+};
+
+const HomeBlogs = async () => {
+  const { items = [] } = (await getBlogs()) || {};
+  const blogPosts = items.map(mapBlogItem);
+
   return (
     <div
       id="home-blogs"
@@ -64,8 +50,14 @@ const HomeBlogs = () => {
           Blogs
         </h2>
       </AnimatedCard>
-      <div className="flex w-full flex-col gap-6">
-        <BlogsList blogs={blogPosts} />
+      <div className="w-full flex flex-col gap-6">
+        {blogPosts.length > 0 ? (
+          <BlogsList blogs={blogPosts} />
+        ) : (
+          <p className="text-center text-neutral-500">
+            No blogs available right now.
+          </p>
+        )}
       </div>
     </div>
   );

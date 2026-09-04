@@ -36,7 +36,7 @@ const NAV_CONFIG = [
     ],
   },
   {
-    href: "/language",
+    href: "/languages",
     label: "Language",
     children: [{ href: "/language", label: "Courses" }],
   },

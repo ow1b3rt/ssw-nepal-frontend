@@ -135,7 +135,7 @@ export function ContactForm() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Facebook"
-                  className="text-[#1877F2] transition-transform hover:scale-110"
+                  className="text-primary-blue transition-transform hover:scale-110"
                 >
                   <FaFacebook size={26} />
                 </a>
@@ -145,7 +145,7 @@ export function ContactForm() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Instagram"
-                  className="text-[#E4405F] transition-transform hover:scale-110"
+                  className="text-primary-red transition-transform hover:scale-110"
                 >
                   <FaInstagram size={26} />
                 </a>
@@ -155,7 +155,7 @@ export function ContactForm() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="LinkedIn"
-                  className="text-[#0A66C2] transition-transform hover:scale-110"
+                  className="text-primary-blue-dark transition-transform hover:scale-110"
                 >
                   <FaLinkedin size={26} />
                 </a>
@@ -165,7 +165,7 @@ export function ContactForm() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="YouTube"
-                  className="text-[#FF0000] transition-transform hover:scale-110"
+                  className="text-primary-red transition-transform hover:scale-110"
                 >
                   <FaYoutube size={26} />
                 </a>
@@ -175,7 +175,7 @@ export function ContactForm() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="WhatsApp"
-                  className="text-[#25D366] transition-transform hover:scale-110"
+                  className="text-primary-green transition-transform hover:scale-110"
                 >
                   <FaWhatsapp size={26} />
                 </a>
@@ -238,7 +238,7 @@ export function ContactForm() {
         </div>
 
         <Button
-          className="bg-primary-blue hover:bg-primary-blue-dark h-12 w-full cursor-pointer rounded-xl text-lg font-semibold text-white transition duration-200 disabled:cursor-not-allowed disabled:opacity-60"
+          className="bg-primary-blue  hover:bg-primary-blue/90 text-white h-12 w-full cursor-pointer rounded-xl font-semibold shadow-md transition duration-200 disabled:cursor-not-allowed disabled:opacity-60"
           type="submit"
           disabled={loading}
         >

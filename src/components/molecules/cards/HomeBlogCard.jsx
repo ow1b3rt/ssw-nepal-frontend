@@ -15,7 +15,7 @@ const section = {
 
 export function HomeBlogCard({ section: data = section }) {
   return (
-    <article className="group flex flex-col gap-2">
+    <article className="group flex flex-col gap-2 w-full h-full">
       <ImageContainer
         className="aspect-4/3 max-h-64 w-full rounded-2xl"
         src={data.image.src}
