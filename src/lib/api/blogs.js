@@ -9,9 +9,7 @@ export async function getBlogs(page = 1, limit = 9) {
       return { success: false, items: [], total: 0, page: 1, totalPages: 1 };
     }
     const data = await res.json();
-    return (
-      data ?? { success: false, items: [], total: 0, page: 1, totalPages: 1 }
-    );
+    return data ?? { success: false, items: [], total: 0, page: 1, totalPages: 1 };
   } catch {
     return { success: false, items: [], total: 0, page: 1, totalPages: 1 };
   }

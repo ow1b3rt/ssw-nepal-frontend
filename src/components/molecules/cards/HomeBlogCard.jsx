@@ -15,7 +15,7 @@ const section = {
 
 export function HomeBlogCard({ section: data = section }) {
   return (
-    <article className="group flex flex-col gap-2 w-full h-full">
+    <article className="group flex h-full w-full flex-col justify-between gap-4">
       <ImageContainer
         className="aspect-4/3 max-h-64 w-full rounded-2xl"
         src={data.image.src}
@@ -35,7 +35,7 @@ export function HomeBlogCard({ section: data = section }) {
       </div>
 
       <h3 className="text-2xl leading-snug font-extrabold">{data.title}</h3>
-      <p className="text-lg text-black/60">{data.desc}</p>
+      <p className="line-clamp-3 text-lg text-black/60">{data.desc}</p>
 
       <Link
         href={data.url}

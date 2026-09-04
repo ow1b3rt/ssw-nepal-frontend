@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+
 import { getBlog } from "@/lib/api/blogs";
 import DetailPage from "@/components/detailPage";
 

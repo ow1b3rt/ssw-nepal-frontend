@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { ROUTES } from "@/constants/routes/routes";
 import { CalendarDays } from "lucide-react";
@@ -39,9 +40,11 @@ function NoticeMedia({ url, type, title }) {
   if (type?.startsWith("image")) {
     return (
       <div className="flex w-full items-center justify-center">
-        <img
+        <Image
           src={url}
           alt={title}
+          width={900}
+          height={1600}
           className="max-h-[80vh] max-w-full rounded-lg object-contain shadow-md"
         />
       </div>
@@ -69,7 +72,7 @@ export default async function NoticeDetailPage({ params }) {
 
   return (
     <section className="container mx-auto my-8 rounded-lg border border-gray-200 shadow-sm">
-      <div className="border-b border-gray-200 py-[27px] pr-8 pl-[33px]">
+      <div className="border-b border-gray-200 py-6.75 pr-8 pl-8.25">
         <h1 className="text-2xl font-bold text-gray-900 md:text-3xl">{notice.title}</h1>
         <div className="mt-2 flex items-center gap-1.5 text-sm text-gray-500">
           <CalendarDays className="h-4 w-4" />
@@ -77,7 +80,7 @@ export default async function NoticeDetailPage({ params }) {
         </div>
       </div>
       {notice.description && (
-        <p className="px-8 pt-[27px] pb-8 pl-[33px] text-base leading-relaxed text-gray-600">
+        <p className="px-8 pt-6.75 pb-8 pl-8.25 text-base leading-relaxed text-gray-600">
           {notice.description}
         </p>
       )}
