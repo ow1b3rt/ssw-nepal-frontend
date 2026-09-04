@@ -1,14 +1,16 @@
 "use client";
 
-import { HomeServicesEditable } from "@/components/organisms/HomeServices/HomeServicesEditable";
+import { HomeServicesEditable } from "@/components/organisms/home/HomeServices/HomeServicesEditable";
 import { useGet, useApi } from "@/packages/admin";
+import { useParams } from "next/navigation";
 
-export default function ServicesPage() {
-  const { data } = useGet("/layouts/services");
+export default function SectionPage() {
+  const { section } = useParams();
+  const { data } = useGet(`/layouts/${section}`);
   const { post } = useApi();
 
   const handleSave = async (updatedSection) => {
-    await post("/layouts/services", updatedSection);
+    await post(`/layouts/${section}`, updatedSection);
   };
 
   return (
@@ -17,6 +19,7 @@ export default function ServicesPage() {
         key={data}
         section={data?.layout}
         onSave={handleSave}
+        sectionName={section}
       />
     </section>
   );
