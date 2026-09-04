@@ -1,5 +1,6 @@
 import { fetcher } from "@/packages/admin";
 
+import AnimatedCard from "@/components/ui/animated-card";
 import { GalleryCard } from "@/components/organisms/home/HomeGallery/HomeGallery";
 
 const galleryData = {
@@ -57,16 +58,32 @@ const galleryData = {
 
 export default async function GalleryPage() {
   const data = (await fetcher("/layouts/gallery")) ?? galleryData;
-  console.log("gallery data", data);
 
   return (
-    <section className="flex w-full flex-col gap-8 p-4">
-      <h1 className="self-center text-2xl font-bold text-black md:text-4xl">Gallery</h1>
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {data.layout.items.map((item, index) => (
-          <GalleryCard key={index} {...item} />
-        ))}
-      </div>
+    <section className="container mx-auto flex w-full flex-col items-center gap-2 md:gap-6">
+      <AnimatedCard
+        className="w-fit rounded-lg px-10 py-2.5"
+        direction="up"
+        distance={12}
+        triggerOnView
+      >
+        <h1 className="mb-1 text-3xl leading-none font-black tracking-[-1.5px] text-black md:text-4xl xl:text-5xl">
+          Gallery
+        </h1>
+      </AnimatedCard>
+      {data?.layout?.items.length > 0 ? (
+        <div className="grid w-full grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {data?.layout?.items?.map((item, index) => (
+            <GalleryCard key={index} {...item} />
+          ))}
+        </div>
+      ) : (
+        <div>
+          <h2 className="text-primary-red text-center text-xl font-bold md:text-2xl">
+            No Media Found !
+          </h2>
+        </div>
+      )}
     </section>
   );
 }

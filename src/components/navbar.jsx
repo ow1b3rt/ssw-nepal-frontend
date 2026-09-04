@@ -61,8 +61,8 @@ const NAV_CONFIG = [
     label: "Others",
     children: [
       {
-        href: "/others/option-1",
-        label: "Option 1",
+        href: ROUTES.GALLERY,
+        label: "Gallery",
       },
       {
         href: "/others/option-2",
@@ -71,7 +71,7 @@ const NAV_CONFIG = [
     ],
   },
   {
-    href: "/contact",
+    href: ROUTES.CONTACT,
     label: "Contact Us",
     hideBetweenLgAndXl: true,
     injectInto: "/others",

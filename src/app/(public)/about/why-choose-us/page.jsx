@@ -8,7 +8,7 @@ export default function WhyChooseUsPage() {
 
   return (
     <main className="bg-white pt-8 text-black">
-      <div className="container mx-auto px-4 lg:px-0">
+      <div className="container mx-auto">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
           <StatCard data={showcase} />
           <SuccessStoryText name={content.title} description={content.description} />
