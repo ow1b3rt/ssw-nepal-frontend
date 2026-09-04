@@ -248,7 +248,7 @@ function SlideCarousel({
       {reverseControlsPosition && renderDots}
 
       <div className={cn(gradientMaskClassName)} style={maskStyle}>
-        <CarouselContent className="-ml-4 transform-gpu ease-out will-change-transform">
+        <CarouselContent className="-ml-1 transform-gpu ease-out will-change-transform">
           {items.map((item, i) => (
             <CarouselItem key={i} className={cn("transform-gpu pl-4", itemClassName)}>
               {renderItem(item, i)}
