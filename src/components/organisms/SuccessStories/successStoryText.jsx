@@ -15,7 +15,7 @@ export default function SuccessStoryText({
       className={`order-1 flex h-full flex-1 flex-col gap-2 rounded-lg p-6 md:order-2 xl:gap-6 ${className}`}
     >
       <AnimatedCard direction="up" distance={12} triggerOnView>
-        <h2 className="text-primary-red mb-1 text-3xl leading-none font-black tracking-[-1.5px] md:text-4xl xl:text-5xl">
+        <h2 className="text-primary-red mb-1 text-3xl leading-none font-black tracking-[1px] md:text-4xl xl:text-5xl">
           {" "}
           {name}{" "}
         </h2>

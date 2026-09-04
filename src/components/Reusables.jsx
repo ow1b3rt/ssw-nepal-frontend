@@ -12,7 +12,7 @@ export function Pagenav({ page, totalPages, nonext = false }) {
   const nextDisabled = hasTotal ? page >= totalPages : nonext;
 
   return (
-    <div className="flex flex-wrap items-center justify-between gap-4 border-t border-gray-100 px-2 py-6 sm:px-4">
+    <div className="flex w-full flex-wrap items-center justify-between gap-4 px-2 sm:px-4">
       <div className="flex items-center gap-2">
         <Link
           href={"?page=" + (prevDisabled ? 1 : page - 1)}
@@ -57,11 +57,11 @@ export function BackToTop({ className }) {
         window.top.scrollTo({ top: 0, behavior: "smooth" });
       }}
       className={cn(
-        "flex items-center gap-1.5 text-sm font-medium text-gray-500 transition-colors hover:text-gray-900",
+        "text-primary-green-dark flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-gray-900",
         className,
       )}
     >
-      <ArrowUp className="h-3.5 w-3.5" />
+      <ArrowUp className="h-4 w-4" />
       Back to top
     </button>
   );
