@@ -1,4 +1,5 @@
 import { ROUTES } from "@/constants/routes/routes";
+
 import { BlogCard } from "@/components/molecules/cards/BlogCard";
 
 export const metadata = {
@@ -31,9 +32,7 @@ export default async function TrainingPage() {
     <section className="container mx-auto px-4 pb-12 xl:px-0">
       <div className="text-center">
         {" "}
-        <h1 className="mb-2 text-2xl font-bold text-gray-900 md:text-3xl">
-          Our Training Programs
-        </h1>
+        <h1 className="mb-2 text-2xl font-bold text-gray-900 md:text-3xl">Our Training Programs</h1>
         <p className="text-black/60">
           Discover the wide range of training programs we offer to help you achieve your goals.
         </p>

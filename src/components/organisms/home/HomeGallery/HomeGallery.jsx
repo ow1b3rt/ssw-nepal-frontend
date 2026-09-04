@@ -45,12 +45,12 @@ const COLUMNS = ["left", "center", "right"];
 
 export function GalleryCard({ image, label, height, theme = "lightblue" }) {
   const THEMES = {
-    lightblue: "bg-primary-blue text-white",
+    lightblue: "bg-faint-blue text-primary-blue",
     darkblue: "bg-primary-blue-dark text-white",
   };
   return (
     <div
-      className="bg-faint-blue flex w-full flex-col gap-3 rounded-2xl border p-4 shadow-sm"
+      className="flex w-full flex-col gap-3 rounded-2xl border bg-transparent p-4 shadow-sm"
       style={{ height: `${height}px` }}
     >
       <ImageContainer
@@ -59,7 +59,7 @@ export function GalleryCard({ image, label, height, theme = "lightblue" }) {
         alt={image.alt}
       />
       {label && (
-        <div className={`rounded-xl py-4 text-center text-lg font-bold ${THEMES[theme]}`}>
+        <div className={`rounded-xl border py-4 text-center text-lg font-bold ${THEMES[theme]}`}>
           {label}
         </div>
       )}

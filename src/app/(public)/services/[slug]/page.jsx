@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { ROUTES } from "@/constants/routes/routes";
+
 import DetailPage from "@/components/detailPage";
 
 async function getServiceBySlug(slug) {

@@ -1,8 +1,9 @@
 "use client";
 
-import { HomeServicesEditable } from "@/components/organisms/home/HomeServices/HomeServicesEditable";
-import { useGet, useApi } from "@/packages/admin";
 import { useParams } from "next/navigation";
+import { useApi, useGet } from "@/packages/admin";
+
+import { HomeServicesEditable } from "@/components/organisms/home/HomeServices/HomeServicesEditable";
 
 export default function SectionPage() {
   const { section } = useParams();

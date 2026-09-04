@@ -1,10 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { ImageContainer } from "@/components/molecules/ImageContainer";
 import { MediaLibraryModal, resolveUrl, setPath } from "@/packages/admin";
-import { FaTrash, FaPlus } from "react-icons/fa";
 import { slugify } from "@/packages/admin/utils/utils";
+import { FaPlus, FaTrash } from "react-icons/fa";
+
+import { ImageContainer } from "@/components/molecules/ImageContainer";
 
 function ServiceCardEditable({ item, path, onChange, onImageClick, onRemove }) {
   return (
@@ -12,7 +13,7 @@ function ServiceCardEditable({ item, path, onChange, onImageClick, onRemove }) {
       <button
         type="button"
         onClick={onRemove}
-        className="absolute right-3 top-3 z-10 rounded bg-white/90 p-2 text-black/50 shadow hover:text-red-600"
+        className="absolute top-3 right-3 z-10 rounded bg-white/90 p-2 text-black/50 shadow hover:text-red-600"
       >
         <FaTrash size={14} />
       </button>
@@ -160,7 +161,7 @@ export const HomeServicesEditable = ({
           type="button"
           onClick={handleSave}
           disabled={saving}
-          className="rounded-lg bg-primary-green px-6 py-2 font-bold text-white disabled:opacity-60"
+          className="bg-primary-green rounded-lg px-6 py-2 font-bold text-white disabled:opacity-60"
         >
           {saving ? "Saving…" : `Save ${sectionName}`}
         </button>
