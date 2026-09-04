@@ -79,5 +79,6 @@ export const ROUTES = {
     EVENTS: (page = 1, limit = 9) =>
       `${API_BASE}/events?page=${page}&limit=${limit}`,
     EVENT: (id) => `${API_BASE}/events/${id}`,
+    SERVICES: `${API_BASE}/layouts/services`,
   },
 };
