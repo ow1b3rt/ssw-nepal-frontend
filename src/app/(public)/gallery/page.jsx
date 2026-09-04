@@ -1,6 +1,6 @@
 import { fetcher } from "@/packages/admin";
 
-import { GalleryCard } from "@/components/organisms/HomeGallery/HomeGallery";
+import { GalleryCard } from "@/components/organisms/home/HomeGallery/HomeGallery";
 
 const galleryData = {
   items: [
@@ -56,7 +56,7 @@ const galleryData = {
 };
 
 export default async function GalleryPage() {
-  const data = (await fetcher("/layouts/gallery")) || galleryData;
+  const data = (await fetcher("/layouts/gallery")) ?? galleryData;
   console.log("gallery data", data);
 
   return (

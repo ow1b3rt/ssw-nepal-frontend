@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ROUTES } from "@/constants/routes/routes";
 
 import AnimatedCard from "@/components/ui/animated-card";
 import { ImageContainer } from "@/components/molecules/ImageContainer";
@@ -37,7 +38,7 @@ const section = {
     },
   ],
   ctaLabel: "Explore Gallery",
-  ctaURL: "#",
+  ctaURL: ROUTES.GALLERY,
 };
 
 const COLUMNS = ["left", "center", "right"];
@@ -104,7 +105,7 @@ export function HomeGallery({ section: data = section }) {
       <AnimatedCard direction="up" distance={12} triggerOnView>
         <Link
           href={data.ctaURL}
-          className="bg-primary-red rounded-lg px-10 py-4 text-lg font-bold text-white"
+          className="bg-primary-red rounded-lg px-10 py-4 text-lg font-bold text-white transition duration-500 ease-in-out hover:bg-black"
         >
           {data.ctaLabel}
         </Link>
