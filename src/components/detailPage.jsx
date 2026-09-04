@@ -5,7 +5,6 @@ import { Calendar, Clock, MapPin } from "lucide-react";
 import AnimatedCard from "@/components/ui/animated-card";
 
 import { AnimatedWords } from "./ui/animated-words";
-import { Button } from "./ui/button";
 
 export default function DetailPage({ data, isBlog = false, isEvent = false }) {
   return (
@@ -24,7 +23,7 @@ export default function DetailPage({ data, isBlog = false, isEvent = false }) {
       {data.image?.src && (
         <AnimatedCard
           direction="down"
-          className="relative mb-5 w-full overflow-hidden rounded-[12px]"
+          className="relative mb-5 max-h-160 w-full overflow-hidden rounded-[12px]"
         >
           <Image
             src={data.image.src}
@@ -39,7 +38,6 @@ export default function DetailPage({ data, isBlog = false, isEvent = false }) {
       )}{" "}
       {isEvent && (
         <div className="mb-6 grid grid-cols-1 gap-4 px-8 sm:grid-cols-3">
-          {/* Time Section */}
           {data.time && (
             <div className="text-primary-blue-dark flex items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-4 py-3 text-[15px] font-semibold shadow-sm">
               <Clock className="text-primary-blue-dark h-4 w-4" />
@@ -47,7 +45,6 @@ export default function DetailPage({ data, isBlog = false, isEvent = false }) {
             </div>
           )}
 
-          {/* Date Section */}
           {data.date && (
             <div className="text-primary-blue-dark flex items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-4 py-3 text-[15px] font-semibold shadow-sm">
               <Calendar className="text-primary-blue-dark h-4 w-4" />
@@ -55,7 +52,6 @@ export default function DetailPage({ data, isBlog = false, isEvent = false }) {
             </div>
           )}
 
-          {/* Venue Section */}
           {data.venue && (
             <div className="text-primary-blue-dark flex items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-4 py-3 text-[15px] font-semibold shadow-sm">
               <MapPin className="text-primary-blue-dark h-4 w-4" />
@@ -68,7 +64,7 @@ export default function DetailPage({ data, isBlog = false, isEvent = false }) {
         (isBlog ? (
           <ArticleBody html={data.content} />
         ) : (
-          <AnimatedCard className="text-text-color mt-8 space-y-6 text-[17px] leading-relaxed whitespace-pre-line">
+          <AnimatedCard className="text-text-color mt-8 space-y-6 text-lg leading-relaxed whitespace-pre-line">
             {data.content.map((block, index) => (
               <ContentBlock key={index} block={block} />
             ))}

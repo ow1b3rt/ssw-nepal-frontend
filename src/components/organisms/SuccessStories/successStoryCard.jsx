@@ -11,7 +11,7 @@ export default function SuccessStoryCard({ title, description, image, background
       className={`rounded-lg p-4 md:p-6 ${background}`}
     >
       {title && (
-        <h2 className="mb-2 text-3xl leading-none font-black tracking-[-1.5px] md:text-5xl">
+        <h2 className="mb-2 text-3xl leading-none font-black tracking-[1px] md:text-5xl">
           {title}
         </h2>
       )}

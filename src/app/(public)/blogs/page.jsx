@@ -1,3 +1,8 @@
+import { ROUTES } from "@/constants/routes/routes";
+import { stripHtml } from "@/packages/admin/utils/utils";
+
+import AnimatedCard from "@/components/ui/animated-card";
+import Divider from "@/components/ui/divider";
 import { BlogCard } from "@/components/molecules/cards/BlogCard";
 import { Pagenav } from "@/components/Reusables";
 import { getBlogs } from "@/lib/api/blogs";
@@ -13,35 +18,49 @@ export default async function BlogsPage({ searchParams }) {
   const blogs = await getBlogs(page);
 
   return (
-    <section className="container mx-auto px-4 pb-12 xl:px-0">
-      <div className="text-center">
-        {" "}
-        <h1 className="mb-2 text-2xl font-bold text-gray-900 md:text-3xl">Blogs</h1>
-      </div>
+    <section className="container mx-auto flex w-full flex-col items-center gap-2 md:gap-6">
+      <AnimatedCard
+        className="w-fit rounded-lg px-10 py-2.5"
+        direction="up"
+        distance={12}
+        triggerOnView
+      >
+        <h1 className="mb-1 text-3xl leading-none font-black tracking-[1px] text-black md:text-4xl xl:text-5xl">
+          Blogs
+        </h1>
+      </AnimatedCard>
       {blogs.items.length === 0 ? (
-        <p className="mt-10 text-center text-gray-500">No blogs available at the moment.</p>
+        <p className="text-primary-red text-center text-xl font-semibold md:text-2xl">
+          No Blogs available at the moment
+        </p>
       ) : (
-        <ul className="mt-6 divide-y divide-gray-100 rounded-xl border border-gray-200 bg-white shadow-sm">
-          <div className="grid grid-cols-3 gap-6">
-            {blogs.items.map((b, index) => (
-              <BlogCard
-                key={index}
-                blog={{
-                  image: {
-                    src: b.media ? `${process.env.NEXT_PUBLIC_HOST}${b.media.url}` : "/favicon.jpg",
-                    alt: b.media ? b.media.alt : "alt",
-                  },
-                  title: b.title,
-                  desc: stripHtml(b.content),
-                  url: `/blogs/${b.slug}`,
-                }}
-              />
-            ))}
-          </div>
-        </ul>
+        <>
+          <ul className="mt-6 w-full divide-y divide-gray-100">
+            <AnimatedCard direction="down" className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {blogs.items.map((b, index) => (
+                <BlogCard
+                  key={index}
+                  blog={{
+                    image: {
+                      src: b.media
+                        ? `${process.env.NEXT_PUBLIC_HOST}${b.media.url}`
+                        : "/favicon.jpg",
+                      alt: b.media ? b.media.alt : "alt",
+                    },
+                    title: b.title,
+                    desc: stripHtml(b.content),
+                    url: `/blogs/${b.slug}`,
+                  }}
+                />
+              ))}
+            </AnimatedCard>
+          </ul>
+          <AnimatedCard direction="up" className="w-full">
+            <Divider backgroundColor="bg-gray-300" className="xl:my-5" />
+            <Pagenav page={blogs.page} totalPages={blogs.totalPages} />
+          </AnimatedCard>
+        </>
       )}
-
-      <Pagenav page={blogs.page} totalPages={blogs.totalPages} />
     </section>
   );
 }

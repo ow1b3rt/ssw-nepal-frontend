@@ -55,7 +55,7 @@ const HomeTestimonials = () => {
         distance={12}
         triggerOnView
       >
-        <h2 className="mb-1 text-3xl leading-none font-black tracking-[-1.5px] text-white md:text-4xl xl:text-5xl">
+        <h2 className="mb-1 text-3xl leading-none font-black tracking-[1px] text-white md:text-4xl xl:text-5xl">
           Testimonials
         </h2>
       </AnimatedCard>

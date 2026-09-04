@@ -67,15 +67,45 @@ export default async function GalleryPage() {
         distance={12}
         triggerOnView
       >
-        <h1 className="mb-1 text-3xl leading-none font-black tracking-[-1.5px] text-black md:text-4xl xl:text-5xl">
+        <h1 className="mb-1 text-3xl leading-none font-black tracking-[1px] text-black md:text-4xl xl:text-5xl">
           Gallery
         </h1>
       </AnimatedCard>
-      {data?.layout?.items.length > 0 ? (
-        <div className="grid w-full grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {data?.layout?.items?.map((item, index) => (
-            <GalleryCard key={index} {...item} />
-          ))}
+      {data?.layout?.items?.length > 0 ? (
+        <div className="w-full">
+          <div className="hidden gap-6 lg:grid lg:grid-cols-3">
+            {[0, 1, 2].map((columnIndex) => (
+              <div key={columnIndex} className="flex flex-col gap-6">
+                {data.layout.items
+                  .filter((_, index) => index % 3 === columnIndex)
+                  .map((item, index) => (
+                    <AnimatedCard key={`${columnIndex}-${index}`} direction="down" distance={12}>
+                      <GalleryCard {...item} />
+                    </AnimatedCard>
+                  ))}
+              </div>
+            ))}
+          </div>
+          <div className="hidden gap-6 md:grid md:grid-cols-2 lg:hidden">
+            {[0, 1].map((columnIndex) => (
+              <div key={columnIndex} className="flex flex-col gap-6">
+                {data.layout.items
+                  .filter((_, index) => index % 2 === columnIndex)
+                  .map((item, index) => (
+                    <AnimatedCard key={`${columnIndex}-${index}`} direction="down" distance={12}>
+                      <GalleryCard {...item} />
+                    </AnimatedCard>
+                  ))}
+              </div>
+            ))}
+          </div>
+          <div className="flex flex-col gap-6 md:hidden">
+            {data.layout.items.map((item, index) => (
+              <AnimatedCard key={index} direction="down" distance={12}>
+                <GalleryCard {...item} />
+              </AnimatedCard>
+            ))}
+          </div>
         </div>
       ) : (
         <div>

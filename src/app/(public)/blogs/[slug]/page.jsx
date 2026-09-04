@@ -1,11 +1,10 @@
 import { notFound } from "next/navigation";
 import { getBlog } from "@/lib/api/blogs";
+import DetailPage from "@/components/detailPage";
 
 export default async function SingleBlog({ params }) {
   const { slug } = await params;
   const blog = await getBlog(slug);
-
-  console.log("single blog", blog);
 
   const blogData = {
     title: blog.title,
@@ -15,7 +14,6 @@ export default async function SingleBlog({ params }) {
     },
     content: blog.content,
   };
-  console.log("blog data", blogData);
 
   if (!blog) notFound();
   return <DetailPage data={blogData} isBlog={true} />;

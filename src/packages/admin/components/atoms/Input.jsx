@@ -57,7 +57,7 @@ export function Input({
       style={{ display: hidden ? "none" : "flex", ...style }}
     >
       {resolvedPlaceholder && (
-        <label htmlFor={name} className="text-sm font-medium text-gray-700">
+        <label htmlFor={name} className="text-base font-medium text-gray-700">
           {resolvedPlaceholder}
           {required && <span className="ml-1 text-red-500">*</span>}
         </label>
