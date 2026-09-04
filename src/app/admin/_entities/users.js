@@ -14,11 +14,11 @@ export const users = defineEntity({
     {
       name: "role",
       type: "select",
-      column: 'right',
+      column: "right",
       label: "Role",
-      options: ["admin","editor", "author"],
+      options: ["admin", "editor", "author"],
     },
-    { name: "avatar", type: "image", label: "Avatar", invisible: true, column: 'right' },
+    { name: "avatar", type: "image", label: "Avatar", invisible: true, column: "right" },
   ],
   filters: [
     {

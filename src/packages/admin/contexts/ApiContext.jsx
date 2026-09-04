@@ -2,6 +2,7 @@
 
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
+
 import { getRuntimeConfig } from "../lib/runtime.config.js";
 
 export function useHost() {
@@ -11,14 +12,14 @@ export function useHost() {
 const ApiContext = createContext(null);
 
 export function useGet(path) {
-  const { apiBaseUrl:BASE_URL } = getRuntimeConfig()
+  const { apiBaseUrl: BASE_URL } = getRuntimeConfig();
   const [data, setData] = useState(null);
   const [localLoading, setLocalLoading] = useState(false);
 
   const fetch_ = useCallback(async () => {
     setLocalLoading(true);
     try {
-      if (!path) return
+      if (!path) return;
       let res = await fetch(BASE_URL + path, { credentials: "include" });
 
       if (!res.ok) {

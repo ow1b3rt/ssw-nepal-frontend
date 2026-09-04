@@ -1,5 +1,7 @@
 import { Outfit } from "next/font/google";
+
 import { Toaster } from "@/components/ui/toast";
+
 import "./globals.css";
 
 const outfit = Outfit({

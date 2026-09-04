@@ -1,7 +1,8 @@
-import SuccessStoryText from "@/components/organisms/SuccessStories/successStoryText";
-import { HomeAboutGallery } from "./HomeAboutGallery";
 import AnimatedCard from "@/components/ui/animated-card";
 import Divider from "@/components/ui/divider";
+import SuccessStoryText from "@/components/organisms/SuccessStories/successStoryText";
+
+import { HomeAboutGallery } from "./HomeAboutGallery";
 
 const section = {
   aboutDesc: {
@@ -12,15 +13,12 @@ const section = {
 
 export function HomeAbout({ data = section }) {
   return (
-    <section className="grid lg:grid-cols-2 gap-4 lg:gap-6 xl:gap-8 w-full items-center gap-y-8 xl:gap-y-16">
+    <section className="grid w-full items-center gap-4 gap-y-8 lg:grid-cols-2 lg:gap-6 xl:gap-8 xl:gap-y-16">
       <AnimatedCard direction="up" distance={12} triggerOnView>
         <HomeAboutGallery />
       </AnimatedCard>
 
-      <SuccessStoryText
-        name={data.aboutDesc.title}
-        description={data.aboutDesc.description}
-      />
+      <SuccessStoryText name={data.aboutDesc.title} description={data.aboutDesc.description} />
     </section>
   );
 }

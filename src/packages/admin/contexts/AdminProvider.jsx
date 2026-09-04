@@ -1,10 +1,11 @@
 "use client";
-import { ApiProvider } from "./ApiContext.jsx";
-import { AuthProvider } from "./AuthContext.jsx";
+
 import { AdminGate } from "../components/templates/AdminGate.jsx";
-import { ToastProvider } from "./ToastContext.jsx"
 import { AdminShell } from "../components/templates/AdminShell.jsx";
 import { getRuntimeConfig } from "../lib/runtime.config.js";
+import { ApiProvider } from "./ApiContext.jsx";
+import { AuthProvider } from "./AuthContext.jsx";
+import { ToastProvider } from "./ToastContext.jsx";
 
 export function AdminProvider({ children }) {
   const config = getRuntimeConfig();
@@ -12,12 +13,12 @@ export function AdminProvider({ children }) {
   if (!config?.apiBaseUrl) {
     throw new Error(
       "[@lynx/admin-panel] Missing config. Make sure <AdminConfigInit config={adminConfig} /> " +
-      "is mounted in your root layout before any admin routes render."
+        "is mounted in your root layout before any admin routes render.",
     );
   }
 
   return (
-    <ApiProvider baseUrl={config.apiBaseUrl} >
+    <ApiProvider baseUrl={config.apiBaseUrl}>
       <AuthProvider>
         <ToastProvider>
           <AdminGate>

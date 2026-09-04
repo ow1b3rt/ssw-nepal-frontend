@@ -3,7 +3,6 @@
 "use client";
 
 import { useRef, useState } from "react";
-
 import { createReactBlockSpec } from "@blocknote/react";
 
 export const ButtonBlock = createReactBlockSpec(

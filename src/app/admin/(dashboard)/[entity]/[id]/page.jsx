@@ -1,9 +1,16 @@
 "use client";
+
 import { notFound, useParams, useRouter } from "next/navigation";
+import {
+  AdminLayout,
+  PayloadEntityForm,
+  removeEmptyFields,
+  useApi,
+  useGet,
+} from "@/packages/admin";
 import { Loader2 } from "lucide-react";
-import { PayloadEntityForm, AdminLayout, useGet, useApi } from "@/packages/admin";
-import { entities } from '@/app/admin/entities'
-import { removeEmptyFields } from "@/packages/admin";
+
+import { entities } from "@/app/admin/entities";
 
 function coerceRelationshipIds(values, fields) {
   const relationshipFields = fields.filter((f) => f.type === "relationship");
@@ -33,14 +40,14 @@ export default function EntityEditPage() {
   if (!isNew && loading) {
     return (
       <AdminLayout title={entity.label}>
-          <Loader2 size={18} className="animate-spin text-gray-400" />
-          Loading…
+        <Loader2 size={18} className="animate-spin text-gray-400" />
+        Loading…
       </AdminLayout>
     );
   }
 
   async function handleSubmit(values) {
-    const definedValues = removeEmptyFields(values)
+    const definedValues = removeEmptyFields(values);
     const url = isNew ? apiPath : `${apiPath}/${id}`;
     const payload = coerceRelationshipIds(definedValues, entity.fields);
     const res = isNew ? await post(url, payload) : await patch(url, payload);
@@ -50,12 +57,12 @@ export default function EntityEditPage() {
 
   return (
     <AdminLayout title={`${isNew ? "New" : "Edit"} ${entity.label}`} formId="entity-form">
-        <PayloadEntityForm
-          collectionFields={entity.fields}
-          defaults={data?.item ?? {}}
-          onSubmit={handleSubmit}
-          externalId="entity-form"
-        />
+      <PayloadEntityForm
+        collectionFields={entity.fields}
+        defaults={data?.item ?? {}}
+        onSubmit={handleSubmit}
+        externalId="entity-form"
+      />
     </AdminLayout>
   );
 }

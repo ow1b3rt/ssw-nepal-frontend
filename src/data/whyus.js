@@ -24,13 +24,13 @@ export const whyChooseUsData = {
 
     stats: [
       {
-        value: "1000+",
+        value: 1000,
         label: "Happy Students",
         background: "bg-primary-green",
       },
 
       {
-        value: "20+",
+        value: 20,
         label: "Experts",
         background: "bg-primary-red",
       },

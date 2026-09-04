@@ -1,18 +1,18 @@
+import { footerData } from "@/data/footer";
+
 import Footer from "@/components/footer";
 import Breadcrumb from "@/components/molecules/BreadCrumb";
 import Navbar from "@/components/navbar";
-import { footerData } from "@/data/footer";
 
 export default function PublicLayout({ children }) {
   return (
-    <div className="flex min-h-screen flex-col justify-between front">
-      <div className="sticky top-0 z-50 backdrop-blur-2xl ">
+    <div className="front flex min-h-screen flex-col justify-between">
+      <div className="sticky top-0 z-50 backdrop-blur-2xl">
         <Navbar />
       </div>
-      <main className="flex flex-col container mx-auto items-center px-4 xl:px-0">
-        <div className="">
-          <Breadcrumb />
-        </div>
+      <main className="container mx-auto mb-16 flex flex-col px-4 xl:px-0">
+        <Breadcrumb />
+
         {children}
       </main>
 

@@ -10,9 +10,7 @@ const Divider = ({
       ? `${width} ${height} self-stretch shrink-0`
       : "w-full h-0.5 shrink-0";
 
-  return (
-    <div className={`${backgroundColor} ${orientationClasses} ${className}`} />
-  );
+  return <div className={`${backgroundColor} ${orientationClasses} ${className}`} />;
 };
 
 export default Divider;

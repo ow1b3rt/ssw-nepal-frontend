@@ -15,11 +15,7 @@ import {
 export function AutoCarousel(props) {
   const { transition = "fade" } = props;
   if (transition === "marquee") return <MarqueeCarousel {...props} />;
-  return transition === "slide" ? (
-    <SlideCarousel {...props} />
-  ) : (
-    <FadeCarousel {...props} />
-  );
+  return transition === "slide" ? <SlideCarousel {...props} /> : <FadeCarousel {...props} />;
 }
 
 function FadeCarousel({
@@ -234,11 +230,7 @@ function SlideCarousel({
     : undefined;
 
   const renderDots = showControls && showDotControls && snapCount > 1 && (
-    <DotControls
-      count={snapCount}
-      selected={selected}
-      onSelect={(i) => api?.scrollTo(i)}
-    />
+    <DotControls count={snapCount} selected={selected} onSelect={(i) => api?.scrollTo(i)} />
   );
 
   return (
@@ -258,10 +250,7 @@ function SlideCarousel({
       <div className={cn(gradientMaskClassName)} style={maskStyle}>
         <CarouselContent className="-ml-4 transform-gpu ease-out will-change-transform">
           {items.map((item, i) => (
-            <CarouselItem
-              key={i}
-              className={cn("transform-gpu pl-4", itemClassName)}
-            >
+            <CarouselItem key={i} className={cn("transform-gpu pl-4", itemClassName)}>
               {renderItem(item, i)}
             </CarouselItem>
           ))}
@@ -321,8 +310,7 @@ function MarqueeCarousel({
       singleSetWidthRef.current = singleSetWidth;
 
       if (!dragStateRef.current) {
-        node.scrollLeft =
-          singleSetWidth + (node.scrollLeft % singleSetWidth || 0);
+        node.scrollLeft = singleSetWidth + (node.scrollLeft % singleSetWidth || 0);
         if (node.scrollLeft < singleSetWidth * 0.1) {
           node.scrollLeft = singleSetWidth;
         }
@@ -484,8 +472,7 @@ function MarqueeCarousel({
           ref={scrollerRef}
           className={cn(
             "auto-carousel-marquee-track flex w-full overflow-x-auto overscroll-x-contain",
-            draggable &&
-              "cursor-grab touch-pan-x select-none active:cursor-grabbing",
+            draggable && "cursor-grab touch-pan-x select-none active:cursor-grabbing",
           )}
           style={{ gap: marqueeGap, scrollBehavior: "auto" }}
           onPointerDown={handlePointerDown}

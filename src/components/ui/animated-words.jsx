@@ -23,10 +23,7 @@ export function AnimatedWords({
   const count = words.length;
 
   return (
-    <span
-      key={animKey}
-      className={cn("inline-flex flex-wrap gap-x-1", className)}
-    >
+    <span key={animKey} className={cn("inline-flex flex-wrap gap-x-1", className)}>
       {words.map((word, i) => {
         const order = reverse ? count - 1 - i : i;
         return (

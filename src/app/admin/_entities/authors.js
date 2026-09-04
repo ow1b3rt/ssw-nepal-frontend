@@ -13,6 +13,6 @@ export const authors = defineEntity({
     { name: "phone", type: "text", label: "Phone" },
     { name: "bio", type: "textarea", label: "Bio" },
     { name: "password", type: "password", label: "Password", invisible: true },
-    { name: "avatar", type: "image", label: "Avatar", invisible: true, column: 'right' },
+    { name: "avatar", type: "image", label: "Avatar", invisible: true, column: "right" },
   ],
 });

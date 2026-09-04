@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+
 import { AppointmentForm } from "@/components/organism/forms/AppointmentForm";
 
 export default function Contact() {
@@ -10,8 +11,7 @@ export default function Contact() {
     if (!data.name?.trim() || !data.email?.trim() || !data.phone?.trim()) {
       toast.add({
         type: "error",
-        description:
-          "Please fill in all required fields (Name, Email, and Phone).",
+        description: "Please fill in all required fields (Name, Email, and Phone).",
       });
       return;
     }
@@ -34,17 +34,13 @@ export default function Contact() {
         onError: (error) => {
           toast.add({
             type: "error",
-            description:
-              error?.message ||
-              "Unable to submit your appointment. Please try again.",
+            description: error?.message || "Unable to submit your appointment. Please try again.",
           });
         },
       });
     } catch (err) {
       const errorMessage =
-        err instanceof Error
-          ? err.message
-          : "Unable to submit your appointment. Please try again.";
+        err instanceof Error ? err.message : "Unable to submit your appointment. Please try again.";
       toast.add({
         type: "error",
         description: errorMessage,

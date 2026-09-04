@@ -1,19 +1,20 @@
-'use client'
-import { AdminChildrenLayout } from "@/packages/admin"
-import { entities } from '@/app/admin/entities'
-import { useParams, notFound } from "next/navigation";
+"use client";
+
+import { notFound, useParams } from "next/navigation";
+import { AdminChildrenLayout } from "@/packages/admin";
+
+import { entities } from "@/app/admin/entities";
 
 function tableFields(config) {
-
   return config.fields
-    .filter(f => f.type !== 'relationship' && !f.invisible)
-    .map(f => ({ key: f.name, head: f.label }))
+    .filter((f) => f.type !== "relationship" && !f.invisible)
+    .map((f) => ({ key: f.name, head: f.label }));
 }
 
 export default function EntityListPage() {
   const { entity } = useParams();
   const config = entities[entity];
-	console.log('config', config)
+  console.log("config", config);
 
   if (!config) notFound();
 

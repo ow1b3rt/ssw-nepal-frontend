@@ -26,9 +26,7 @@ export async function submitForm({
 
     if (!response.ok) {
       const details = result?.message || result?.error?.details;
-      const firstFieldError = details
-        ? Object.values(details).flat()[0]
-        : undefined;
+      const firstFieldError = details ? Object.values(details).flat()[0] : undefined;
 
       throw new Error(
         details ||

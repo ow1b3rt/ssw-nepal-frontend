@@ -11,7 +11,6 @@ import { BlockNoteView } from "@blocknote/mantine";
 
 import "@blocknote/mantine/style.css";
 
-import { useApi } from "../../contexts/ApiContext.jsx";
 import {
   FormattingToolbar,
   FormattingToolbarController,
@@ -23,10 +22,11 @@ import {
 } from "@blocknote/react";
 import { Frame, ImageIcon, Link2 } from "lucide-react";
 
+import { useApi } from "../../contexts/ApiContext.jsx";
+import { getRuntimeConfig } from "../../lib/runtime.config.js";
 import { ButtonBlock } from "./ButtonBlock.jsx";
 import { EmbedBlock } from "./EmbedBlock.jsx";
 import { LibraryImageBlock } from "./LibraryImageBlock.jsx";
-import { getRuntimeConfig } from "../../lib/runtime.config.js";
 
 // image is now backed entirely by the media library (see LibraryImageBlock),
 // so the default upload-based image block is dropped from the schema.

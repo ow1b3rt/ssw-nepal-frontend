@@ -1,26 +1,23 @@
 import Image from "next/image";
 
-export default function SuccessStoryCard({
-  title,
-  description,
-  image,
-  background = "#f3f6ff",
-}) {
+import AnimatedCard from "@/components/ui/animated-card";
+
+export default function SuccessStoryCard({ title, description, image, background = "#f3f6ff" }) {
   return (
-    <div
-      className="rounded-[14px] p-6"
-      style={{ backgroundColor: background }}
+    <AnimatedCard
+      direction="down"
+      distance={12}
+      triggerOnView
+      className={`rounded-lg p-4 md:p-6 ${background}`}
     >
       {title && (
-        <h2 className="mb-2 text-[42px] font-black leading-none tracking-[-1.5px] md:text-[50px]">
+        <h2 className="mb-2 text-3xl leading-none font-black tracking-[-1.5px] md:text-5xl">
           {title}
         </h2>
       )}
 
       {description && (
-        <p className="mb-6 text-[17px] leading-[1.45] text-[#4b4b4b]">
-          {description}
-        </p>
+        <p className="text-text-color mb-6 text-[17px] leading-[1.45]">{description}</p>
       )}
 
       {image?.src && (
@@ -34,6 +31,6 @@ export default function SuccessStoryCard({
           />
         </div>
       )}
-    </div>
+    </AnimatedCard>
   );
 }

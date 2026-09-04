@@ -1,22 +1,20 @@
-
 "use client";
-import { createContext, useContext, useState, useEffect } from "react";
+
+import { createContext, useContext, useEffect, useState } from "react";
 import Link from "next/link";
 import { Plus, Search, X } from "lucide-react";
-import DataTable from "./DataTable.jsx";
+
 import { useFetchEntity } from "../../hooks/useFetchEntity.js";
-import { capitalise } from "../../utils/utils.js";
 import { getEntities } from "../../lib/runtime.config.js";
+import { capitalise } from "../../utils/utils.js";
+import DataTable from "./DataTable.jsx";
+
 const EntityContext = createContext({});
 export const useEntity = () => useContext(EntityContext);
 
-export function AdminChildrenLayout({
-  name,
-  tablefields,
-  actions,
-}) {
+export function AdminChildrenLayout({ name, tablefields, actions }) {
   // 1. Get the filter config from the entity definition
-  const entities = getEntities()
+  const entities = getEntities();
   const entityConfig = entities[name];
   const filterConfig = entityConfig?.filters || [];
 
@@ -88,7 +86,6 @@ export function AdminChildrenLayout({
   return (
     <EntityContext value={value}>
       <div className="flex flex-col gap-5">
-
         <div className="flex items-center justify-between rounded-xl border border-gray-200 bg-white px-5 py-4 shadow-sm">
           <div>
             <h2 className="text-lg font-semibold text-gray-900">{capitalise(name)}</h2>
@@ -118,7 +115,7 @@ export function AdminChildrenLayout({
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder={`Search ${name}...`}
-                className="w-full sm:w-64 rounded-md border border-gray-300 bg-white py-1.5 pl-9 pr-3 text-sm text-gray-700 focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900"
+                className="w-full rounded-md border border-gray-300 bg-white py-1.5 pr-3 pl-9 text-sm text-gray-700 focus:border-gray-900 focus:ring-1 focus:ring-gray-900 focus:outline-none sm:w-64"
               />
             </div>
 
@@ -128,7 +125,7 @@ export function AdminChildrenLayout({
                 key={filter.field}
                 value={activeFilters[filter.field] || ""}
                 onChange={(e) => handleFilterChange(filter.field, e.target.value)}
-                className="rounded-md border border-gray-300 bg-white py-1.5 pl-3 pr-8 text-sm font-medium text-gray-700 focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900"
+                className="rounded-md border border-gray-300 bg-white py-1.5 pr-8 pl-3 text-sm font-medium text-gray-700 focus:border-gray-900 focus:ring-1 focus:ring-gray-900 focus:outline-none"
               >
                 <option value="">All {filter.label}</option>
                 {filter.options.map((opt) => {
@@ -156,15 +153,15 @@ export function AdminChildrenLayout({
           </div>
 
           {/* Right side: Limit Selector */}
-          <div className="flex items-center gap-2 ml-auto">
-            <label htmlFor="limit-select" className="text-sm text-gray-600 whitespace-nowrap">
+          <div className="ml-auto flex items-center gap-2">
+            <label htmlFor="limit-select" className="text-sm whitespace-nowrap text-gray-600">
               Items per page:
             </label>
             <select
               id="limit-select"
               value={limit}
               onChange={handleLimitChange}
-              className="rounded-md border border-gray-300 bg-white py-1.5 pl-3 pr-8 text-sm font-medium text-gray-700 focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900"
+              className="rounded-md border border-gray-300 bg-white py-1.5 pr-8 pl-3 text-sm font-medium text-gray-700 focus:border-gray-900 focus:ring-1 focus:ring-gray-900 focus:outline-none"
             >
               <option value={10}>10</option>
               <option value={20}>20</option>

@@ -39,16 +39,13 @@ export default function Breadcrumb() {
 
   return (
     <div className="bg-background/50 sticky top-0 z-10 flex items-center gap-3 py-3 backdrop-blur-xl lg:py-4">
-      <button
-        className="text-primaryBlue hidden sm:block"
-        onClick={() => router.back()}
-      >
+      <button className="text-primaryBlue hidden sm:block" onClick={() => router.back()}>
         <ArrowLeft size={20} />
       </button>
       <div className="flex flex-wrap items-center gap-2">
         <Button
           onClick={() => router.push("/")}
-          className="text-foreground hover:text-primary-red flex cursor-pointer items-center gap-2 border-none bg-transparent p-0 outline-none hover:bg-transparent"
+          className="text-foreground hover:text-primary-green flex cursor-pointer items-center gap-2 border-none bg-transparent p-0 outline-none hover:bg-transparent"
         >
           <House size={14} className="text-foreground" />
           <span className="font-semibold sm:text-base">Home</span>
@@ -58,12 +55,12 @@ export default function Breadcrumb() {
           <div key={crumb.path} className="flex items-center gap-2">
             <ChevronRight size={18} className="text-foreground" />
             {i === crumbs.length - 1 ? (
-              <span className="breadcrumb__current text-primary-red text-sm font-semibold sm:text-base">
+              <span className="breadcrumb__current text-primary-green text-sm font-semibold sm:text-base">
                 {crumb.label}
               </span>
             ) : (
               <button
-                className="breadcrumb-btn text-primaryBlue hover:text-primary-red cursor-pointer text-sm font-semibold sm:text-base"
+                className="breadcrumb-btn text-primaryBlue hover:text-primary-green cursor-pointer text-sm font-semibold sm:text-base"
                 onClick={() => router.push(crumb.path)}
               >
                 {crumb.label}
