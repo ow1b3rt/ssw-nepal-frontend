@@ -5,7 +5,7 @@ export const ROUTES = {
   ADMIN_DASHBOARD: "/admin",
 
   HOME: "/",
-
+  GALLERY: "/gallery",
   NOTICES: "/notices",
   NOTICE: (id) => `/notices/${id}`,
 

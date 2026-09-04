@@ -120,7 +120,7 @@ export function ContactForm() {
             title="Address"
             body={
               <p className="text-muted-foreground leading-relaxed">
-                P.O.Box No.: 7261, Bagbazar-28, Near KMC College, Kathmandu, Nepal
+                Narayangopal Chowk, Kathmandu, Nepal
               </p>
             }
           />
@@ -228,7 +228,7 @@ export function ContactForm() {
           <Textarea
             id="contact-message"
             name="message"
-            className="border-input bg-background/50 focus-visible:ring-destructive/30 min-h-[180px] flex-1 rounded-xl p-3.5 text-base transition-colors"
+            className="border-input bg-background/50 focus-visible:ring-destructive/30 min-h-45 flex-1 rounded-xl p-3.5 text-base transition-colors"
             placeholder="Write something..."
             value={form.message}
             onChange={handleChange}
@@ -238,7 +238,7 @@ export function ContactForm() {
         </div>
 
         <Button
-          className="bg-primary hover:bg-primary-red/90 text-background h-12 w-full cursor-pointer rounded-xl font-semibold shadow-md transition duration-200 disabled:cursor-not-allowed disabled:opacity-60"
+          className="bg-primary-blue hover:bg-primary-blue-dark h-12 w-full cursor-pointer rounded-xl text-lg font-semibold text-white transition duration-200 disabled:cursor-not-allowed disabled:opacity-60"
           type="submit"
           disabled={loading}
         >
