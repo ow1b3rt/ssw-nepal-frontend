@@ -3,6 +3,7 @@ import ArticleBody from "@/packages/admin/components/templates/ArticleBody";
 import { Calendar, Clock, MapPin } from "lucide-react";
 
 import AnimatedCard from "@/components/ui/animated-card";
+import { ImageContainer } from "@/components/molecules/ImageContainer";
 
 import { AnimatedWords } from "./ui/animated-words";
 
@@ -25,14 +26,10 @@ export default function DetailPage({ data, isBlog = false, isEvent = false }) {
           direction="down"
           className="relative mb-5 max-h-160 w-full overflow-hidden rounded-[12px]"
         >
-          <Image
+          <ImageContainer
             src={data.image.src}
             alt={data.image.alt || data.title || "Image"}
-            width={0}
-            height={0}
-            sizes="100vw"
-            priority
-            className="h-auto w-full object-contain"
+            className="aspect-video w-full object-contain"
           />
         </AnimatedCard>
       )}{" "}

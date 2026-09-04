@@ -14,9 +14,7 @@ const BlogsList = ({ title = " Latest News & Blogs", blogs }) => {
           items={blogs}
           transition="slide"
           itemClassName="flex items-stretch w-full justify-center basis-full sm:basis-1/2 lg:basis-1/3 md:px-7"
-          renderItem={(blog, index) => (
-            <HomeBlogCard section={blog} key={index} />
-          )}
+          renderItem={(blog, index) => <HomeBlogCard section={blog} key={index} />}
           transitionDuration={500}
           loop={true}
           showControls={true}

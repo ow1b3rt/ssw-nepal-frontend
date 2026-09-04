@@ -71,12 +71,12 @@ export function HomeAboutGallery({
         <div
           className={`absolute z-10 ${BADGE_POSITION[notchCorner]} rounded-2xl px-6 py-4 text-white shadow-lg ${statClass}`}
         >
-          <p className="text-4xl leading-none font-extrabold">
+          <p className="text-3xl leading-none font-extrabold md:text-5xl">
             <AnimatedCounter
               end={data.badgeNumber}
               suffix={"+"}
               start={0}
-              duration={2500}
+              duration={1500}
               triggerOnView
             />
           </p>

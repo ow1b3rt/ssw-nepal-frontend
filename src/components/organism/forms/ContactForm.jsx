@@ -238,7 +238,7 @@ export function ContactForm() {
         </div>
 
         <Button
-          className="bg-primary-blue  hover:bg-primary-blue/90 text-white h-12 w-full cursor-pointer rounded-xl font-semibold shadow-md transition duration-200 disabled:cursor-not-allowed disabled:opacity-60"
+          className="bg-primary-blue hover:bg-primary-blue/90 h-12 w-full cursor-pointer rounded-xl font-semibold text-white shadow-md transition duration-200 disabled:cursor-not-allowed disabled:opacity-60"
           type="submit"
           disabled={loading}
         >

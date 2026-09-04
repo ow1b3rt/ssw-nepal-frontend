@@ -1,11 +1,11 @@
 import { ROUTES } from "@/constants/routes/routes";
 import { stripHtml } from "@/packages/admin/utils/utils";
 
+import { getBlogs } from "@/lib/api/blogs";
 import AnimatedCard from "@/components/ui/animated-card";
 import Divider from "@/components/ui/divider";
 import { BlogCard } from "@/components/molecules/cards/BlogCard";
 import { Pagenav } from "@/components/Reusables";
-import { getBlogs } from "@/lib/api/blogs";
 
 export const metadata = {
   title: "Notice | Enlighten Int'l Education",
