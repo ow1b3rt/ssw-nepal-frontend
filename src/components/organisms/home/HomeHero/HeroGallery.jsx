@@ -1,6 +1,8 @@
-import { AnimatedCounter } from "@/components/ui/animated-counter";
+import Image from "next/image";
 import { GraduationCap, IdCard, Star } from "lucide-react";
+
 import AnimatedCard from "@/components/ui/animated-card";
+import { AnimatedCounter } from "@/components/ui/animated-counter";
 
 const section = {
   image1: { src: "/favicon.jpg", alt: "helo" },
@@ -17,14 +19,12 @@ const section = {
 
 const ICONS = { IdCard, GraduationCap, Star };
 
-import Image from "next/image";
-
 export function ImageContainer({ className, ...props }) {
   return (
     <AnimatedCard
       direction="up"
       delay={100}
-      className={className + " overflow-hidden relative rounded-lg!"}
+      className={className + " relative overflow-hidden rounded-lg!"}
     >
       <Image fill {...props} />
     </AnimatedCard>
@@ -38,7 +38,7 @@ function StatCard({ icon, number, label }) {
     <AnimatedCard
       direction="down"
       delay={50}
-      className="flex items-center justify-center gap-3 rounded-lg! bg-faint-blue p-2 md:p-4"
+      className="bg-faint-blue flex items-center justify-center gap-3 rounded-lg! p-2 md:p-4"
     >
       {Icon && (
         <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-900">
@@ -46,10 +46,10 @@ function StatCard({ icon, number, label }) {
         </div>
       )}
       <div>
-        <p className="text-xl md:text-3xl font-extrabold">
+        <p className="text-xl font-extrabold md:text-3xl">
           <AnimatedCounter end={number} suffix={"+"} start={0} />
         </p>
-        <p className="text-sm md:text-lg font-bold">{label}</p>
+        <p className="text-sm font-bold md:text-lg">{label}</p>
       </div>
     </AnimatedCard>
   );
@@ -58,14 +58,10 @@ function StatCard({ icon, number, label }) {
 export function HeroGallery({ section: data = section }) {
   return (
     <div
-      className={`
-            grid grid-cols-2 max-h-200 
-            [grid-template-areas:'image1_text1'_'image1_image2'_'image1_image2'_'text2_image2'_'image3_doubleImage'_'image3_doubleImage'_'image3_text3']
-            gap-2 *:rounded-sm
-        `}
+      className={`grid max-h-200 grid-cols-2 gap-2 [grid-template-areas:'image1_text1'_'image1_image2'_'image1_image2'_'text2_image2'_'image3_doubleImage'_'image3_doubleImage'_'image3_text3'] *:rounded-sm`}
     >
       <ImageContainer
-        className="[grid-area:image1] aspect-square"
+        className="aspect-square [grid-area:image1]"
         src={data.image1.src}
         alt={data.image1.alt}
       />
@@ -73,7 +69,7 @@ export function HeroGallery({ section: data = section }) {
         <StatCard {...data.text1} />
       </div>
       <ImageContainer
-        className="[grid-area:image2] aspect-square h-full w-full"
+        className="aspect-square h-full w-full [grid-area:image2]"
         src={data.image2.src}
         alt={data.image2.alt}
       />
@@ -81,21 +77,16 @@ export function HeroGallery({ section: data = section }) {
         <StatCard {...data.text2} />
       </div>
       <ImageContainer
-        className="[grid-area:image3] aspect-square h-full lg:max-h-72 w-full"
+        className="aspect-square h-full w-full [grid-area:image3] lg:max-h-72"
         src={data.image3.src}
         alt={data.image3.alt}
       />
-      <div className="[grid-area:doubleImage] flex gap-2 *:rounded-sm">
+      <div className="flex gap-2 [grid-area:doubleImage] *:rounded-sm">
         {data.doubleImage.map((img, i) => (
-          <ImageContainer
-            key={i}
-            className="aspect-square flex-1"
-            src={img.src}
-            alt={img.alt}
-          />
+          <ImageContainer key={i} className="aspect-square flex-1" src={img.src} alt={img.alt} />
         ))}
       </div>
-      <div className="[grid-area:text3] p-1">
+      <div className="p-1 [grid-area:text3]">
         <StatCard {...data.text3} />
       </div>
     </div>

@@ -1,16 +1,25 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { ImageContainer } from "@/components/molecules/ImageContainer";
 import { MediaLibraryModal, resolveUrl, setPath } from "@/packages/admin";
-import { FaTrash, FaPlus, FaGripVertical } from "react-icons/fa";
+import { FaGripVertical, FaPlus, FaTrash } from "react-icons/fa";
+
+import { ImageContainer } from "@/components/molecules/ImageContainer";
 
 const THEMES = {
   lightblue: "bg-primary-blue-dark/10 text-primary-blue-dark",
   darkblue: "bg-primary-blue-dark text-white",
 };
 
-function GalleryCardEditable({ item, path, onChange, onImageClick, onRemove, dropProps, dragHandleProps }) {
+function GalleryCardEditable({
+  item,
+  path,
+  onChange,
+  onImageClick,
+  onRemove,
+  dropProps,
+  dragHandleProps,
+}) {
   const cardRef = useRef(null);
   const theme = item.theme ?? "lightblue";
 
@@ -43,7 +52,7 @@ function GalleryCardEditable({ item, path, onChange, onImageClick, onRemove, dro
 
       {item.image?.src ? (
         <ImageContainer
-          className="w-full flex-1 aspect-square cursor-pointer rounded-xl"
+          className="aspect-square w-full flex-1 cursor-pointer rounded-xl"
           src={item.image.src}
           alt={item.image.alt}
           onClick={onImageClick}
@@ -159,14 +168,18 @@ export const HomeGalleryEditable = ({ section: initialSection, onChange, onSave 
           type="button"
           onClick={handleSave}
           disabled={saving}
-          className="rounded-lg bg-primary-green px-6 py-2 font-bold text-white disabled:opacity-60"
+          className="bg-primary-green rounded-lg px-6 py-2 font-bold text-white disabled:opacity-60"
         >
           {saving ? "Saving…" : "Save Gallery"}
         </button>
       </div>
 
       {mediaPath && (
-        <MediaLibraryModal name={mediaPath} onClose={() => setMediaPath(null)} onSelect={handleImageSelect} />
+        <MediaLibraryModal
+          name={mediaPath}
+          onClose={() => setMediaPath(null)}
+          onSelect={handleImageSelect}
+        />
       )}
     </div>
   );

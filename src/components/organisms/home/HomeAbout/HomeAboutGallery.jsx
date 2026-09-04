@@ -1,6 +1,6 @@
-import { NotchedImage } from "@/components/molecules/NotchedImage";
-import { ImageContainer } from "@/components/molecules/ImageContainer";
 import { AnimatedCounter } from "@/components/ui/animated-counter";
+import { ImageContainer } from "@/components/molecules/ImageContainer";
+import { NotchedImage } from "@/components/molecules/NotchedImage";
 
 const section = {
   mainImage: { src: "/favicon.jpg", alt: "SSW office reception" },
@@ -36,6 +36,8 @@ export function HomeAboutGallery({
   section: data = section,
   extraPercentWidth = 4,
   padPercent = 2,
+  statClass = "bg-primary-green",
+  className = "",
 }) {
   const notchCorner = "bottom-right";
   const notchWidth = 42; // % of image width
@@ -46,9 +48,9 @@ export function HomeAboutGallery({
   const yValue = `${100 - notchHeight + padPercent}%`;
 
   return (
-    <div className="flex w-full h-full flex-1 order-2 md:order-1">
+    <div className={`order-2 flex w-full flex-1 md:order-1 ${className}`}>
       <div
-        className={`relative flex aspect-square m-8 max-h-160  ${IMAGE_POSITION[notchCorner]}`}
+        className={`relative m-8 flex aspect-square max-h-160 ${IMAGE_POSITION[notchCorner]}`}
         style={{
           width: `${100 - extraPercentWidth - padPercent}%`,
           marginBottom: `${extraPercentWidth + padPercent}%`,
@@ -67,9 +69,9 @@ export function HomeAboutGallery({
         />
 
         <div
-          className={`absolute z-10 ${BADGE_POSITION[notchCorner]} rounded-2xl bg-green-600 px-6 py-4 text-white shadow-lg`}
+          className={`absolute z-10 ${BADGE_POSITION[notchCorner]} rounded-2xl px-6 py-4 text-white shadow-lg ${statClass}`}
         >
-          <p className="text-4xl font-extrabold leading-none">
+          <p className="text-4xl leading-none font-extrabold">
             <AnimatedCounter
               end={data.badgeNumber}
               suffix={"+"}

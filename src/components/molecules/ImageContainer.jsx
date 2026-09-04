@@ -7,14 +7,12 @@ export function ImageContainer({
   ...props
 }) {
   return (
-    <div className={className + " overflow-hidden rounded-2xl relative"}>
+    <div className={className + " relative overflow-hidden rounded-2xl"}>
       <Image
         alt={alt}
-        className="hover:scale-105 transition ease-in-out duration-500"
+        className="transition duration-500 ease-in-out hover:scale-105"
         fill
-        sizes={
-          sizes || "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-        }
+        sizes={sizes || "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"}
         {...props}
       />
     </div>

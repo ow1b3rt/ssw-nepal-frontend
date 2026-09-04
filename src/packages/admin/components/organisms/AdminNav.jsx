@@ -1,6 +1,7 @@
 "use client";
-import { usePathname } from "next/navigation";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { LayoutDashboard } from "lucide-react";
 
 export function AdminNav({ items, panel }) {

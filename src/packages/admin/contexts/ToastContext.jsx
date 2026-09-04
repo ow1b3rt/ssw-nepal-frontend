@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useRef,
-  useState,
-} from "react";
+import { createContext, useCallback, useContext, useRef, useState } from "react";
 
 const ToastContext = createContext(null);
 
@@ -21,9 +15,7 @@ export function ToastProvider({ children }) {
 
     setTimeout(() => {
       // Mark as exiting to trigger exit animation
-      setToasts((prev) =>
-        prev.map((t) => (t.id === id ? { ...t, exiting: true } : t)),
-      );
+      setToasts((prev) => prev.map((t) => (t.id === id ? { ...t, exiting: true } : t)));
       // Remove after animation
       setTimeout(() => {
         setToasts((prev) => prev.filter((t) => t.id !== id));
@@ -32,9 +24,7 @@ export function ToastProvider({ children }) {
   }, []);
 
   const dismiss = useCallback((id) => {
-    setToasts((prev) =>
-      prev.map((t) => (t.id === id ? { ...t, exiting: true } : t)),
-    );
+    setToasts((prev) => prev.map((t) => (t.id === id ? { ...t, exiting: true } : t)));
     setTimeout(() => {
       setToasts((prev) => prev.filter((t) => t.id !== id));
     }, 350);
@@ -50,10 +40,7 @@ export function ToastProvider({ children }) {
     [addToast],
   );
 
-  const info = useCallback(
-    (message, duration) => addToast(message, "info", duration),
-    [addToast],
-  );
+  const info = useCallback((message, duration) => addToast(message, "info", duration), [addToast]);
 
   return (
     <ToastContext.Provider value={{ success, error, info, addToast }}>
@@ -112,11 +99,7 @@ export function Toast({ toast, onDismiss }) {
     >
       {icons[toast.type]}
       <span className="toast-message">{toast.message}</span>
-      <button
-        className="toast-close"
-        onClick={() => onDismiss(toast.id)}
-        aria-label="Dismiss"
-      >
+      <button className="toast-close" onClick={() => onDismiss(toast.id)} aria-label="Dismiss">
         <svg viewBox="0 0 12 12" fill="none">
           <path
             d="M1 1l10 10M11 1L1 11"

@@ -1,8 +1,9 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ROUTES } from "@/constants/routes/routes";
-import DetailPage from "@/components/detailPage";
+
 import { localDate, localTime } from "@/lib/utils";
+import DetailPage from "@/components/detailPage";
 
 async function getEvent(id) {
   try {
@@ -33,9 +34,7 @@ export default async function EventDetailsPage({ params }) {
   const eventsData = {
     title: event.title,
     image: {
-      src: event.mediaUrl
-        ? `${process.env.NEXT_PUBLIC_HOST}${event.mediaUrl}`
-        : "/favicon.jpg",
+      src: event.mediaUrl ? `${process.env.NEXT_PUBLIC_HOST}${event.mediaUrl}` : "/favicon.jpg",
       alt: event.mediaAlt ? blog.mediaAlt : "alt",
     },
     content: [event.description],

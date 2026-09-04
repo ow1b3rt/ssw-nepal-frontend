@@ -1,4 +1,5 @@
 "use client";
+
 import { PostForm, useGet } from "@/packages/admin";
 
 export function PostWrapper({ id, onSubmit }) {

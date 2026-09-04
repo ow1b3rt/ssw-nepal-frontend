@@ -1,13 +1,9 @@
-'use client'
-import '@/admin.config.js'
-import { AdminProvider } from '@/packages/admin'
+"use client";
 
-export default function AdminLayout({
-  children,
-}) {
-  return (
-    <AdminProvider>
-        {children}
-    </AdminProvider>
-  );
+import "@/admin.config.js";
+
+import { AdminProvider } from "@/packages/admin";
+
+export default function AdminLayout({ children }) {
+  return <AdminProvider>{children}</AdminProvider>;
 }

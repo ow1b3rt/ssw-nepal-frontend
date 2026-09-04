@@ -1,11 +1,13 @@
 "use client";
+
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Form } from "../molecules/Form.jsx";
-import { Input } from "../atoms/Input.jsx";
-import { getRuntimeConfig } from "../../lib/runtime.config.js";
 
-export function LoginPage({ loginUrl='/auth/login', redirectTo = "/admin/dashboard" }) {
+import { getRuntimeConfig } from "../../lib/runtime.config.js";
+import { Input } from "../atoms/Input.jsx";
+import { Form } from "../molecules/Form.jsx";
+
+export function LoginPage({ loginUrl = "/auth/login", redirectTo = "/admin/dashboard" }) {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const router = useRouter();

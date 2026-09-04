@@ -1,15 +1,16 @@
-import { ServicesGrid } from "./HomeServices/HomeServicesGrid";
-import { ServicesIntro } from "./HomeServices/HomeServicesIntro";
-import AnimatedCard from "@/components/ui/animated-card";
-
 import {
   HardHat,
-  Sprout,
-  UtensilsCrossed,
-  PlaneTakeoff,
   HeartHandshake,
   Languages,
+  PlaneTakeoff,
+  Sprout,
+  UtensilsCrossed,
 } from "lucide-react";
+
+import AnimatedCard from "@/components/ui/animated-card";
+
+import { ServicesGrid } from "./HomeServices/HomeServicesGrid";
+import { ServicesIntro } from "./HomeServices/HomeServicesIntro";
 
 const ICONS = {
   HardHat,
@@ -65,24 +66,11 @@ const section = {
 
 export default function HomeTrainings() {
   return (
-    <section
-      id="home-trainings"
-      className="grid lg:grid-cols-2 gap-8 gap-y-8 xl:gap-y-16 md:pt-10"
-    >
-      <AnimatedCard
-        className="order-2 lg:order-1"
-        direction="down"
-        distance={12}
-        triggerOnView
-      >
+    <section id="home-trainings" className="grid gap-8 gap-y-8 md:pt-10 lg:grid-cols-2 xl:gap-y-16">
+      <AnimatedCard className="order-2 lg:order-1" direction="down" distance={12} triggerOnView>
         <ServicesGrid section={section} />
       </AnimatedCard>
-      <AnimatedCard
-        className="order-1 lg:order-2"
-        direction="up"
-        distance={12}
-        triggerOnView
-      >
+      <AnimatedCard className="order-1 lg:order-2" direction="up" distance={12} triggerOnView>
         <ServicesIntro
           className="bg-faint-red"
           section={trainingIntro}

@@ -1,9 +1,9 @@
-import { ImageContainer } from "@/components/molecules/ImageContainer";
-import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { AnimatedWords } from "@/components/ui/animated-words";
+import { ImageContainer } from "@/components/molecules/ImageContainer";
 
 const defaultSection = {
   title: "What We Offer",
@@ -25,14 +25,12 @@ export function ServicesIntro({
   return (
     <div
       className={cn(
-        "flex w-full flex-col justify-between lg:h-full gap-6 rounded-3xl px-4 pt-4 md:px-8 md:pt-6 xl:gap-10",
+        "flex w-full flex-col justify-between gap-6 rounded-3xl px-4 pt-4 md:px-8 md:pt-6 lg:h-full xl:gap-10",
         className,
       )}
     >
       <div className="mt-5 flex flex-col gap-4">
-        <h2
-          className={cn("text-4xl font-extrabold xl:text-6xl", titleClassName)}
-        >
+        <h2 className={cn("text-4xl font-extrabold xl:text-6xl", titleClassName)}>
           <AnimatedWords
             text={data.title}
             animKey="title"
@@ -41,12 +39,7 @@ export function ServicesIntro({
             direction="left"
           />
         </h2>
-        <p
-          className={cn(
-            "max-w-2xl text-lg text-black/60 md:text-xl",
-            descClassName,
-          )}
-        >
+        <p className={cn("max-w-2xl text-lg text-black/60 md:text-xl", descClassName)}>
           {data.desc}
         </p>
 
@@ -64,7 +57,7 @@ export function ServicesIntro({
 
       <ImageContainer
         className={cn(
-          "aspect-video w-full rounded-3xl rounded-b-none h-full lg:w-full",
+          "aspect-video h-full w-full rounded-3xl rounded-b-none lg:w-full",
           imageClassName,
         )}
         src={data.image.src}

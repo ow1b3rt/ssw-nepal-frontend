@@ -21,7 +21,9 @@ export function defineEntity(def) {
       console.warn("[@lynx/admin-panel] entity is missing a required `label`");
     }
     if (!Array.isArray(def.fields) || def.fields.length === 0) {
-      console.warn(`[@lynx/admin-panel] entity "${def.label ?? "?"}" has no \`fields\` — table will render empty columns`);
+      console.warn(
+        `[@lynx/admin-panel] entity "${def.label ?? "?"}" has no \`fields\` — table will render empty columns`,
+      );
     }
     if (def.filters && !Array.isArray(def.filters)) {
       console.warn(`[@lynx/admin-panel] entity "${def.label ?? "?"}" \`filters\` must be an array`);

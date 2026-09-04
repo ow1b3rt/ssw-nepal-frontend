@@ -38,15 +38,15 @@ const HomeBlogs = async () => {
   return (
     <div
       id="home-blogs"
-      className="flex flex-col items-center justify-center gap-y-8 xl:gap-y-16 pb-16 md:pt-10"
+      className="flex flex-col items-center justify-center gap-y-8 md:pt-10 xl:gap-y-16"
     >
       <AnimatedCard
-        className="bg-primary-red rounded-lg py-2.5 px-10"
+        className="bg-primary-red rounded-lg px-10 py-2.5"
         direction="down"
         distance={12}
         triggerOnView
       >
-        <h2 className="mb-1 text-3xl font-black leading-none tracking-[-1.5px] text-white md:text-4xl xl:text-5xl">
+        <h2 className="mb-1 text-3xl leading-none font-black tracking-[-1.5px] text-white md:text-4xl xl:text-5xl">
           Blogs
         </h2>
       </AnimatedCard>

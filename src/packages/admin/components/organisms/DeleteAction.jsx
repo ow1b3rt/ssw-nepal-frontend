@@ -1,7 +1,7 @@
 "use client";
-import { DeleteButton } from "../atoms/Buttons";
 
 import { useApi } from "../../contexts/ApiContext";
+import { DeleteButton } from "../atoms/Buttons";
 
 export function DeleteAction({ route, mutate }) {
   const { del } = useApi();

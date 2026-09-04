@@ -1,15 +1,15 @@
 import {
-  UserCheck,
-  FileText,
   BedDouble,
-  RotateCw,
-  Languages,
   CreditCard,
+  FileText,
   HardHat,
-  Sprout,
-  UtensilsCrossed,
-  PlaneTakeoff,
   HeartHandshake,
+  Languages,
+  PlaneTakeoff,
+  RotateCw,
+  Sprout,
+  UserCheck,
+  UtensilsCrossed,
 } from "lucide-react";
 
 const ICONS = {
@@ -96,10 +96,10 @@ function ServiceCard({ icon, title, desc, theme }) {
 
   return (
     <div
-      className={`group flex w-full flex-col gap-1 sm:gap-4 rounded-3xl p-4 sm:p-6 shadow-sm transition-colors duration-600 ${t.bg} ${t.hoverBg}`}
+      className={`group flex w-full flex-col gap-1 rounded-3xl p-4 shadow-sm transition-colors duration-600 sm:gap-4 sm:p-6 ${t.bg} ${t.hoverBg}`}
     >
       <div
-        className={`flex p-2 h-8 w-8 md:h-16 md:w-16 lg:h-10 lg:w-10 xl:w-16 xl:h-16 items-center justify-center rounded-md md:rounded-2xl lg:rounded-xl xl:rounded-2xl transition-colors duration-300 ${t.iconBg} ${t.iconHoverBg}`}
+        className={`flex h-8 w-8 items-center justify-center rounded-md p-2 transition-colors duration-300 md:h-16 md:w-16 md:rounded-2xl lg:h-10 lg:w-10 lg:rounded-xl xl:h-16 xl:w-16 xl:rounded-2xl ${t.iconBg} ${t.iconHoverBg}`}
       >
         {Icon && (
           <Icon
@@ -108,10 +108,10 @@ function ServiceCard({ icon, title, desc, theme }) {
           />
         )}
       </div>
-      <h3 className="text-base md:text-2xl lg:text-xl xl:text-2xl font-extrabold text-white transition-colors duration-300 group-hover:text-black">
+      <h3 className="text-base font-extrabold text-white transition-colors duration-300 group-hover:text-black md:text-2xl lg:text-xl xl:text-2xl">
         {title}
       </h3>
-      <p className="text-sm md:text-lg lg:text-base xl:text-lg text-white/70 transition-colors duration-300 group-hover:text-black/60">
+      <p className="text-sm text-white/70 transition-colors duration-300 group-hover:text-black/60 md:text-lg lg:text-base xl:text-lg">
         {desc}
       </p>
     </div>

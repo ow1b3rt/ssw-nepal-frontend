@@ -7,8 +7,6 @@ export const faqs = defineEntity({
   icon: Newspaper,
   titleField: "question",
   roles: ["admin"],
-  fields: [
-    { name: "question:bold", type: "text", label: "Question", required: true },
-  ],
+  fields: [{ name: "question:bold", type: "text", label: "Question", required: true }],
   filters: [],
 });

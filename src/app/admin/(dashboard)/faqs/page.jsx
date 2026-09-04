@@ -1,18 +1,20 @@
-'use client'
-import { FaqEditable } from "@/components/organisms/Faq/FaqEditable"
-import { useGet, useApi } from "@/packages/admin"
+"use client";
+
+import { useApi, useGet } from "@/packages/admin";
+
+import { FaqEditable } from "@/components/organisms/Faq/FaqEditable";
 
 export default function FaqPage() {
-  const { data } = useGet("/layouts/faqs")
-  const { post } = useApi()
-  console.log('faq data', data)
+  const { data } = useGet("/layouts/faqs");
+  const { post } = useApi();
+  console.log("faq data", data);
 
   const handleChange = async (updatedSection) => {
     const response = await post("/layouts/faqs", updatedSection);
   };
 
   return (
-    <section className="flex p-4 w-full flex-col gap-8">
+    <section className="flex w-full flex-col gap-8 p-4">
       <FaqEditable key={data} section={data?.layout} onSave={handleChange} />
     </section>
   );

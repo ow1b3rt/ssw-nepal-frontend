@@ -2,14 +2,8 @@
 
 import React, { useState } from "react";
 import { ROUTES } from "@/constants/routes/routes";
-import { Loader2, Mail, Phone, MapPin, Share2 } from "lucide-react";
-import {
-  FaFacebook,
-  FaInstagram,
-  FaLinkedin,
-  FaWhatsapp,
-  FaYoutube,
-} from "react-icons/fa";
+import { Loader2, Mail, MapPin, Phone, Share2 } from "lucide-react";
+import { FaFacebook, FaInstagram, FaLinkedin, FaWhatsapp, FaYoutube } from "react-icons/fa";
 
 import { submitForm } from "@/lib/helpers/form-submit";
 import { Button } from "@/components/ui/button";
@@ -57,8 +51,7 @@ export function ContactForm() {
         onSuccess: () => {
           toast.add({
             type: "success",
-            description:
-              "Message sent successfully! We will get back to you soon.",
+            description: "Message sent successfully! We will get back to you soon.",
           });
 
           setForm({
@@ -71,17 +64,13 @@ export function ContactForm() {
         onError: (error) => {
           toast.add({
             type: "error",
-            description:
-              error?.message ||
-              "Unable to send your message. Please try again.",
+            description: error?.message || "Unable to send your message. Please try again.",
           });
         },
       });
     } catch (err) {
       const errorMessage =
-        err instanceof Error
-          ? err.message
-          : "Unable to send your message. Please try again.";
+        err instanceof Error ? err.message : "Unable to send your message. Please try again.";
 
       toast.add({
         type: "error",
@@ -106,7 +95,7 @@ export function ContactForm() {
             body={
               <a
                 href="mailto:info@enlighten.edu.np"
-                className="text-muted-foreground transition-colors hover:text-primary-red"
+                className="text-muted-foreground hover:text-primary-red transition-colors"
               >
                 ssw@gmail.com
               </a>
@@ -114,12 +103,12 @@ export function ContactForm() {
           />
 
           <ContactInfo
-            icon={<Phone className="h-6 w-6 text-primary-red " />}
+            icon={<Phone className="text-primary-red h-6 w-6" />}
             title="Phone"
             body={
               <a
                 href="tel:01-5342454"
-                className="text-muted-foreground transition-colors hover:text-primary-red"
+                className="text-muted-foreground hover:text-primary-red transition-colors"
               >
                 01-5921567
               </a>
@@ -131,8 +120,7 @@ export function ContactForm() {
             title="Address"
             body={
               <p className="text-muted-foreground leading-relaxed">
-                P.O.Box No.: 7261, Bagbazar-28, Near KMC College, Kathmandu,
-                Nepal
+                Narayangopal Chowk, Kathmandu, Nepal
               </p>
             }
           />
@@ -240,7 +228,7 @@ export function ContactForm() {
           <Textarea
             id="contact-message"
             name="message"
-            className="border-input bg-background/50 focus-visible:ring-destructive/30 min-h-[180px] flex-1 rounded-xl p-3.5 text-base transition-colors"
+            className="border-input bg-background/50 focus-visible:ring-destructive/30 min-h-45 flex-1 rounded-xl p-3.5 text-base transition-colors"
             placeholder="Write something..."
             value={form.message}
             onChange={handleChange}

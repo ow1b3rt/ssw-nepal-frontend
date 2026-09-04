@@ -1,6 +1,7 @@
 "use client";
 
 import { useId } from "react";
+
 import { ImageContainer } from "@/components/molecules/ImageContainer";
 
 function notchedRectPath(aspectRatio, radiusPct, notchWidthPct, notchHeightPct, notchRadiusPct) {
@@ -63,7 +64,12 @@ export function NotchedImage({
           </clipPath>
         </defs>
       </svg>
-      <ImageContainer src={src} alt={alt} className="h-full w-full" style={{ clipPath: `url(#${clipId})` }} />
+      <ImageContainer
+        src={src}
+        alt={alt}
+        className="h-full w-full"
+        style={{ clipPath: `url(#${clipId})` }}
+      />
     </div>
   );
 }

@@ -5,7 +5,7 @@ export const ROUTES = {
   ADMIN_DASHBOARD: "/admin",
 
   HOME: "/",
-
+  GALLERY: "/gallery",
   NOTICES: "/notices",
   NOTICE: (id) => `/notices/${id}`,
 
@@ -21,11 +21,9 @@ export const ROUTES = {
   },
   ABOUT_US: {
     HOME: "/about",
-    WHO_ARE_WE: "/about/who-are-we",
-    WHY_ENLIGHTEN: "/about/why-enlighten",
-    OUR_TEAM: "/about/our-team",
+    WHY_CHOOSE_US: "/about/why-choose-us",
+    SUCCESS_STORY: "/about/success-stories",
     MESSAGE_FROM_CHAIRMAN: "/about/message-from-chairman",
-    MESSAGE_FROM_ED: "/about/message-from-ed",
   },
 
   SERVICES: {
@@ -68,16 +66,13 @@ export const ROUTES = {
     CONTACT: `${API_BASE}/contact`,
     BECOME_OUR_PARTNER: `${API_BASE}/partners`,
     CREATE_BLOG: `${API_BASE}/blogs`,
-    BLOGS: (page = 1, limit = 9) =>
-      `${API_BASE}/blogs?page=${page}&limit=${limit}`,
+    BLOGS: (page = 1, limit = 9) => `${API_BASE}/blogs?page=${page}&limit=${limit}`,
 
     BLOG: (slug) => `${API_BASE}/blogs/slug/${slug}`,
-    NOTICES: (page = 1, limit = 9) =>
-      `${API_BASE}/notices?page=${page}&limit=${limit}`,
+    NOTICES: (page = 1, limit = 9) => `${API_BASE}/notices?page=${page}&limit=${limit}`,
     NOTICE: (id) => `${API_BASE}/notices/${id}`,
 
-    EVENTS: (page = 1, limit = 9) =>
-      `${API_BASE}/events?page=${page}&limit=${limit}`,
+    EVENTS: (page = 1, limit = 9) => `${API_BASE}/events?page=${page}&limit=${limit}`,
     EVENT: (id) => `${API_BASE}/events/${id}`,
     SERVICES: `${API_BASE}/layouts/services`,
     TRAINING: `${API_BASE}/layouts/training`,

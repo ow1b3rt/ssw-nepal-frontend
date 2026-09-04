@@ -2,32 +2,40 @@ import AnimatedCard from "@/components/ui/animated-card";
 import { AnimatedWords } from "@/components/ui/animated-words";
 import Divider from "@/components/ui/divider";
 
-export default function SuccessStoryText({ name, batch, description }) {
+export default function SuccessStoryText({
+  name,
+  batch,
+  description,
+  showDivider = true,
+  batchClass = "mb-8",
+  className = "bg-faint-red",
+}) {
   return (
-    <section className="flex flex-col flex-1 bg-faint-red h-full gap-2 xl:gap-6 p-6 order-1 md:order-2 rounded-lg">
+    <section
+      className={`order-1 flex h-full flex-1 flex-col gap-2 rounded-lg p-6 md:order-2 xl:gap-6 ${className}`}
+    >
       <AnimatedCard direction="up" distance={12} triggerOnView>
-        <h2 className="mb-1 text-3xl font-black leading-none tracking-[-1.5px] text-primary-red md:text-4xl xl:text-5xl">
+        <h2 className="text-primary-red mb-1 text-3xl leading-none font-black tracking-[-1.5px] md:text-4xl xl:text-5xl">
           {" "}
           {name}{" "}
         </h2>
       </AnimatedCard>
-      <Divider backgroundColor="bg-primary-red/10" className="xl:-my-5" />
-      <AnimatedCard direction="up" distance={12} triggerOnView>
-        {batch && (
-          <h3 className="mb-8 text-[18px] font-bold text-text-color">
-            {batch}
-          </h3>
-        )}
-      </AnimatedCard>
+      {showDivider && <Divider backgroundColor="bg-primary-red/10" className="xl:-my-5" />}
+
+      {batch && (
+        <AnimatedCard direction="up" distance={12} triggerOnView>
+          <h3 className={`text-text-color text-[18px] font-bold ${batchClass}`}>{batch}</h3>
+        </AnimatedCard>
+      )}
 
       <AnimatedCard direction="up" distance={12} triggerOnView>
         <AnimatedWords
           text={description}
           animKey="description"
-          durationMs={500}
+          durationMs={400}
           staggerMs={10}
           direction="up"
-          className="text-base text-wrap xl:text-lg leading-relaxed text-text-color"
+          className="text-text-color text-base leading-relaxed text-wrap xl:text-lg"
         />
       </AnimatedCard>
     </section>
