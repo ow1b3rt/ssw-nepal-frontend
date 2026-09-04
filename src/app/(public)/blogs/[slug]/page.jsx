@@ -1,25 +1,12 @@
 import DetailPage from "@/components/detailPage";
 
 import { notFound } from "next/navigation";
-import { careerCounselingData } from "@/data/careerCounseling";
-import { ROUTES } from "@/constants/routes/routes";
-
-async function getBlog(slug) {
-  try {
-    const res = await fetch(ROUTES.API.BLOG(slug), { cache: "no-store" });
-
-    if (!res.ok) return null;
-
-    const data = await res.json();
-    return data.item ?? null;
-  } catch {
-    return null;
-  }
-}
+import { getBlog } from "@/lib/api/blogs";
 
 export default async function SingleBlog({ params }) {
   const { slug } = await params;
   const blog = await getBlog(slug);
+
   console.log("single blog", blog);
 
   const blogData = {

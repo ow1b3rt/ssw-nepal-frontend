@@ -22,7 +22,7 @@ const NAV_CONFIG = [
     children: [{ href: "/about", label: "Overview" }],
   },
   {
-    href: "/language",
+    href: "/languages",
     label: "Language",
     children: [{ href: "/language", label: "Courses" }],
   },
@@ -43,12 +43,8 @@ const NAV_CONFIG = [
     injectInto: "/others",
   },
   {
-    href: "/others",
-    label: "Others",
-    children: [
-      { href: "/others/option-1", label: "Option 1" },
-      { href: "/others/option-2", label: "Option 2" },
-    ],
+    href: "/contact",
+    label: "Contact Us",
   },
 ];
 

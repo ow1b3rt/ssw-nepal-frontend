@@ -4,6 +4,7 @@ import { TestimonialCard } from "@/components/molecules/cards/TestimonialCard";
 import { HomeBlogCard } from "@/components/molecules/cards/HomeBlogCard";
 
 const BlogsList = ({ title = " Latest News & Blogs", blogs }) => {
+  console.log("blogs", blogs);
   return (
     <div className="w-full flex flex-col gap-6">
       <h5 className="text-2xl lg:text-4xl font-bold leading-normal">{title}</h5>
@@ -11,8 +12,10 @@ const BlogsList = ({ title = " Latest News & Blogs", blogs }) => {
         <AutoCarousel
           items={blogs}
           transition="slide"
-          itemClassName="flex items-center justify-center basis-full sm:basis-1/2 lg:basis-1/3 md:px-7"
-          renderItem={(blog, index) => <HomeBlogCard {...blog} key={index} />}
+          itemClassName="flex items-stretch w-full justify-center basis-full sm:basis-1/2 lg:basis-1/3 md:px-7"
+          renderItem={(blog, index) => (
+            <HomeBlogCard section={blog} key={index} />
+          )}
           transitionDuration={500}
           loop={true}
           showControls={true}

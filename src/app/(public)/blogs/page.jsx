@@ -1,6 +1,6 @@
-import { ROUTES } from "@/constants/routes/routes";
 import { BlogCard } from "@/components/molecules/cards/BlogCard";
 import { Pagenav } from "@/components/Reusables";
+import { getBlogs } from "@/lib/api/blogs";
 
 import { stripHtml } from "@/packages/admin/utils/utils";
 
@@ -9,28 +9,10 @@ export const metadata = {
   description: "Important notices from Enlighten International Education",
 };
 
-async function getBlogs(page = 1, limit = 9) {
-  try {
-    const res = await fetch(ROUTES.API.BLOGS(page, limit), {
-      cache: "no-store",
-    });
-    if (!res.ok) {
-      return { success: false, items: [], total: 0, page: 1, totalPages: 1 };
-    }
-    const data = await res.json();
-    return (
-      data ?? { success: false, items: [], total: 0, page: 1, totalPages: 1 }
-    );
-  } catch {
-    return { success: false, items: [], total: 0, page: 1, totalPages: 1 };
-  }
-}
-
 export default async function BlogsPage({ searchParams }) {
   const sparams = await searchParams;
   const page = Number(sparams.page) || 1;
   const blogs = await getBlogs(page);
-  console.log(blogs);
 
   return (
     <section className="container mx-auto  px-4 pb-12 xl:px-0">
