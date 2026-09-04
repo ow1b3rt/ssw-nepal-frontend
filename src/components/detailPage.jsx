@@ -36,21 +36,21 @@ export default function DetailPage({ data, isBlog = false, isEvent = false }) {
       {isEvent && (
         <div className="mb-6 grid grid-cols-1 gap-4 px-8 sm:grid-cols-3">
           {data.time && (
-            <div className="text-primary-blue-dark flex items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-4 py-3 text-[15px] font-semibold shadow-sm">
+            <div className="text-primary-blue-dark border-primary-blue flex items-center justify-center gap-2 rounded-lg border bg-white px-4 py-3 text-[15px] font-semibold">
               <Clock className="text-primary-blue-dark h-4 w-4" />
               <span>Time: {data.time}</span>
             </div>
           )}
 
           {data.date && (
-            <div className="text-primary-blue-dark flex items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-4 py-3 text-[15px] font-semibold shadow-sm">
+            <div className="text-primary-blue-dark border-primary-blue flex items-center justify-center gap-2 rounded-lg border bg-white px-4 py-3 text-[15px] font-semibold">
               <Calendar className="text-primary-blue-dark h-4 w-4" />
               <span>Date: {data.date}</span>
             </div>
           )}
 
           {data.venue && (
-            <div className="text-primary-blue-dark flex items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-4 py-3 text-[15px] font-semibold shadow-sm">
+            <div className="text-primary-blue-dark border-primary-blue flex items-center justify-center gap-2 rounded-lg border bg-white px-4 py-3 text-[15px] font-semibold">
               <MapPin className="text-primary-blue-dark h-4 w-4" />
               <span>Venue: {data.venue}</span>
             </div>

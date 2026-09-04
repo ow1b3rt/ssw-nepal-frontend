@@ -301,14 +301,8 @@ export default function Navbar() {
 
         {/* Mobile Drawer */}
         <Drawer open={open} onOpenChange={setOpen} direction="right">
-          <DrawerTrigger>
-            <button
-              type="button"
-              aria-label="Open menu"
-              className="flex size-12 shrink-0 items-center justify-center rounded-lg bg-white shadow-[0_4px_10px_rgba(0,0,0,0.12)] lg:hidden"
-            >
-              <Menu className="size-5" />
-            </button>
+          <DrawerTrigger className="flex size-12 shrink-0 items-center justify-center rounded-lg bg-white shadow-[0_4px_10px_rgba(0,0,0,0.12)] lg:hidden">
+            <Menu className="size-5" />
           </DrawerTrigger>
 
           <DrawerContent className="fixed right-0 bottom-0 ml-auto flex min-h-full w-full max-w-64 flex-col rounded-none! border-l bg-white p-0 sm:max-w-sm">
@@ -326,14 +320,11 @@ export default function Navbar() {
                 />
               </Link>
 
-              <DrawerClose>
-                <button
-                  type="button"
-                  aria-label="Close menu"
-                  className="flex size-10 items-center justify-center rounded-full text-black/60 transition-colors hover:bg-black/5 hover:text-black"
-                >
-                  <X className="size-5" />
-                </button>
+              <DrawerClose
+                aria-label="Close menu"
+                className="flex size-10 items-center justify-center rounded-full text-black/60 transition-colors hover:bg-black/5 hover:text-black"
+              >
+                <X className="size-5" />
               </DrawerClose>
             </div>
 
