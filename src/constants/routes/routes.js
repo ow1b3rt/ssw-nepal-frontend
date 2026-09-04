@@ -80,5 +80,7 @@ export const ROUTES = {
       `${API_BASE}/events?page=${page}&limit=${limit}`,
     EVENT: (id) => `${API_BASE}/events/${id}`,
     SERVICES: `${API_BASE}/layouts/services`,
+    TRAINING: `${API_BASE}/layouts/training`,
+    LANGUAGE: `${API_BASE}/layouts/languages`,
   },
 };

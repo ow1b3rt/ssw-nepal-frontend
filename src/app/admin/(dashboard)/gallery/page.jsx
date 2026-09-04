@@ -1,5 +1,5 @@
 "use client";
-import { HomeGalleryEditable } from "@/components/organisms/HomeGallery/GalleryEditable";
+import { HomeGalleryEditable } from "@/components/organisms/home/HomeGallery/GalleryEditable";
 import { useGet, useApi } from "@/packages/admin";
 
 export default function GalleryPage() {
@@ -12,7 +12,11 @@ export default function GalleryPage() {
 
   return (
     <section className="flex w-full flex-col gap-8 p-4">
-      <HomeGalleryEditable key={data} section={data?.layout} onSave={handleSave} />
+      <HomeGalleryEditable
+        key={data}
+        section={data?.layout}
+        onSave={handleSave}
+      />
     </section>
   );
 }

@@ -56,6 +56,7 @@ export const HomeServicesEditable = ({
   section: initialSection,
   onChange,
   onSave,
+  sectionName = "services",
 }) => {
   const [section, setSection] = useState(initialSection);
   const [mediaPath, setMediaPath] = useState(null);
@@ -152,7 +153,7 @@ export const HomeServicesEditable = ({
           className="flex w-fit items-center gap-2 rounded-lg border border-dashed border-gray-300 px-4 py-2 text-sm font-bold text-black/60"
         >
           <FaPlus size={12} />
-          Add service
+          Add {sectionName}
         </button>
 
         <button
@@ -161,7 +162,7 @@ export const HomeServicesEditable = ({
           disabled={saving}
           className="rounded-lg bg-primary-green px-6 py-2 font-bold text-white disabled:opacity-60"
         >
-          {saving ? "Saving…" : "Save Services"}
+          {saving ? "Saving…" : `Save ${sectionName}`}
         </button>
       </div>
 

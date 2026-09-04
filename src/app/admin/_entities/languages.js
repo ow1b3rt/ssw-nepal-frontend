@@ -1,10 +1,10 @@
 import { defineEntity } from "@/packages/admin/index.jsx";
-import { Cog } from "lucide-react";
+import { Languages } from "lucide-react";
 
-export const services = defineEntity({
-  slug: "sections/services",
-  label: "Services",
-  icon: Cog,
+export const languages = defineEntity({
+  slug: "sections/languages",
+  label: "Languages",
+  icon: Languages,
   titleField: "title",
   roles: ["admin"],
   fields: [

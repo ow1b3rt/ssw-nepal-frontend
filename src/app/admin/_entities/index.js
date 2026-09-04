@@ -9,6 +9,8 @@ import { faqs } from "./faqs.js";
 import { gallery } from "./gallery.js";
 import { events } from "./events.js";
 import { services } from "./services.js";
+import { training } from "./training.js";
+import { languages } from "./languages.js";
 
 export const entities = defineEntities({
   users,
@@ -19,5 +21,7 @@ export const entities = defineEntities({
   faqs,
   gallery,
   events,
-  services,
+  "sections/services": services,
+  "sections/training": training,
+  "sections/languages": languages,
 });
