@@ -1,9 +1,12 @@
 "use client";
+
 import { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { X } from "lucide-react";
+
 import { useGet } from "../../contexts/ApiContext.jsx"; // adjust path to your actual hook location
-import { Select } from "./Input.jsx";
+
 import { DefaultsContext } from "../molecules/Form.jsx";
+import { Select } from "./Input.jsx";
 
 function docLabel(doc) {
   return doc?.name ?? doc?.title ?? doc?.id;
@@ -81,9 +84,9 @@ function RelationshipMultiSelect({ name, label, required, loading, options, defa
   const containerRef = useRef(null);
   const inputRef = useRef(null);
 
-	useEffect(() => {
-		setSelectedIds(defaultDocs.map(d => d.id))
-	}, [defaultDocs])
+  useEffect(() => {
+    setSelectedIds(defaultDocs.map((d) => d.id));
+  }, [defaultDocs]);
 
   // Look up a chip's label: prefer the fetched options list (fresh data),
   // fall back to whatever label the default value shipped with (covers the
@@ -147,10 +150,10 @@ function RelationshipMultiSelect({ name, label, required, loading, options, defa
   };
 
   return (
-    <div className="group relative rounded-lg border border-gray-200 px-3 pb-2.5 pt-3.5 transition-colors focus-within:border-gray-900 hover:border-gray-300 focus-within:hover:border-gray-900">
+    <div className="group relative rounded-lg border border-gray-200 px-3 pt-3.5 pb-2.5 transition-colors focus-within:border-gray-900 hover:border-gray-300 focus-within:hover:border-gray-900">
       <label
         htmlFor={name}
-        className="absolute -top-2 left-2.5 bg-white px-1 text-xs font-medium leading-none text-gray-500 transition-colors group-focus-within:text-gray-900"
+        className="absolute -top-2 left-2.5 bg-white px-1 text-xs leading-none font-medium text-gray-500 transition-colors group-focus-within:text-gray-900"
       >
         {label}
       </label>
@@ -160,7 +163,7 @@ function RelationshipMultiSelect({ name, label, required, loading, options, defa
           {selectedIds.map((id) => (
             <span
               key={id}
-              className="flex items-center gap-1 rounded-md bg-gray-100 py-1 pl-2 pr-1 text-xs font-medium text-gray-700"
+              className="flex items-center gap-1 rounded-md bg-gray-100 py-1 pr-1 pl-2 text-xs font-medium text-gray-700"
             >
               {labelForId(id)}
               <button
@@ -192,7 +195,7 @@ function RelationshipMultiSelect({ name, label, required, loading, options, defa
         </div>
 
         {isOpen && !loading && (
-          <div className="absolute left-0 right-0 top-full z-20 mt-2 max-h-56 overflow-auto rounded-lg border border-gray-200 bg-white py-1 shadow-lg">
+          <div className="absolute top-full right-0 left-0 z-20 mt-2 max-h-56 overflow-auto rounded-lg border border-gray-200 bg-white py-1 shadow-lg">
             {filteredOptions.length === 0 ? (
               <div className="px-3 py-2 text-sm text-gray-400">
                 {options.length === 0 ? "No options available" : "No matches"}

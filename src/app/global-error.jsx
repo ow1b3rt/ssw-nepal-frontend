@@ -9,12 +9,9 @@ export default function Error({ error, reset }) {
 
   return (
     <div className="flex min-h-100 flex-col items-center justify-center p-6 text-center">
-      <h2 className="text-2xl font-bold text-slate-900">
-        Something went wrong!
-      </h2>
+      <h2 className="text-2xl font-bold text-slate-900">Something went wrong!</h2>
       <p className="mt-2 text-sm text-slate-600">
-        {error.message ||
-          "An unexpected error occurred while loading this page."}
+        {error.message || "An unexpected error occurred while loading this page."}
       </p>
       <button
         onClick={() => reset()} // Attempts to re-render the segment

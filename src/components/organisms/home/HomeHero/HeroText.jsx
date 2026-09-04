@@ -16,7 +16,7 @@ const section = {
 export function HeroText({ section: data = section }) {
   return (
     <div className="flex w-full flex-col items-start gap-6">
-      <span className="inline-block rounded-2xl bg-primary-green px-7 py-2 text-base font-medium text-white md:text-lg">
+      <span className="bg-primary-green inline-block rounded-2xl px-7 py-2 text-base font-medium text-white md:text-lg">
         <AnimatedWords
           text={data.badge}
           animKey="badge"
@@ -26,7 +26,7 @@ export function HeroText({ section: data = section }) {
         />
       </span>
 
-      <h1 className="text-4xl font-extrabold leading-tight md:text-6xl xl:text-[80px]">
+      <h1 className="text-4xl leading-tight font-extrabold md:text-6xl xl:text-[80px]">
         <AnimatedWords
           className="block text-black"
           text={data.titleBlack}
@@ -37,7 +37,7 @@ export function HeroText({ section: data = section }) {
         />
 
         <AnimatedWords
-          className="block text-primary-red"
+          className="text-primary-red block"
           text={data.titleRed}
           animKey="titleRed"
           durationMs={1000}
@@ -58,7 +58,7 @@ export function HeroText({ section: data = section }) {
 
       <Link
         href={data.ctaURL}
-        className="inline-flex items-center gap-3 rounded-2xl bg-black px-6 py-2.5 text-base font-bold text-white transition-colors duration-300 ease-in-out hover:bg-primary-red md:text-lg"
+        className="hover:bg-primary-red inline-flex items-center gap-3 rounded-2xl bg-black px-6 py-2.5 text-base font-bold text-white transition-colors duration-300 ease-in-out md:text-lg"
       >
         <AnimatedWords
           text={data.ctaLabel}

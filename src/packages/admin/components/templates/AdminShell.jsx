@@ -1,13 +1,15 @@
 "use client";
+
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { LogOut, PanelLeftClose, PanelLeftOpen } from "lucide-react";
+
+import { useApi } from "../../contexts/ApiContext.jsx";
+import { useAuth } from "../../contexts/AuthContext.jsx";
+import { getEntities } from "../../lib/runtime.config.js";
+import Breadcrumb from "../molecules/Breadcrumb.jsx";
 import { AdminNav } from "../organisms/AdminNav.jsx";
 import { Logo } from "../organisms/AdminNavLogo.jsx";
-import { useAuth } from '../../contexts/AuthContext.jsx'
-import { useApi } from '../../contexts/ApiContext.jsx'
-import Breadcrumb from "../molecules/Breadcrumb.jsx";
-import { useRouter } from 'next/navigation'
-import { getEntities } from "../../lib/runtime.config.js";
 
 export function AdminShell({ children }) {
   const [panel, setPanel] = useState(true);
@@ -16,15 +18,15 @@ export function AdminShell({ children }) {
   const router = useRouter();
 
   // Dynamically filter entities based on the user's role and the entity's roles array
-  const entities = getEntities()
+  const entities = getEntities();
   const visibleEntities = Object.fromEntries(
     Object.entries(entities).filter(([_, entity]) => {
       return entity.roles?.includes(user?.role);
-    })
+    }),
   );
 
   return (
-    <div className="flex h-screen bg-black-500 text-xs">
+    <div className="bg-black-500 flex h-screen text-xs">
       <div
         className={`relative flex flex-col gap-1 border-r border-gray-200 bg-white p-3 transition-all duration-200 ${
           panel ? "w-[220px]" : "w-[72px]"
@@ -51,18 +53,20 @@ export function AdminShell({ children }) {
         </div>
       </div>
 
-      <div className="flex flex-1  p-4 bg-gray-50 overflow-y-auto justify-center">
-        <div className='flex flex-col flex-1 overflow-y-auto max-w-[1100px]'>
-          <div className='flex justify-between w-full'>
+      <div className="flex flex-1 justify-center overflow-y-auto bg-gray-50 p-4">
+        <div className="flex max-w-[1100px] flex-1 flex-col overflow-y-auto">
+          <div className="flex w-full justify-between">
             <Breadcrumb />
-            <div className='flex gap-4 items-center pr-4'>
-              <span className='rounded-sm px-2 py-1 bg-blue-50 border border-blue-500 text-blue-500 text-xs'>{user?.role?.toUpperCase() || 'USER'}</span>
-              <button className='wrapper-btn' title='Logout' onClick={logout}>
+            <div className="flex items-center gap-4 pr-4">
+              <span className="rounded-sm border border-blue-500 bg-blue-50 px-2 py-1 text-xs text-blue-500">
+                {user?.role?.toUpperCase() || "USER"}
+              </span>
+              <button className="wrapper-btn" title="Logout" onClick={logout}>
                 <LogOut size={18} />
               </button>
             </div>
           </div>
-          <div className="flex-1 ">{children}</div>
+          <div className="flex-1">{children}</div>
         </div>
       </div>
     </div>

@@ -1,6 +1,7 @@
+import { ROUTES } from "@/constants/routes/routes";
+
 import { EventsSection } from "@/components/organism/EventSection";
 import { BackToTop } from "@/components/Reusables";
-import { ROUTES } from "@/constants/routes/routes";
 
 export const metadata = {
   title: "EVENTS | SSW",
@@ -68,20 +69,14 @@ export default async function EventsPage() {
   return (
     <section className="container mx-auto px-4 pb-12 xl:px-0">
       <div className="text-center">
-        <h1 className="mb-2 text-2xl font-bold text-gray-900 md:text-3xl">
-          EVENTS
-        </h1>
+        <h1 className="mb-2 text-2xl font-bold text-gray-900 md:text-3xl">EVENTS</h1>
         <p className="text-black/60">
-          Discover upcoming programs, seminars, and community initiatives at
-          SSW. Stay engaged and join us in shaping a healthier future.
+          Discover upcoming programs, seminars, and community initiatives at SSW. Stay engaged and
+          join us in shaping a healthier future.
         </p>
       </div>
 
-      <EventsSection
-        title="Upcoming Events"
-        events={upcoming}
-        initialLimit={6}
-      />
+      <EventsSection title="Upcoming Events" events={upcoming} initialLimit={6} />
 
       <EventsSection title="Past Events" events={past} initialLimit={3} />
 

@@ -1,12 +1,13 @@
 "use client";
+
 import { AutoCarousel } from "@/components/molecules/AutoCarousel";
-import { TestimonialCard } from "@/components/molecules/cards/TestimonialCard";
 import { HomeBlogCard } from "@/components/molecules/cards/HomeBlogCard";
+import { TestimonialCard } from "@/components/molecules/cards/TestimonialCard";
 
 const BlogsList = ({ title = " Latest News & Blogs", blogs }) => {
   return (
-    <div className="w-full flex flex-col gap-6">
-      <h5 className="text-2xl lg:text-4xl font-bold leading-normal">{title}</h5>
+    <div className="flex w-full flex-col gap-6">
+      <h5 className="text-2xl leading-normal font-bold lg:text-4xl">{title}</h5>
       {blogs && blogs.length > 0 && (
         <AutoCarousel
           items={blogs}

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { MapPin, Phone, Mail } from "lucide-react";
+import { Mail, MapPin, Phone } from "lucide-react";
+
 import Divider from "./ui/divider";
 
 export default function Footer({ data }) {
@@ -8,8 +9,8 @@ export default function Footer({ data }) {
 
   return (
     <footer className="bg-linear-to-b from-[#002b08] via-[#001d06] to-black text-white">
-      <div className="mx-auto container px-4 lg:px-0 ">
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 xl:grid-cols-[1.15fr_1fr_0.85fr_0.85fr] xl:gap-20 py-8 md:py-14 lg:py-20">
+      <div className="container mx-auto px-4 lg:px-0">
+        <div className="grid grid-cols-1 gap-12 py-8 md:grid-cols-2 md:py-14 lg:py-20 xl:grid-cols-[1.15fr_1fr_0.85fr_0.85fr] xl:gap-20">
           {/* About */}
           <div>
             <Image
@@ -65,22 +66,14 @@ export default function Footer({ data }) {
           <div className="flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
             <p className="text-base text-white/65">
               Copyright ©{currentYear}{" "}
-              <span className="font-semibold text-white">
-                {data.copyright.company}
-              </span>{" "}
-              Design &amp; Maintained By{" "}
-              <span className="font-semibold text-white">
-                {data.copyright.maintainedBy}
-              </span>
+              <span className="font-semibold text-white">{data.copyright.company}</span> Design
+              &amp; Maintained By{" "}
+              <span className="font-semibold text-white">{data.copyright.maintainedBy}</span>
             </p>
 
             <div className="flex items-center gap-5">
               {data.socials.map((social) => (
-                <SocialLink
-                  key={social.name}
-                  href={social.href}
-                  label={social.name}
-                >
+                <SocialLink key={social.name} href={social.href} label={social.name}>
                   <SocialIcon type={social.type} />
                 </SocialLink>
               ))}
@@ -110,10 +103,7 @@ function ContactItem({ item }) {
 
   if (item.href) {
     return (
-      <a
-        href={item.href}
-        className="flex items-start gap-4 transition-colors hover:text-white"
-      >
+      <a href={item.href} className="flex items-start gap-4 transition-colors hover:text-white">
         {content}
       </a>
     );

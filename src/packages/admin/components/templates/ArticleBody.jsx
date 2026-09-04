@@ -30,30 +30,7 @@ export default function ArticleBody({ html }) {
   if (!html) return null;
 
   return (
-    <div
-      className="
-        text-[var(--text-nm)]
-
-        [&_p]:my-4
-
-        [&_h1]:my-6
-        [&_h2]:text-3xl
-        [&_h2]:font-bold
-
-        [&_h2]:my-5
-
-        [&_h3]:my-[var(--text-md)]
-        [&_h3]:text-[var(--text-nm)]
-
-        [&_a]:inline
-
-        [&_th]:px-[5px]
-        [&_th]:py-[10px]
-
-        [&_td]:px-[5px]
-        [&_td]:py-[10px]
-      "
-    >
+    <div className="text-[var(--text-nm)] [&_a]:inline [&_h1]:my-6 [&_h2]:my-5 [&_h2]:text-3xl [&_h2]:font-bold [&_h3]:my-[var(--text-md)] [&_h3]:text-[var(--text-nm)] [&_p]:my-4 [&_td]:px-[5px] [&_td]:py-[10px] [&_th]:px-[5px] [&_th]:py-[10px]">
       {parse(html, options)}
     </div>
   );

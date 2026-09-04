@@ -1,6 +1,7 @@
-import { ImageContainer } from "@/components/molecules/ImageContainer";
 import Link from "next/link";
+
 import AnimatedCard from "@/components/ui/animated-card";
+import { ImageContainer } from "@/components/molecules/ImageContainer";
 
 const section = {
   items: [
@@ -48,18 +49,16 @@ export function GalleryCard({ image, label, height, theme = "lightblue" }) {
   };
   return (
     <div
-      className="flex w-full flex-col gap-3 rounded-2xl border bg-faint-blue p-4 shadow-sm"
+      className="bg-faint-blue flex w-full flex-col gap-3 rounded-2xl border p-4 shadow-sm"
       style={{ height: `${height}px` }}
     >
       <ImageContainer
-        className="w-full flex-1 aspect-square rounded-xl"
+        className="aspect-square w-full flex-1 rounded-xl"
         src={image.src}
         alt={image.alt}
       />
       {label && (
-        <div
-          className={`rounded-xl py-4 text-center text-lg font-bold ${THEMES[theme]}`}
-        >
+        <div className={`rounded-xl py-4 text-center text-lg font-bold ${THEMES[theme]}`}>
           {label}
         </div>
       )}
@@ -71,21 +70,21 @@ export function HomeGallery({ section: data = section }) {
   return (
     <div
       id="home-gallery"
-      className="flex w-full flex-col items-center gap-2 gap-y-8 xl:gap-y-16 md:pt-10 "
+      className="flex w-full flex-col items-center gap-2 gap-y-8 md:pt-10 xl:gap-y-16"
     >
       <AnimatedCard
-        className="bg-black rounded-lg py-2.5 px-10"
+        className="rounded-lg bg-black px-10 py-2.5"
         direction="up"
         distance={12}
         triggerOnView
       >
-        <h2 className="mb-1 text-3xl font-black leading-none tracking-[-1.5px] text-white md:text-4xl xl:text-5xl">
+        <h2 className="mb-1 text-3xl leading-none font-black tracking-[-1.5px] text-white md:text-4xl xl:text-5xl">
           Gallery
         </h2>
       </AnimatedCard>
 
       <AnimatedCard
-        className="relative flex flex-col md:flex-row w-full gap-4 lg:gap-8"
+        className="relative flex w-full flex-col gap-4 md:flex-row lg:gap-8"
         direction="down"
         distance={12}
         triggerOnView
@@ -105,7 +104,7 @@ export function HomeGallery({ section: data = section }) {
       <AnimatedCard direction="up" distance={12} triggerOnView>
         <Link
           href={data.ctaURL}
-          className="rounded-lg bg-primary-red px-10 py-4 text-lg font-bold text-white"
+          className="bg-primary-red rounded-lg px-10 py-4 text-lg font-bold text-white"
         >
           {data.ctaLabel}
         </Link>

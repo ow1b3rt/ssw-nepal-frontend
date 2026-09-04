@@ -17,11 +17,7 @@ const purposeOptions = [
   "Other",
 ];
 
-const appointmentTypes = [
-  "In-Person Consultation",
-  "Online Consultation",
-  "Phone Consultation",
-];
+const appointmentTypes = ["In-Person Consultation", "Online Consultation", "Phone Consultation"];
 
 const preferredTimes = ["Morning", "Afternoon", "Evening"];
 
@@ -41,9 +37,7 @@ function RadioOption({ name, value, checked, onChange }) {
         {checked && <span className="h-3 w-3 rounded-full bg-[#4CAF50]" />}
       </span>
 
-      <span className="text-sm font-medium text-foreground sm:text-base">
-        {value}
-      </span>
+      <span className="text-foreground text-sm font-medium sm:text-base">{value}</span>
     </label>
   );
 }
@@ -77,13 +71,13 @@ export function AppointmentForm({ onSubmit, loading = false }) {
     <div className="mx-auto w-full max-w-[1280px] px-5 py-8 sm:px-8 md:px-10 lg:px-0 lg:py-10">
       {/* Heading */}
       <div className="mb-14 text-center">
-        <h1 className="text-4xl font-bold leading-tight text-[#DF1F26] sm:text-5xl">
+        <h1 className="text-4xl leading-tight font-bold text-[#DF1F26] sm:text-5xl">
           Book an Appointment
         </h1>
 
-        <p className="mx-auto mt-3 max-w-3xl text-sm leading-6 text-muted-foreground sm:text-base">
-          Schedule a consultation with our experts and take the next step toward
-          your future in Japan.
+        <p className="text-muted-foreground mx-auto mt-3 max-w-3xl text-sm leading-6 sm:text-base">
+          Schedule a consultation with our experts and take the next step toward your future in
+          Japan.
         </p>
       </div>
 
@@ -96,10 +90,7 @@ export function AppointmentForm({ onSubmit, loading = false }) {
 
           <div className="grid grid-cols-1 gap-x-16 gap-y-6 md:grid-cols-2 lg:gap-x-24">
             <div className="space-y-2">
-              <Label
-                htmlFor="firstName"
-                className="text-sm font-semibold sm:text-base"
-              >
+              <Label htmlFor="firstName" className="text-sm font-semibold sm:text-base">
                 First Name
               </Label>
 
@@ -114,10 +105,7 @@ export function AppointmentForm({ onSubmit, loading = false }) {
             </div>
 
             <div className="space-y-2">
-              <Label
-                htmlFor="lastName"
-                className="text-sm font-semibold sm:text-base"
-              >
+              <Label htmlFor="lastName" className="text-sm font-semibold sm:text-base">
                 Last Name
               </Label>
 
@@ -132,10 +120,7 @@ export function AppointmentForm({ onSubmit, loading = false }) {
             </div>
 
             <div className="space-y-2">
-              <Label
-                htmlFor="email"
-                className="text-sm font-semibold sm:text-base"
-              >
+              <Label htmlFor="email" className="text-sm font-semibold sm:text-base">
                 Email Address
               </Label>
 
@@ -151,10 +136,7 @@ export function AppointmentForm({ onSubmit, loading = false }) {
             </div>
 
             <div className="space-y-2">
-              <Label
-                htmlFor="phone"
-                className="text-sm font-semibold sm:text-base"
-              >
+              <Label htmlFor="phone" className="text-sm font-semibold sm:text-base">
                 Phone Number
               </Label>
 
@@ -170,10 +152,7 @@ export function AppointmentForm({ onSubmit, loading = false }) {
             </div>
 
             <div className="space-y-2">
-              <Label
-                htmlFor="location"
-                className="text-sm font-semibold sm:text-base"
-              >
+              <Label htmlFor="location" className="text-sm font-semibold sm:text-base">
                 Location
               </Label>
 
@@ -228,9 +207,7 @@ export function AppointmentForm({ onSubmit, loading = false }) {
 
         {/* Preferred Time */}
         <section className="mt-8 border-t border-[#9AAED0] pt-6">
-          <h2 className="mb-6 text-xl font-bold text-[#0B3B78] sm:text-[21px]">
-            Preferred Time
-          </h2>
+          <h2 className="mb-6 text-xl font-bold text-[#0B3B78] sm:text-[21px]">Preferred Time</h2>
 
           <div className="space-y-4">
             {preferredTimes.map((option) => (
@@ -253,9 +230,7 @@ export function AppointmentForm({ onSubmit, loading = false }) {
 
           <Textarea
             value={formData.additionalInformation}
-            onChange={(e) =>
-              handleChange("additionalInformation", e.target.value)
-            }
+            onChange={(e) => handleChange("additionalInformation", e.target.value)}
             placeholder="Tell us anything else you would like to know about your appointment."
             className="min-h-[180px] w-full resize-none rounded-md border-[#5876A8] px-4 py-4 text-sm leading-6 sm:min-h-[220px] sm:text-base"
           />

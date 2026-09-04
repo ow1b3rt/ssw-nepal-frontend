@@ -2,7 +2,6 @@
 
 import * as React from "react";
 
-
 export function AnimatedCounter({
   end,
   start = 0,

@@ -3,7 +3,6 @@
 "use client";
 
 import { useState } from "react";
-
 import { createReactBlockSpec } from "@blocknote/react";
 
 // YouTube (and most providers) hand out a full <iframe ...></iframe>
@@ -72,7 +71,7 @@ export const EmbedBlock = createReactBlockSpec(
           <div className="w-full" contentEditable={false}>
             <input
               autoFocus
-              className="w-full rounded-lg border-2 border-dashed border-slate-300 bg-slate-50 px-3 py-2.5 text-sm outline-none transition-colors focus:border-solid focus:border-blue-600 focus:bg-white"
+              className="w-full rounded-lg border-2 border-dashed border-slate-300 bg-slate-50 px-3 py-2.5 text-sm transition-colors outline-none focus:border-solid focus:border-blue-600 focus:bg-white"
               value={inputValue}
               placeholder="Paste a URL or an <iframe> embed code and press Enter…"
               onChange={(e) => setInputValue(e.target.value)}
@@ -84,10 +83,7 @@ export const EmbedBlock = createReactBlockSpec(
       }
 
       return (
-        <div
-          className="group relative w-full overflow-hidden rounded-lg"
-          contentEditable={false}
-        >
+        <div className="group relative w-full overflow-hidden rounded-lg" contentEditable={false}>
           <iframe
             src={block.props.url}
             className="block aspect-video w-full rounded-lg border-0 bg-black"
@@ -96,7 +92,7 @@ export const EmbedBlock = createReactBlockSpec(
           />
           <button
             type="button"
-            className="absolute right-2 top-2 rounded border border-white/40 bg-slate-900/65 px-2.5 py-1 text-xs font-medium text-white opacity-0 transition-opacity hover:bg-slate-900/85 group-hover:opacity-100"
+            className="absolute top-2 right-2 rounded border border-white/40 bg-slate-900/65 px-2.5 py-1 text-xs font-medium text-white opacity-0 transition-opacity group-hover:opacity-100 hover:bg-slate-900/85"
             onClick={() => {
               setInputValue(block.props.url);
               setEditing(true);
@@ -114,10 +110,7 @@ export const EmbedBlock = createReactBlockSpec(
       if (element.tagName === "IFRAME") {
         return { url: element.getAttribute("src") || "" };
       }
-      if (
-        element.tagName === "DIV" &&
-        element.classList?.contains("embed-container")
-      ) {
+      if (element.tagName === "DIV" && element.classList?.contains("embed-container")) {
         const iframe = element.querySelector("iframe");
         if (iframe) {
           return { url: iframe.getAttribute("src") || "" };

@@ -48,20 +48,13 @@ function NoticeMedia({ url, type, title }) {
     );
   }
 
-  const isPdf =
-    type === "application/pdf" || url.toLowerCase().endsWith(".pdf");
+  const isPdf = type === "application/pdf" || url.toLowerCase().endsWith(".pdf");
 
-  const iframeSrc = isPdf
-    ? `${url}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`
-    : url;
+  const iframeSrc = isPdf ? `${url}#toolbar=0&navpanes=0&scrollbar=0&view=FitH` : url;
 
   return (
     <div className="flex w-full flex-col items-center justify-center overflow-hidden">
-      <iframe
-        src={iframeSrc}
-        title={title}
-        className="h-[75vh] w-full rounded-lg"
-      />
+      <iframe src={iframeSrc} title={title} className="h-[75vh] w-full rounded-lg" />
     </div>
   );
 }
@@ -72,16 +65,12 @@ export default async function NoticeDetailPage({ params }) {
 
   if (!notice) notFound();
 
-  const mediaUrl = notice.mediaUrl
-    ? `${process.env.NEXT_PUBLIC_HOST}${notice.mediaUrl}`
-    : null;
+  const mediaUrl = notice.mediaUrl ? `${process.env.NEXT_PUBLIC_HOST}${notice.mediaUrl}` : null;
 
   return (
     <section className="container mx-auto my-8 rounded-lg border border-gray-200 shadow-sm">
       <div className="border-b border-gray-200 py-[27px] pr-8 pl-[33px]">
-        <h1 className="text-2xl font-bold text-gray-900 md:text-3xl">
-          {notice.title}
-        </h1>
+        <h1 className="text-2xl font-bold text-gray-900 md:text-3xl">{notice.title}</h1>
         <div className="mt-2 flex items-center gap-1.5 text-sm text-gray-500">
           <CalendarDays className="h-4 w-4" />
           <span>{formatDate(notice.createdAt)}</span>
@@ -96,11 +85,7 @@ export default async function NoticeDetailPage({ params }) {
       {notice.mediaUrl ? (
         <div className="flex items-center justify-center px-8 pb-8">
           <div className="w-full max-w-5xl">
-            <NoticeMedia
-              url={mediaUrl}
-              type={notice.mediaType}
-              title={notice.title}
-            />
+            <NoticeMedia url={mediaUrl} type={notice.mediaType} title={notice.title} />
           </div>
         </div>
       ) : (
