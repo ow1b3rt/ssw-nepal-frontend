@@ -15,69 +15,6 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 
-const NAV_CONFIG = [
-  { href: "/", label: "Home" },
-  {
-    href: "/about",
-    label: "About Us",
-    children: [
-      {
-        href: ROUTES.ABOUT_US.WHY_CHOOSE_US,
-        label: "Why Choose Us",
-      },
-      {
-        href: ROUTES.ABOUT_US.MESSAGE_FROM_CHAIRMAN,
-        label: "Message from Chairman",
-      },
-      {
-        href: ROUTES.ABOUT_US.SUCCESS_STORY,
-        label: "Success Stories",
-      },
-    ],
-  },
-  {
-    href: "/languages",
-    label: "Language",
-    children: [{ href: "/language", label: "Courses" }],
-  },
-  {
-    href: "/training",
-    label: "Training",
-    children: [{ href: "/training", label: "Programs" }],
-  },
-  {
-    href: "/services",
-    label: "Services",
-    children: [{ href: "/services", label: "All Services" }],
-  },
-  {
-    href: "/blogs",
-    label: "Blogs",
-    hideBetweenLgAndXl: true,
-    injectInto: "/others",
-  },
-  {
-    href: "/others",
-    label: "Others",
-    children: [
-      {
-        href: "/others/option-1",
-        label: "Option 1",
-      },
-      {
-        href: "/others/option-2",
-        label: "Option 2",
-      },
-    ],
-  },
-  {
-    href: "/contact",
-    label: "Contact Us",
-    hideBetweenLgAndXl: true,
-    injectInto: "/others",
-  },
-];
-
 const PHONE_NUMBER = "01-5921567";
 
 function isPathActive(pathname, href) {
@@ -210,7 +147,7 @@ function DropdownItem({ item, extraChildren }) {
   );
 }
 
-export default function Navbar() {
+export default function Navbar({ navItems }) {
   const [open, setOpen] = useState(false);
 
   const pathname = usePathname();
@@ -233,14 +170,14 @@ export default function Navbar() {
       <nav className="hidden min-w-0 lg:flex">
         <div className="flex h-13 items-center rounded-full bg-white px-4 shadow-[0_4px_18px_rgba(0,0,0,0.12)] sm:h-14 sm:px-5 md:h-14.5 md:px-6">
           <ul className="flex w-full items-center gap-6 text-base font-semibold text-black xl:gap-8 xl:text-xl">
-            {NAV_CONFIG.map((item) => {
+            {navItems.map((item) => {
               const isOthers = item.href === "/others";
 
               /*
                * Find items that should be injected
                * into the Others dropdown.
                */
-              const injected = isOthers ? NAV_CONFIG.filter((i) => i.injectInto === item.href) : [];
+              const injected = isOthers ? navItems.filter((i) => i.injectInto === item.href) : [];
 
               const extraChildren = injected.map((i) => ({
                 href: i.href,
@@ -340,7 +277,7 @@ export default function Navbar() {
             {/* Mobile Navigation */}
             <nav className="flex-1 overflow-y-auto px-5 py-2">
               <ul className="flex flex-col divide-y divide-black/8 font-semibold text-black">
-                {NAV_CONFIG.map((item) => (
+                {navItems.map((item) => (
                   <MobileNavRow key={item.href} item={item} onNavigate={() => setOpen(false)} />
                 ))}
               </ul>

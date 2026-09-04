@@ -54,7 +54,7 @@ function eventToBlog(event) {
     },
     title: event.title,
     desc: event.description,
-    url: `/events/${event.id}`,
+    url: ROUTES.OTHERS.EVENTS.SINGLE_VIA_ID(event.id),
   };
 }
 

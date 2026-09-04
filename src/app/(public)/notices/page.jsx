@@ -56,7 +56,7 @@ export default async function NoticePage({ searchParams }) {
                   },
                   title: notice.title,
                   desc: notice.description,
-                  url: `/notices/${notice.id}`,
+                  url: ROUTES.NOTICES.SINGLE_VIA_ID(notice.id),
                 }}
               />
             ))}

@@ -11,7 +11,7 @@ export default async function FaqPage() {
       <h1 className="self-center text-2xl font-bold text-black md:text-4xl">
         Frequently Asked Questions
       </h1>
-      <FaqSection section={data.layout} />
+      <FaqSection section={data?.layout} />
     </section>
   );
 }
