@@ -1,4 +1,6 @@
-const API_BASE = process.env.NEXT_PUBLIC_API;
+import { env } from "@/config/env";
+
+const API_BASE = env.apiUrl;
 
 export const ROUTES = {
   ADMIN_LOGIN: `/admin/login`,
@@ -78,5 +80,6 @@ export const ROUTES = {
     TRAINING: `${API_BASE}/layouts/training`,
     LANGUAGE: `${API_BASE}/layouts/languages`,
     LAYOUT_GALLERY: `${API_BASE}/layouts/gallery`,
+    APPOINTMENT: `${API_BASE}/appointments`,
   },
 };
