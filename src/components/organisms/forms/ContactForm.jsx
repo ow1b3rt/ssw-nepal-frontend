@@ -15,6 +15,7 @@ export function ContactForm() {
   const [form, setForm] = useState({
     name: "",
     email: "",
+    subject: "",
     message: "",
   });
 
@@ -57,6 +58,7 @@ export function ContactForm() {
           setForm({
             name: "",
             email: "",
+            subject: "",
             message: "",
           });
         },

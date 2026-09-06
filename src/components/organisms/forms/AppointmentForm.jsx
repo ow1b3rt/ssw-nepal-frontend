@@ -66,6 +66,17 @@ export function AppointmentForm({ onSubmit, loading = false }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit(formData);
+    setFormData({
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      location: "",
+      purpose: "",
+      appointmentType: "",
+      preferredTime: "",
+      additionalInformation: "",
+    })
   };
 
   return (
