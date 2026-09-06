@@ -16,11 +16,9 @@ export function ImageContainer({
 
   if (props.src !== lastSrc) {
     setHasError(false);
-    setLastSrc(src);
+    setLastSrc(props.src);
   }
   const resolvedSrc = !props.src || hasError ? FALLBACK_SRC : props.src;
-
-  console.log("resolvedSrc", resolvedSrc);
 
   return (
     <div className={className + " relative overflow-hidden rounded-2xl"}>

@@ -22,17 +22,21 @@ export function HomeBlogCard({ section: data = section }) {
         alt={data.image.alt}
       />
 
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <ImageContainer
-            className="h-10 w-10 rounded-full"
-            src={data.author.avatar}
-            alt={data.author.name}
-          />
-          <span className="text-base text-black/70">{data.author.name}</span>
+      {(data.author || data.date) && (
+        <div className="flex items-center justify-between">
+          {data.author && (
+            <div className="flex items-center gap-3">
+              <ImageContainer
+                className="h-10 w-10 rounded-full"
+                src={data.author.avatar}
+                alt={data.author.name}
+              />
+              <span className="text-base text-black/70">{data.author.name}</span>
+            </div>
+          )}
+          {data.date && <span className="text-sm text-black/50">{data.date}</span>}
         </div>
-        <span className="text-sm text-black/50">{data.date}</span>
-      </div>
+      )}
 
       <h3 className="text-2xl leading-snug font-extrabold">{data.title}</h3>
       <p className="line-clamp-3 text-lg text-black/60">{data.desc}</p>

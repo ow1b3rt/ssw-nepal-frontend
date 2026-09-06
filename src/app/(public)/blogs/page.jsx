@@ -1,4 +1,3 @@
-import { ROUTES } from "@/constants/routes/routes";
 import { stripHtml } from "@/packages/admin/utils/utils";
 
 import { getBlogs } from "@/lib/api/blogs";

@@ -7,6 +7,11 @@ import { HomeServices } from "@/components/organisms/home/HomeServices/HomeServi
 import HomeTestimonials from "@/components/organisms/home/HomeTestimonials";
 import HomeTrainings from "@/components/organisms/home/HomeTrainings";
 
+export const metadata = {
+  title: "HOME | SSW",
+  description: "Welcome to Home Page of SSW",
+};
+
 export default function Home() {
   return (
     <div className="flex w-full flex-col gap-16 pt-12">
