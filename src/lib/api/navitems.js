@@ -45,26 +45,49 @@ export function buildNavConfig({ languages, training, services }) {
           href: ROUTES.ABOUT_US.SUCCESS_STORY,
           label: "Success Stories",
         },
-        {
-          href: ROUTES.ABOUT_US.CONTACT_US,
-          label: "Contact Us",
-        },
       ],
     },
     {
       href: "/languages",
       label: "Language",
-      children: languages,
+      children: [
+        {
+          href: ROUTES.LANGUAGE.HOME,
+          label: "Language Classes",
+        },
+        ...languages.map((item) => ({
+          href: item.href,
+          label: item.label,
+        })),
+      ],
     },
     {
       href: "/training",
       label: "Training",
-      children: training,
+      children: [
+        {
+          href: ROUTES.TRAININGS.HOME,
+          label: "Training Programs",
+        },
+        ...training.map((item) => ({
+          href: item.href,
+          label: item.label,
+        })),
+      ],
     },
     {
       href: "/services",
       label: "Services",
-      children: services,
+      children: [
+        {
+          href: ROUTES.SERVICES.HOME,
+          label: "Our Services",
+        },
+        ...services.map((item) => ({
+          href: item.href,
+          label: item.label,
+        })),
+      ],
     },
     {
       href: "/blogs",
@@ -90,6 +113,18 @@ export function buildNavConfig({ languages, training, services }) {
         },
       ],
     },
-    { href: ROUTES.APPOINTMENT, label: "Appointment" },
+    {
+      href: ROUTES.APPOINTMENT,
+      label: "Appointment",
+      hideBetweenLgAndXl: true,
+      injectInto: "/others",
+    },
+
+    {
+      href: ROUTES.ABOUT_US.CONTACT_US,
+      label: "Contact Us",
+      hideBetweenLgAndXl: true,
+      injectInto: "/others",
+    },
   ];
 }
