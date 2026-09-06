@@ -83,13 +83,13 @@ export async function HomeGallery({ section: fallbackData = section }) {
   const data = await fetchGallery();
   let items = data?.items || fallbackData.items;
   if (data?.items && data.items.length > 0) {
-    items = data.items.slice(0, 7).map((item, index) => {
+    items = data.items.slice(0, 10).map((item, index) => {
       let column = "left";
-      const colIndex = index % 3;
-      if (colIndex === 1) column = "center";
-      else if (colIndex === 2) column = "right";
+      const colIndex = index % 5;
+      if (colIndex === 0) column = "center";
+      else if (colIndex === 3 || colIndex === 4) column = "right";
       let height = 340;
-      if (colIndex === 1) {
+      if (colIndex === 0) {
         height = 580;
       } else {
         height = index % 2 === 0 ? 340 : 220;
