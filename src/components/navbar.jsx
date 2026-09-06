@@ -300,12 +300,12 @@ export default function Navbar() {
         </Link>
 
         {/* Mobile Drawer */}
-        <Drawer open={open} onOpenChange={setOpen} direction="right">
-          <DrawerTrigger className="flex size-12 shrink-0 items-center justify-center rounded-lg bg-white shadow-[0_4px_10px_rgba(0,0,0,0.12)] lg:hidden">
-            <Menu className="size-5" />
+        <Drawer open={open} onOpenChange={setOpen} swipeDirection="right">
+          <DrawerTrigger className="bg-primary-green flex size-12 shrink-0 items-center justify-center rounded-lg shadow-[0_4px_10px_rgba(0,0,0,0.12)] lg:hidden">
+            <Menu className="size-6 text-white" />
           </DrawerTrigger>
 
-          <DrawerContent className="fixed right-0 bottom-0 ml-auto flex min-h-full w-full max-w-64 flex-col rounded-none! border-l bg-white p-0 sm:max-w-sm">
+          <DrawerContent className="fixed right-0 bottom-0 ml-auto flex min-h-full w-full max-w-64 flex-col rounded-l-lg border-l bg-white p-0 sm:max-w-sm">
             <DrawerTitle className="sr-only">Navigation menu</DrawerTitle>
 
             {/* Drawer Header */}
