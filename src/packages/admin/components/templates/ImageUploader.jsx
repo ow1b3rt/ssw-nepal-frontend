@@ -1,8 +1,10 @@
 "use client";
+
 import { useEffect, useState } from "react";
-import { MediaLibraryModal } from "../organisms/MediaLibraryModal.jsx";
-import { resolveUrl, fetcher } from "../../utils/utils.js";
+
+import { fetcher, resolveUrl } from "../../utils/utils.js";
 import { useResolvedDefault } from "../atoms/Input.jsx";
+import { MediaLibraryModal } from "../organisms/MediaLibraryModal.jsx";
 
 export function ImageUploader({
   name,
@@ -21,13 +23,13 @@ export function ImageUploader({
   const [alt, setAlt] = useState("");
   const [title, setTitle] = useState("");
   const defaultProps = useResolvedDefault(name, rest);
-  const defValue = defaultProps?.defaultValue
+  const defValue = defaultProps?.defaultValue;
 
   useEffect(() => {
-    if (!defValue) return
-    fetcher(`/media/${defValue}`).then(res => {
-      setCoverPreview(res.item)
-    })
+    if (!defValue) return;
+    fetcher(`/media/${defValue}`).then((res) => {
+      setCoverPreview(res.item);
+    });
   }, [defValue]);
 
   const handleSelectMedia = (media) => {
@@ -54,17 +56,17 @@ export function ImageUploader({
       <label className="text-sm font-semibold text-gray-700">{caption}</label>
 
       {coverPreview ? (
-        <div className="relative w-full h-40 rounded-lg overflow-hidden border border-gray-200">
+        <div className="relative h-40 w-full overflow-hidden rounded-lg border border-gray-200">
           <img
             src={resolveUrl(coverPreview)}
             alt="Cover preview"
-            className="block w-full h-full max-h-[280px] max-w-[300px] object-contain"
+            className="block h-full max-h-[280px] w-full max-w-[300px] object-contain"
             onClick={() => setModalOpen(true)}
           />
           <button
             type="button"
             onClick={handleRemoveImage}
-            className="absolute top-2 right-2 flex items-center justify-center w-7 h-7 rounded-full bg-black/55 text-white text-xs cursor-pointer transition-colors hover:bg-red-600/85"
+            className="absolute top-2 right-2 flex h-7 w-7 cursor-pointer items-center justify-center rounded-full bg-black/55 text-xs text-white transition-colors hover:bg-red-600/85"
             title="Remove image"
           >
             ✕
@@ -73,7 +75,7 @@ export function ImageUploader({
       ) : (
         <button
           type="button"
-          className="flex flex-col items-center justify-center gap-2 h-40 p-5 border-2 border-dashed border-gray-300 rounded-lg text-gray-400 cursor-pointer transition-colors hover:border-indigo-500 hover:text-indigo-500"
+          className="flex h-40 cursor-pointer flex-col items-center justify-center gap-2 rounded-lg border-2 border-dashed border-gray-300 p-5 text-gray-400 transition-colors hover:border-indigo-500 hover:text-indigo-500"
           onClick={() => setModalOpen(true)}
         >
           <svg
@@ -97,7 +99,9 @@ export function ImageUploader({
       )}
 
       {/* Hidden field so the selected media id still submits with the form, if needed */}
-      {selectedMediaId && <input type="hidden" name={name} id={id} value={selectedMediaId} readOnly />}
+      {selectedMediaId && (
+        <input type="hidden" name={name} id={id} value={selectedMediaId} readOnly />
+      )}
       {/* <input type="hidden" name={altname || `${name?.split("_")?.[0]}_alt`} value={alt} readOnly />
       <input
         type="hidden"

@@ -43,7 +43,7 @@ export function HomeEventsClient({ events }) {
           href={ROUTES.OTHERS.EVENTS.HOME}
           className="bg-primary-red rounded-lg px-10 py-4 text-lg font-bold text-white transition duration-500 ease-in-out hover:bg-black"
         >
-          See More
+          More Events
         </Link>
       </AnimatedCard>
     </div>

@@ -1,25 +1,34 @@
 // components/admin/DataTable.jsx
 "use client";
+
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { Trash2 } from "lucide-react";
+
+import { resolveUrl } from "../../utils/utils.js";
 import { Badge } from "../atoms/Badge.jsx";
 import { EditButton, ViewButton } from "../atoms/Buttons.jsx";
 import { DeleteAction } from "../organisms/DeleteAction.jsx";
 import { useEntity } from "./AdminChildrenLayout.jsx";
-import { resolveUrl } from "../../utils/utils.js";
 
 function normalizePayloadResponse(data) {
   if (Array.isArray(data)) {
-    return { docs: data, totalDocs: data.length, page: 1, totalPages: 1, hasNextPage: false, hasPrevPage: false };
+    return {
+      docs: data,
+      totalDocs: data.length,
+      page: 1,
+      totalPages: 1,
+      hasNextPage: false,
+      hasPrevPage: false,
+    };
   }
   return {
     items: data?.items ?? [],
     total: data?.total ?? 0,
     page: data?.page ?? 1,
     totalPages: data?.totalPages ?? 1,
-    hasNextPage: (data?.page < data?.totalPages) || false,
-    hasPrevPage: (data?.page > 1) || false,
+    hasNextPage: data?.page < data?.totalPages || false,
+    hasPrevPage: data?.page > 1 || false,
   };
 }
 
@@ -40,9 +49,10 @@ export default function DataTable({
   selectable = true, // set false to hide the checkbox column entirely
 }) {
   const { name, mutate } = useEntity();
-  const { items, total, page, totalPages, hasNextPage, hasPrevPage } = normalizePayloadResponse(data);
-  console.log('data',normalizePayloadResponse(data))
-  console.log('fields', fields)
+  const { items, total, page, totalPages, hasNextPage, hasPrevPage } =
+    normalizePayloadResponse(data);
+  console.log("data", normalizePayloadResponse(data));
+  console.log("fields", fields);
 
   const [selectedIds, setSelectedIds] = useState(() => new Set());
   const [isDeleting, setIsDeleting] = useState(false);
@@ -83,16 +93,14 @@ export default function DataTable({
   const handleBulkDelete = async () => {
     if (selectedCount === 0) return;
     const confirmed = window.confirm(
-      `Delete ${selectedCount} selected ${selectedCount === 1 ? "record" : "records"}? This can't be undone.`
+      `Delete ${selectedCount} selected ${selectedCount === 1 ? "record" : "records"}? This can't be undone.`,
     );
     if (!confirmed) return;
 
     setIsDeleting(true);
     try {
       const results = await Promise.allSettled(
-        Array.from(selectedIds).map((id) =>
-          fetch(`/${name}/${id}`, { method: "DELETE" })
-        )
+        Array.from(selectedIds).map((id) => fetch(`/${name}/${id}`, { method: "DELETE" })),
       );
       const failed = results.filter((r) => r.status === "rejected" || r.value?.ok === false);
       if (failed.length > 0) {
@@ -106,7 +114,7 @@ export default function DataTable({
   };
 
   const renderCell = (item, field) => {
-    console.log('field key', field)
+    console.log("field key", field);
     const [key, type, ...rest] = field.key.split(":");
     const value = item[key];
 
@@ -114,19 +122,13 @@ export default function DataTable({
       case "image":
         return (
           <div className="h-9 w-9 overflow-hidden rounded-lg bg-gray-100 ring-1 ring-gray-200">
-            <img
-              src={resolveUrl(value)}
-              alt={field.head}
-              className="h-full w-full object-cover"
-            />
+            <img src={resolveUrl(value)} alt={field.head} className="h-full w-full object-cover" />
           </div>
         );
 
       case "upload": {
         const media = typeof value === "object" && value !== null ? value : null;
-        const src = media?.url
-          ? resolveUrl(media.url)
-          : null;
+        const src = media?.url ? resolveUrl(media.url) : null;
         if (!src) {
           return (
             <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gray-100 text-xs text-gray-400 ring-1 ring-gray-200">
@@ -169,12 +171,7 @@ export default function DataTable({
         return <span className="text-sm font-semibold text-gray-900">{value}</span>;
 
       case "status":
-        return (
-          <Badge
-            value={value}
-            variant={value === "published" ? "success" : "default"}
-          />
-        );
+        return <Badge value={value} variant={value === "published" ? "success" : "default"} />;
 
       default:
         return (
@@ -236,7 +233,7 @@ export default function DataTable({
             <thead>
               <tr className="border-b border-gray-200 bg-gray-50">
                 {selectable && (
-                  <th className="w-10 ">
+                  <th className="w-10">
                     <input
                       ref={headerCheckboxRef}
                       type="checkbox"
@@ -251,13 +248,13 @@ export default function DataTable({
                 {fields.map((field, i) => (
                   <th
                     key={i}
-                    className="whitespace-nowrap  text-xs font-medium uppercase tracking-wide text-gray-500"
+                    className="text-xs font-medium tracking-wide whitespace-nowrap text-gray-500 uppercase"
                   >
                     {field.head}
                   </th>
                 ))}
                 {renderActions && (
-                  <th className="whitespace-nowrap  text-right text-xs font-medium uppercase tracking-wide text-gray-500">
+                  <th className="text-right text-xs font-medium tracking-wide whitespace-nowrap text-gray-500 uppercase">
                     Action
                   </th>
                 )}
@@ -272,7 +269,7 @@ export default function DataTable({
                     className={`transition-colors hover:bg-gray-50 ${isSelected ? "bg-gray-50" : ""}`}
                   >
                     {selectable && (
-                      <td className=" align-middle">
+                      <td className="align-middle">
                         <input
                           type="checkbox"
                           checked={isSelected}
@@ -283,13 +280,15 @@ export default function DataTable({
                       </td>
                     )}
                     {fields.map((field, i) => (
-                      <td key={i} className="whitespace-nowrap px-4 py-3 align-middle">
+                      <td key={i} className="px-4 py-3 align-middle whitespace-nowrap">
                         {renderCell(item, field)}
                       </td>
                     ))}
                     {renderActions && (
-                      <td className=" align-middle">
-                        <div className="flex items-center justify-end gap-1">{renderActions(item)}</div>
+                      <td className="align-middle">
+                        <div className="flex items-center justify-end gap-1">
+                          {renderActions(item)}
+                        </div>
                       </td>
                     )}
                   </tr>
