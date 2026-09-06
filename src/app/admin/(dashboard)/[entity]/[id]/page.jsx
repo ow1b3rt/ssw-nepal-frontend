@@ -7,6 +7,7 @@ import {
   removeEmptyFields,
   useApi,
   useGet,
+  useToast,
 } from "@/packages/admin";
 import { Loader2 } from "lucide-react";
 
@@ -29,6 +30,7 @@ function coerceRelationshipIds(values, fields) {
 
 export default function EntityEditPage() {
   const { entity: entitySlug, id } = useParams();
+  const toast = useToast();
   const entity = entities[entitySlug];
   const { post, patch } = useApi();
   const router = useRouter();
@@ -51,7 +53,10 @@ export default function EntityEditPage() {
     const url = isNew ? apiPath : `${apiPath}/${id}`;
     const payload = coerceRelationshipIds(definedValues, entity.fields);
     const res = isNew ? await post(url, payload) : await patch(url, payload);
-    if (res?.ok) router.replace(`/admin/${entitySlug}`);
+    if (res?.ok) {
+      toast.success(`${entity.label} ${isNew ? "created" : "updated"} successfully`);
+      router.replace(`/admin/${entitySlug}`);
+    }
     return res;
   }
 

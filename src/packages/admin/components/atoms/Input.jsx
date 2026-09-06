@@ -57,7 +57,7 @@ export function Input({
       style={{ display: hidden ? "none" : "flex", ...style }}
     >
       {resolvedPlaceholder && (
-        <label htmlFor={name} className="text-base font-medium text-gray-700">
+        <label htmlFor={name} className="text-sm font-medium text-gray-700">
           {resolvedPlaceholder}
           {required && <span className="ml-1 text-red-500">*</span>}
         </label>
@@ -80,7 +80,7 @@ export function Select({ placeholder, children, className, name, required, ...re
   const resolvedPlaceholder = placeholder ?? humanize(name);
   const selectRef = useRef(null);
   const hasDefault = defaultProps.defaultValue != null && defaultProps.defaultValue !== "";
-  console.log("select defults", defaultProps);
+  console.log('select defults', defaultProps)
 
   return (
     <div className={`flex w-full flex-col gap-1.5 ${className || ""}`}>

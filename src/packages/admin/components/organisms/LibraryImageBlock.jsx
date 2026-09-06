@@ -2,12 +2,16 @@
 "use client";
 
 import { useState } from "react";
+
 import { defaultProps } from "@blocknote/core";
-import { createReactBlockSpec, ResizableFileBlockWrapper } from "@blocknote/react";
+import {
+  ResizableFileBlockWrapper,
+  createReactBlockSpec,
+} from "@blocknote/react";
 import { ImageIcon } from "lucide-react";
 
-import { resolveUrl } from "../../utils/utils.js";
 import { MediaLibraryModal } from "./MediaLibraryModal";
+import { resolveUrl } from "../../utils/utils.js";
 
 /**
  * Replaces BlockNote's built-in "image" block. Instead of the native
@@ -70,7 +74,10 @@ export const LibraryImageBlock = createReactBlockSpec(
             // drag-to-resize handles without reintroducing the native
             // "click to upload" empty-state button — the empty branch
             // below stays fully our own (library-only) UI.
-            <ResizableFileBlockWrapper {...props} buttonIcon={<ImageIcon size={20} />}>
+            <ResizableFileBlockWrapper
+              {...props}
+              buttonIcon={<ImageIcon size={20} />}
+            >
               <img
                 src={block.props.url}
                 alt={block.props.name || "image"}
@@ -91,7 +98,11 @@ export const LibraryImageBlock = createReactBlockSpec(
           )}
 
           {modalOpen && (
-            <MediaLibraryModal onClose={handleClose} onSelect={handleSelect} name="articleImage" />
+            <MediaLibraryModal
+              onClose={handleClose}
+              onSelect={handleSelect}
+              name="articleImage"
+            />
           )}
         </>
       );
@@ -111,7 +122,10 @@ export const LibraryImageBlock = createReactBlockSpec(
 
       if (element.tagName === "IMG") {
         img = element;
-      } else if (element.tagName === "DIV" && element.classList?.contains("image-container")) {
+      } else if (
+        element.tagName === "DIV" &&
+        element.classList?.contains("image-container")
+      ) {
         img = element.querySelector("img");
       }
 
@@ -133,7 +147,11 @@ export const LibraryImageBlock = createReactBlockSpec(
         <img
           src={block.props.url}
           alt={block.props.name || ""}
-          style={block.props.previewWidth ? { width: `${block.props.previewWidth}px` } : undefined}
+          style={
+            block.props.previewWidth
+              ? { width: `${block.props.previewWidth}px` }
+              : undefined
+          }
         />
       );
     },

@@ -2,8 +2,8 @@
 
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
-
 import { getRuntimeConfig } from "../lib/runtime.config.js";
+import { useToast } from "./ToastContext.jsx";
 
 export function useHost() {
   return getRuntimeConfig().host;
@@ -12,14 +12,15 @@ export function useHost() {
 const ApiContext = createContext(null);
 
 export function useGet(path) {
-  const { apiBaseUrl: BASE_URL } = getRuntimeConfig();
+  const toast = useToast();
+  const { apiBaseUrl:BASE_URL } = getRuntimeConfig()
   const [data, setData] = useState(null);
   const [localLoading, setLocalLoading] = useState(false);
 
   const fetch_ = useCallback(async () => {
     setLocalLoading(true);
     try {
-      if (!path) return;
+      if (!path) return
       let res = await fetch(BASE_URL + path, { credentials: "include" });
 
       if (!res.ok) {
@@ -29,6 +30,7 @@ export function useGet(path) {
       }
       setData(await res.json());
     } catch (err) {
+      toast.error(err)
       console.error(err);
     } finally {
       setLocalLoading(false);
@@ -72,6 +74,7 @@ async function request(method, path, body, baseUrl) {
 
 export function ApiProvider({ baseUrl, children }) {
   const router = useRouter();
+  const toast = useToast();
 
   const handle = useCallback(
     async (fn, options = {}) => {
@@ -83,6 +86,7 @@ export function ApiProvider({ baseUrl, children }) {
         }
         return data;
       } catch (err) {
+        toast.error(err)
         console.error(err);
         return null;
       }

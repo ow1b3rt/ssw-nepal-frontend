@@ -13,7 +13,12 @@ const SIZE_STYLES = {
   lg: "text-base px-3 py-1",
 };
 
-export const Badge = ({ variant = "default", size = "md", value, className = "" }) => {
+export const Badge = ({
+  variant = "default",
+  size = "md",
+  value,
+  className = "",
+}) => {
   return (
     <span
       className={`inline-flex items-center rounded-full font-medium ${VARIANT_STYLES[variant]} ${SIZE_STYLES[size]} ${className}`}
@@ -21,4 +26,4 @@ export const Badge = ({ variant = "default", size = "md", value, className = "" 
       {value}
     </span>
   );
-};
+}

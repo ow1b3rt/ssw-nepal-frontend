@@ -2,14 +2,13 @@
 
 import { createContext, useContext, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-
-import { getRuntimeConfig } from "../lib/runtime.config.js";
 import { useApi, useGet } from "./ApiContext.jsx";
+import { getRuntimeConfig } from "../lib/runtime.config.js";
 
 const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
-  console.log("heres");
+  console.log('heres')
   const [user, setUser] = useState(null);
   const { data, isLoading, mutate } = useGet("/auth/me");
   const { post } = useApi();
@@ -18,9 +17,9 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     if (!data) return;
     if (!data.success) {
-      setUser(null);
-      router.replace("/admin/login");
-      return;
+        setUser(null);
+        router.replace("/admin/login");
+        return;
     }
     setUser(data?.user);
   }, [data]);

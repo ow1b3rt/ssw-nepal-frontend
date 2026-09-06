@@ -4,7 +4,11 @@ export function Logo({ panel }) {
       {panel ? (
         <img src="/logo.svg" alt="Logo" className="h-7 w-auto object-contain" />
       ) : (
-        <img src="/favicon.svg" alt="Logo" className="h-7 w-7 rounded-md object-contain" />
+        <img
+          src="/favicon.svg"
+          alt="Logo"
+          className="h-7 w-7 rounded-md object-contain"
+        />
       )}
     </div>
   );

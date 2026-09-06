@@ -1,10 +1,8 @@
 // src/components/molecules/PayloadField.js
 "use client";
-
 import { useState } from "react";
 import { Eye, EyeOff } from "lucide-react"; // Import icons for the toggle
-
-import { Input, Select, Textarea } from "../atoms/Input.jsx";
+import { Input, Textarea, Select } from '../atoms/Input.jsx'
 import { RelationshipField } from "../atoms/RelationshipField.jsx";
 import { ImageUploader } from "../templates/ImageUploader.jsx";
 
@@ -24,7 +22,7 @@ function PasswordInput({ name, placeholder, required }) {
       <button
         type="button"
         onClick={() => setShowPassword((prev) => !prev)}
-        className="absolute top-1/2 right-3 -translate-y-1/2 text-gray-500 hover:text-gray-800 focus:outline-none"
+        className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-800 focus:outline-none"
         aria-label={showPassword ? "Hide password" : "Show password"}
       >
         {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
@@ -35,7 +33,8 @@ function PasswordInput({ name, placeholder, required }) {
 
 export function PayloadField({ field }) {
   let { name, type, label, required, options } = field;
-  name = name?.split(":")?.[0];
+  name = name?.split(':')?.[0]
+
 
   if (type === "select") {
     return (
@@ -65,10 +64,6 @@ export function PayloadField({ field }) {
     return <Input name={name} type="number" placeholder={label} required={required} />;
   }
 
-  if (type === "time") {
-    return <Input name={name} type="time" placeholder={label} required={required} />;
-  }
-
   // Updated Password field using the new PasswordInput wrapper
   if (type === "password") {
     return <PasswordInput name={name} placeholder={label} required={required} />;
@@ -78,17 +73,14 @@ export function PayloadField({ field }) {
     return <Input name={name} type="text" placeholder={label} required={required} />;
   }
 
-  if (type === "date-time") {
-    return <Input name={name} type="datetime-local" aria-label={label} required={required} />;
-  }
-
   if (type === "relationship") {
     return <RelationshipField field={field} />;
   }
 
   if (type === "image") {
-    return <ImageUploader name={name} id={label} caption={label} />;
+    return <ImageUploader name={name} id={label} caption={ label} />;
   }
+
 
   // relationship, richText, array, upload etc. — not handled generically, see below
   console.warn(`No renderer for field type "${type}" — field "${name}" skipped`);

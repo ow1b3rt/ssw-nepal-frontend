@@ -1,15 +1,11 @@
 "use client";
-
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-
-import { ImageContainer } from "@/components/molecules/ImageContainer.jsx";
-
-import { getRuntimeConfig } from "../../lib/runtime.config.js";
-import { Input } from "../atoms/Input.jsx";
 import { Form } from "../molecules/Form.jsx";
+import { Input } from "../atoms/Input.jsx";
+import { getRuntimeConfig } from "../../lib/runtime.config.js";
 
-export function LoginPage({ loginUrl = "/auth/login", redirectTo = "/admin/dashboard" }) {
+export function LoginPage({ loginUrl='/auth/login', redirectTo = "/admin/dashboard" }) {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -36,34 +32,21 @@ export function LoginPage({ loginUrl = "/auth/login", redirectTo = "/admin/dashb
   }
 
   return (
-    <div className="container mx-auto flex h-screen flex-col-reverse items-center justify-center gap-0 px-4 md:flex-row">
-      <div className="border-gray-00 flex w-full flex-col justify-between rounded-lg border bg-white p-4 md:h-96 md:w-1/2 md:rounded-none md:rounded-l-lg lg:w-1/3 lg:p-8">
-        <div className="mb-6 flex flex-col items-center">
-          <h1 className="text-primary-blue-dark text-2xl font-semibold">Welcome Back</h1>
-          <p className="text-text-color font-light">Login to your SSW Admin account</p>
-        </div>
-
-        <Form onSubmit={handleSubmit} className="flex flex-col gap-y-4">
-          <Input
-            inputClassName="text-primary-blue"
-            name="email"
-            type="email"
-            placeholder="Email"
-            required
-          />
+    <div className="flex h-screen items-center justify-center bg-gray-50">
+      <div className="w-1/2 rounded-lg border border-gray-200 bg-white p-8 shadow-sm">
+        <h1 className="mb-6 text-xl font-semibold">Log in</h1>
+        <Form onSubmit={handleSubmit} className="flex flex-col gap-4">
+          <Input name="email" type="email" placeholder="Email" required />
           <Input name="password" type="password" placeholder="Password" required />
           {error && <p className="text-sm text-red-600">{error}</p>}
           <button
             type="submit"
             disabled={loading}
-            className="bg-primary-green hover:bg-primary-green-dark mt-2 cursor-pointer rounded-md px-4 py-1.5 text-sm font-normal text-white transition duration-500 ease-in-out disabled:opacity-50"
+            className="mt-2 rounded-md bg-black px-4 py-2 text-sm font-medium text-white hover:bg-gray-800 disabled:opacity-50"
           >
-            {loading ? "Logging in..." : "Login"}
+            {loading ? "Logging in..." : "Log in"}
           </button>
         </Form>
-      </div>
-      <div className="flex w-full flex-col items-center justify-center gap-4 rounded-r-lg border-l-0 p-2 md:h-96 md:w-1/2 md:items-start md:gap-6 md:border lg:w-1/3">
-        <ImageContainer src="/ssw.png" alt="SSW logo" className="aspect-video w-full" />
       </div>
     </div>
   );

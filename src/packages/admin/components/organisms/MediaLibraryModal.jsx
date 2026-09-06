@@ -283,3 +283,4 @@ export function MediaLibraryModal({ onClose, onSelect, name }) {
     </div>
   );
 }
+
