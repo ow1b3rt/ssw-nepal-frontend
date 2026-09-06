@@ -16,13 +16,16 @@ import {
 } from "@/components/ui/drawer";
 
 const PHONE_NUMBER = "01-5921567";
-
 function isPathActive(pathname, href) {
   if (href === "/") {
     return pathname === "/";
   }
 
   return pathname === href || pathname.startsWith(`${href}/`);
+}
+
+function isExactActive(pathname, href) {
+  return pathname === href;
 }
 
 function DropdownItem({ item, extraChildren }) {
@@ -124,10 +127,10 @@ function DropdownItem({ item, extraChildren }) {
         <div className="absolute top-full left-0 pt-3">
           <ul className="flex w-48 flex-col gap-0.5 rounded-xl bg-white p-1.5 shadow-[0_10px_30px_rgba(0,0,0,0.15)]">
             {children.map((child) => {
-              const isChildActive = isPathActive(pathname, child.href);
+              const isChildActive = isExactActive(pathname, child.href);
 
               return (
-                <li key={child.href} className={child.hideAtXl ? "xl:hidden" : undefined}>
+                <li key={child.href} className={child.hideAt2Xl ? "2xl:hidden" : undefined}>
                   <Link
                     href={child.href}
                     onClick={() => setOpen(false)}
@@ -182,26 +185,15 @@ export default function Navbar({ navItems }) {
               const extraChildren = injected.map((i) => ({
                 href: i.href,
                 label: i.label,
-                hideAtXl: true,
+                hideAt2Xl: true,
               }));
 
-              /*
-               * Used only for direct links like:
-               * Blogs
-               * Contact Us
-               */
               const isDirectActive = isPathActive(pathname, item.href);
 
               return (
                 <span key={item.href} className="contents">
                   {item.hideBetweenLgAndXl ? (
-                    /*
-                     * Blogs / Contact Us
-                     *
-                     * Hidden between lg and xl.
-                     * Visible at xl and above.
-                     */
-                    <li className="hidden xl:block">
+                    <li className="hidden 2xl:block">
                       <Link
                         href={item.href}
                         className={`whitespace-nowrap transition-colors ${
@@ -346,7 +338,7 @@ function MobileNavRow({ item, onNavigate }) {
       {expanded && (
         <ul className="flex flex-col gap-1 pb-3 pl-3">
           {item.children.map((child) => {
-            const isSubActive = isPathActive(pathname, child.href);
+            const isSubActive = isExactActive(pathname, child.href);
 
             return (
               <li key={child.href}>

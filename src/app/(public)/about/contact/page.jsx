@@ -1,6 +1,6 @@
 import AnimatedCard from "@/components/ui/animated-card";
 import { AnimatedWords } from "@/components/ui/animated-words";
-import { ContactForm } from "@/components/organism/forms/ContactForm";
+import { ContactForm } from "@/components/organisms/forms/ContactForm";
 
 export default function Contact() {
   return (

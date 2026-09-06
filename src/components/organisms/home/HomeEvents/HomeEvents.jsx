@@ -1,5 +1,7 @@
-import { getEvents } from "@/lib/api/events";
 import { ROUTES } from "@/constants/routes/routes";
+
+import { getEvents } from "@/lib/api/events";
+
 import { HomeEventsClient } from "./HomeEventsClient";
 
 function eventToBlog(event) {
@@ -19,8 +21,7 @@ function eventToBlog(event) {
 
 export default async function HomeEvents() {
   const data = await getEvents();
-  const events =
-    data?.items && data.items.length > 0 ? data.items.map(eventToBlog) : null;
+  const events = data?.items && data.items.length > 0 ? data.items.map(eventToBlog) : null;
 
   return <HomeEventsClient events={events} />;
 }

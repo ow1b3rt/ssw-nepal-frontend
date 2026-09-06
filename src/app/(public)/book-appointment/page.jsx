@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import { AppointmentForm } from "@/components/organism/forms/AppointmentForm";
+import { AppointmentForm } from "@/components/organisms/forms/AppointmentForm";
 
 export default function Contact() {
   const [loading, setLoading] = useState(false);
