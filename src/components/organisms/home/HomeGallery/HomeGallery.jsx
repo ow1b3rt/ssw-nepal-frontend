@@ -81,26 +81,35 @@ async function fetchGallery() {
 
 export async function HomeGallery({ section: fallbackData = section }) {
   const data = await fetchGallery();
-  let items = data?.items || fallbackData.items;
+  let rawItems = data?.items || fallbackData.items;
+  let desktopItems;
+
   if (data?.items && data.items.length > 0) {
-    items = data.items.slice(0, 7).map((item, index) => {
-      let column = "left";
+    desktopItems = data.items.slice(0, 6).map((item, index) => {
       const colIndex = index % 3;
+      const row = Math.floor(index / 3);
+
+      let column = "left";
       if (colIndex === 1) column = "center";
       else if (colIndex === 2) column = "right";
-      let height = 340;
-      if (colIndex === 1) {
-        height = 580;
+
+      let height;
+      if (row === 0) {
+        height = column === "center" ? 600 : 450;
       } else {
-        height = index % 2 === 0 ? 340 : 220;
+        height = column === "center" ? 260 : 410;
+        console.log("items", item);
       }
+
       return {
         ...item,
         column,
         height,
+        label: row === 1 ? null : item.label,
       };
     });
   }
+
   const ctaLabel = data?.ctaLabel || fallbackData.ctaLabel;
   const ctaURL = ROUTES.GALLERY;
 
@@ -119,16 +128,21 @@ export async function HomeGallery({ section: fallbackData = section }) {
           Gallery
         </h2>
       </AnimatedCard>
+      <div className="flex w-full flex-col gap-4 md:hidden">
+        {rawItems.slice(0, 3).map((item, i) => (
+          <GalleryCard key={i} {...item} height={null} />
+        ))}
+      </div>
 
       <AnimatedCard
-        className="relative flex w-full flex-col gap-4 md:flex-row lg:gap-8"
+        className="relative hidden w-full flex-col gap-4 md:flex md:flex-row lg:gap-8"
         direction="down"
         distance={12}
         triggerOnView
       >
         {COLUMNS.map((column) => (
           <div key={column} className="flex flex-1 flex-col gap-4 lg:gap-8">
-            {items
+            {desktopItems
               .filter((item) => item.column === column)
               .map((item, j) => (
                 <GalleryCard key={j} {...item} />
