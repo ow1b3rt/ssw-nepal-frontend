@@ -8,10 +8,7 @@ export { AuthProvider, useAuth } from "./contexts/AuthContext.jsx";
 export { AdminGate } from "./components/templates/AdminGate.jsx";
 export { AdminShell } from "./components/templates/AdminShell.jsx";
 export { AdminLayout } from "./components/templates/AdminLayout.jsx";
-export {
-  AdminChildrenLayout,
-  useEntity,
-} from "./components/templates/AdminChildrenLayout.jsx";
+export { AdminChildrenLayout, useEntity } from "./components/templates/AdminChildrenLayout.jsx";
 
 // --- Data / entity config ---
 export { useFetchEntity } from "./hooks/useFetchEntity.js";
