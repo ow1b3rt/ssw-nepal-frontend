@@ -1,11 +1,6 @@
 "use client";
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useRef,
-  useState,
-} from "react";
+
+import { createContext, useCallback, useContext, useRef, useState } from "react";
 
 const ToastContext = createContext(null);
 
@@ -45,9 +40,7 @@ export function ToastProvider({ children }) {
     const text = message instanceof Error ? message.message : String(message);
     setToasts((prev) => [...prev, { id, message: text, type, exiting: false }]);
     setTimeout(() => {
-      setToasts((prev) =>
-        prev.map((t) => (t.id === id ? { ...t, exiting: true } : t)),
-      );
+      setToasts((prev) => prev.map((t) => (t.id === id ? { ...t, exiting: true } : t)));
       setTimeout(() => {
         setToasts((prev) => prev.filter((t) => t.id !== id));
       }, 350);
@@ -55,9 +48,7 @@ export function ToastProvider({ children }) {
   }, []);
 
   const dismiss = useCallback((id) => {
-    setToasts((prev) =>
-      prev.map((t) => (t.id === id ? { ...t, exiting: true } : t)),
-    );
+    setToasts((prev) => prev.map((t) => (t.id === id ? { ...t, exiting: true } : t)));
     setTimeout(() => {
       setToasts((prev) => prev.filter((t) => t.id !== id));
     }, 350);
@@ -68,20 +59,20 @@ export function ToastProvider({ children }) {
     [addToast],
   );
   const error = useCallback(
-    (message, duration) => {console.log('toast error');addToast(message, "error", duration)},
+    (message, duration) => {
+      console.log("toast error");
+      addToast(message, "error", duration);
+    },
     [addToast],
   );
-  const info = useCallback(
-    (message, duration) => addToast(message, "info", duration),
-    [addToast],
-  );
+  const info = useCallback((message, duration) => addToast(message, "info", duration), [addToast]);
 
   return (
     <ToastContext.Provider value={{ success, error, info, addToast }}>
       <style>{toastKeyframes}</style>
       {children}
       <div
-        className="fixed top-6 left-1/2 -translate-x-1/2 z-[9999] flex flex-col items-center gap-2.5 pointer-events-none"
+        className="pointer-events-none fixed top-6 left-1/2 z-[9999] flex -translate-x-1/2 flex-col items-center gap-2.5"
         aria-live="polite"
         aria-atomic="false"
       >
@@ -96,7 +87,7 @@ export function ToastProvider({ children }) {
 export function Toast({ toast, onDismiss }) {
   const icons = {
     success: (
-      <svg viewBox="0 0 20 20" fill="none" className="w-[18px] h-[18px] shrink-0">
+      <svg viewBox="0 0 20 20" fill="none" className="h-[18px] w-[18px] shrink-0">
         <circle cx="10" cy="10" r="9" stroke="currentColor" strokeWidth="1.5" />
         <path
           d="M6 10.5l2.5 2.5 5-5"
@@ -108,7 +99,7 @@ export function Toast({ toast, onDismiss }) {
       </svg>
     ),
     error: (
-      <svg viewBox="0 0 20 20" fill="none" className="w-[18px] h-[18px] shrink-0">
+      <svg viewBox="0 0 20 20" fill="none" className="h-[18px] w-[18px] shrink-0">
         <circle cx="10" cy="10" r="9" stroke="currentColor" strokeWidth="1.5" />
         <path
           d="M7 7l6 6M13 7l-6 6"
@@ -119,7 +110,7 @@ export function Toast({ toast, onDismiss }) {
       </svg>
     ),
     info: (
-      <svg viewBox="0 0 20 20" fill="none" className="w-[18px] h-[18px] shrink-0">
+      <svg viewBox="0 0 20 20" fill="none" className="h-[18px] w-[18px] shrink-0">
         <circle cx="10" cy="10" r="9" stroke="currentColor" strokeWidth="1.5" />
         <path
           d="M10 9v5M10 6.5v.5"
@@ -134,22 +125,20 @@ export function Toast({ toast, onDismiss }) {
   return (
     <div
       role="alert"
-      className={`flex items-center gap-[0.65rem] py-[0.7rem] pr-[0.9rem] pl-[0.8rem] rounded-[10px] min-w-[260px] max-w-[380px] pointer-events-auto border font-sans text-[0.875rem] leading-[1.4] shadow-[0_4px_16px_rgba(0,0,0,0.12),0_1px_3px_rgba(0,0,0,0.08)]
-        ${typeStyles[toast.type]}
-        ${
-          toast.exiting
-            ? "animate-[toast-out_0.32s_ease_forwards]"
-            : "animate-[toast-in_0.32s_cubic-bezier(0.34,1.56,0.64,1)_both]"
-        }`}
+      className={`pointer-events-auto flex max-w-[380px] min-w-[260px] items-center gap-[0.65rem] rounded-[10px] border py-[0.7rem] pr-[0.9rem] pl-[0.8rem] font-sans text-[0.875rem] leading-[1.4] shadow-[0_4px_16px_rgba(0,0,0,0.12),0_1px_3px_rgba(0,0,0,0.08)] ${typeStyles[toast.type]} ${
+        toast.exiting
+          ? "animate-[toast-out_0.32s_ease_forwards]"
+          : "animate-[toast-in_0.32s_cubic-bezier(0.34,1.56,0.64,1)_both]"
+      }`}
     >
       {icons[toast.type]}
-      <span className="flex-1 font-bold font-sans">{toast.message}</span>
+      <span className="flex-1 font-sans font-bold">{toast.message}</span>
       <button
         onClick={() => onDismiss(toast.id)}
         aria-label="Dismiss"
-        className={`ml-auto shrink-0 flex items-center justify-center p-[2px] rounded bg-transparent border-none cursor-pointer transition-colors duration-150 hover:bg-black/[0.06] ${closeStyles[toast.type]}`}
+        className={`ml-auto flex shrink-0 cursor-pointer items-center justify-center rounded border-none bg-transparent p-[2px] transition-colors duration-150 hover:bg-black/[0.06] ${closeStyles[toast.type]}`}
       >
-        <svg viewBox="0 0 12 12" fill="none" className="w-[10px] h-[10px]">
+        <svg viewBox="0 0 12 12" fill="none" className="h-[10px] w-[10px]">
           <path
             d="M1 1l10 10M11 1L1 11"
             stroke="currentColor"
@@ -167,4 +156,3 @@ export function useToast() {
   if (!ctx) throw new Error("useToast must be used inside <ToastProvider>");
   return ctx;
 }
-

@@ -3,8 +3,8 @@ import { ImageContainer } from "@/components/molecules/ImageContainer";
 import { NotchedImage } from "@/components/molecules/NotchedImage";
 
 const section = {
-  mainImage: { src: "/favicon.jpg", alt: "SSW office reception" },
-  secondaryImage: { src: "/favicon.jpg", alt: "SSW classroom" },
+  mainImage: { src: "/images/home/about-office.jpg", alt: "SSW office reception" },
+  secondaryImage: { src: "/images/home/teaching.jpg", alt: "SSW classroom" },
   badgeNumber: 5,
   badgeLabel: "Years Of Experience",
 };

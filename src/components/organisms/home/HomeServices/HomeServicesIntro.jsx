@@ -10,7 +10,7 @@ const defaultSection = {
   desc: "Explore our wide range of services crafted to help you grow and succeed.",
   ctaLabel: "Explore More",
   ctaURL: "#",
-  image: { src: "/favicon.jpg", alt: "SSW team group photo" },
+  image: { src: "/images/home/wholeteam.jpg", alt: "SSW team group photo" },
 };
 
 export function ServicesIntro({

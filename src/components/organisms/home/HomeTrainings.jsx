@@ -26,7 +26,7 @@ const trainingIntro = {
   desc: "Learn practical skills, gain confidence, and prepare for career opportunities in Japan with SSW Training Centre Nepal.",
   ctaLabel: "Explore More",
   ctaURL: "#",
-  image: { src: "/favicon.jpg", alt: "SSW team group photo" },
+  image: { src: "/images/home/class-room.jpg", alt: "SSW team group photo" },
 };
 const section = {
   theme: "red",
