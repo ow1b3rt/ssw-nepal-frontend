@@ -1,7 +1,7 @@
 import { ROUTES } from "@/constants/routes/routes";
 
 import AnimatedCard from "@/components/ui/animated-card";
-import { EventsSection } from "@/components/organism/EventSection";
+import { EventsSection } from "@/components/organisms/EventSection";
 import { BackToTop } from "@/components/Reusables";
 
 export const metadata = {
@@ -55,7 +55,7 @@ function eventToBlog(event) {
     },
     title: event.title,
     desc: event.description,
-    url: `/events/${event.id}`,
+    url: ROUTES.OTHERS.EVENTS.SINGLE_VIA_ID(event.id),
   };
 }
 

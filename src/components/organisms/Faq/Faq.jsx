@@ -3,23 +3,6 @@
 import { useState } from "react";
 import { FaCaretDown, FaCaretUp } from "react-icons/fa";
 
-const section = {
-  items: [
-    {
-      question: "Lorem ipsum dolor sit amet consectetur?",
-      answer: "Typically, 6-8 weeks with focused study.",
-    },
-    {
-      question: "Lorem ipsum dolor sit amet consectetur?",
-      answer: "Typically, 6-8 weeks with focused study.",
-    },
-    {
-      question: "Lorem ipsum dolor sit amet consectetur?",
-      answer: "Typically, 6-8 weeks with focused study.",
-    },
-  ],
-};
-
 function FaqItem({ number, question, answer, open, onToggle }) {
   return (
     <div

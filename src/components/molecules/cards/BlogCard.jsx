@@ -14,7 +14,7 @@ export function BlogCard({ blog: data = section, CardIcon = ArrowUpRight }) {
   return (
     <Link
       href={data.url}
-      className="group bg-faint-blue hover:bg-faint-red flex flex-col rounded-3xl transition duration-600 ease-in-out"
+      className="group bg-faint-blue hover:bg-faint-red flex flex-1 flex-col rounded-3xl transition duration-600 ease-in-out"
     >
       <ImageContainer
         className="aspect-4/3 max-h-72 w-full rounded-t-3xl"

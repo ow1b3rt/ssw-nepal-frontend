@@ -51,12 +51,12 @@ export function GalleryCard({ image, label, height, theme = "lightblue" }) {
   return (
     <div
       className="flex w-full flex-col gap-3 rounded-2xl border bg-transparent p-4 shadow-sm"
-      style={{ height: `${height}px` }}
+      style={{ height: height ? `${height}px` : "auto" }}
     >
       <ImageContainer
         className="aspect-square w-full flex-1 rounded-xl"
-        src={image.src}
-        alt={image.alt}
+        src={image?.src || ""}
+        alt={image?.alt || "Gallery Image"}
       />
       {label && (
         <div className={`rounded-xl border py-4 text-center text-lg font-bold ${THEMES[theme]}`}>
@@ -67,7 +67,43 @@ export function GalleryCard({ image, label, height, theme = "lightblue" }) {
   );
 }
 
-export function HomeGallery({ section: data = section }) {
+async function fetchGallery() {
+  try {
+    const res = await fetch(ROUTES.API.LAYOUT_GALLERY, { cache: "no-store" });
+    if (!res.ok) return null;
+    const data = await res.json();
+    return data.success ? data.layout : null;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+}
+
+export async function HomeGallery({ section: fallbackData = section }) {
+  const data = await fetchGallery();
+  let items = data?.items || fallbackData.items;
+  if (data?.items && data.items.length > 0) {
+    items = data.items.slice(0, 7).map((item, index) => {
+      let column = "left";
+      const colIndex = index % 3;
+      if (colIndex === 1) column = "center";
+      else if (colIndex === 2) column = "right";
+      let height = 340;
+      if (colIndex === 1) {
+        height = 580;
+      } else {
+        height = index % 2 === 0 ? 340 : 220;
+      }
+      return {
+        ...item,
+        column,
+        height,
+      };
+    });
+  }
+  const ctaLabel = data?.ctaLabel || fallbackData.ctaLabel;
+  const ctaURL = ROUTES.GALLERY;
+
   return (
     <div
       id="home-gallery"
@@ -92,7 +128,7 @@ export function HomeGallery({ section: data = section }) {
       >
         {COLUMNS.map((column) => (
           <div key={column} className="flex flex-1 flex-col gap-4 lg:gap-8">
-            {data.items
+            {items
               .filter((item) => item.column === column)
               .map((item, j) => (
                 <GalleryCard key={j} {...item} />
@@ -104,10 +140,10 @@ export function HomeGallery({ section: data = section }) {
 
       <AnimatedCard direction="up" distance={12} triggerOnView>
         <Link
-          href={data.ctaURL}
+          href={ctaURL}
           className="bg-primary-red rounded-lg px-10 py-4 text-lg font-bold text-white transition duration-500 ease-in-out hover:bg-black"
         >
-          {data.ctaLabel}
+          {ctaLabel}
         </Link>
       </AnimatedCard>
     </div>
