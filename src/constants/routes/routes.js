@@ -6,9 +6,20 @@ export const ROUTES = {
 
   HOME: "/",
   GALLERY: "/others/gallery",
+
+  TRAININGS: {
+    HOME: "/training",
+    SINGLE_VIA_ID: (id) => `/trainings/${id}`,
+  },
+
   NOTICES: {
     HOME: "/notices",
     SINGLE_VIA_ID: (id) => `/notices/${id}`,
+  },
+
+  LANGUAGE: {
+    HOME: "/languages",
+    SINGLE_VIA_ID: (id) => `/languages/${id}`,
   },
 
   VISITOR_LOGIN: "/login",
