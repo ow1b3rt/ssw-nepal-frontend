@@ -23,5 +23,5 @@ export default async function HomeEvents() {
   const data = await getEvents();
   const events = data?.items && data.items.length > 0 ? data.items.map(eventToBlog) : null;
 
-  return <HomeEventsClient events={events} />;
+  return events && <HomeEventsClient events={events} />;
 }

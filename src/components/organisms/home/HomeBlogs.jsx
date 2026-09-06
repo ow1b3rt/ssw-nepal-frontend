@@ -30,7 +30,7 @@ const HomeBlogs = async () => {
   const { items = [] } = (await getBlogs()) || {};
   const blogPosts = items.map(mapBlogItem);
 
-  return (
+  return (blogPosts.length > 0 &&
     <div
       id="home-blogs"
       className="flex flex-col items-center justify-center gap-y-8 md:pt-10 xl:gap-y-16"
