@@ -24,12 +24,15 @@ export default function DetailPage({ data, isBlog = false, isEvent = false }) {
       {data.image?.src && (
         <AnimatedCard
           direction="down"
-          className="relative mb-5 max-h-160 w-full overflow-hidden rounded-[12px]"
+          className="relative mb-5 w-full overflow-hidden rounded-[12px]"
         >
           <ImageContainer
             src={data.image.src}
             alt={data.image.alt || data.title || "Image"}
             className="aspect-video w-full object-contain"
+            sizes="100vw"
+            width={0}
+            height={0}
           />
         </AnimatedCard>
       )}{" "}
