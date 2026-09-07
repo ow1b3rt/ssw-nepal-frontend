@@ -98,7 +98,6 @@ export async function HomeGallery({ section: fallbackData = section }) {
         height = column === "center" ? 600 : 450;
       } else {
         height = column === "center" ? 260 : 410;
-        console.log("items", item);
       }
 
       return {

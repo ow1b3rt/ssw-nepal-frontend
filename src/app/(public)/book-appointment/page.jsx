@@ -12,7 +12,6 @@ export default function Appointment() {
   const [formKey, setFormKey] = useState(0);
 
   const handleSubmit = async (data) => {
-    console.log("data", data);
     if (
       !data.firstName?.trim() ||
       !data.lastName?.trim() ||

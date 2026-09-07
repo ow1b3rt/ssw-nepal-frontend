@@ -4,7 +4,6 @@ import { FaqSection } from "@/components/organisms/Faq/Faq";
 
 export default async function FaqPage() {
   const data = await fetcher("/layouts/faqs");
-  console.log("faq data", data);
 
   return (
     <section className="flex w-full flex-col gap-8 p-4">
