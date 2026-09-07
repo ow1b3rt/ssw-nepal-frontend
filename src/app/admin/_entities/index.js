@@ -11,6 +11,7 @@ import { languages } from "./languages.js";
 import { layouts } from "./layouts.js";
 import { notices } from "./notices.js";
 import { services } from "./services.js";
+import { success } from "./success.js";
 import { training } from "./training.js";
 import { users } from "./users.js";
 
@@ -28,4 +29,6 @@ export const entities = defineEntities({
   "sections/services": services,
   "sections/training": training,
   "sections/languages": languages,
+
+  success,
 });

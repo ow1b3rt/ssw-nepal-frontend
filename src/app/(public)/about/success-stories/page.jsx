@@ -1,13 +1,28 @@
+import { ROUTES } from "@/constants/routes/routes";
 import { successStoryData } from "@/data/successStory";
 
 import SuccessStoryCard from "@/components/organisms/SuccessStories/successStoryCard";
 import SuccessStoryText from "@/components/organisms/SuccessStories/successStoryText";
 
-export default function SuccessStoryPage() {
+export async function getSuccessStories() {
+  try {
+    const res = await fetch(ROUTES.API.SUCCESS_STORIES, { cache: "no-store" });
+    if (!res.ok) return null;
+    const data = await res.json();
+    return data ?? null;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+}
+
+export default async function SuccessStoryPage() {
+  const data = await getSuccessStories();
+
   return (
     <main className="flex flex-col pt-8">
       <div className="container mx-auto flex flex-col gap-8 lg:px-0">
-        {successStoryData.stories.map((story, index) => (
+        {data.items.map((story, index) => (
           <StoryRow
             key={`${story.name}-${index}`}
             story={story}
@@ -21,11 +36,16 @@ export default function SuccessStoryPage() {
 }
 
 function StoryRow({ story, imageLeft, first }) {
+  const image = {
+    src: story.mediaUrl ? `${process.env.NEXT_PUBLIC_HOST}${story.mediaUrl}` : "/favicon.jpg",
+    alt: "profile picture",
+  };
+
   const imageCard = (
     <SuccessStoryCard
       title={first ? successStoryData.title : null}
       description={first ? successStoryData.subtitle : null}
-      image={story.image}
+      image={image}
       background={imageLeft ? "bg-faint-blue" : "bg-faint-red"}
     />
   );
