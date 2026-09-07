@@ -90,5 +90,7 @@ export const ROUTES = {
     LANGUAGE: `${API_BASE}/layouts/languages`,
     LAYOUT_GALLERY: `${API_BASE}/layouts/gallery`,
     APPOINTMENT: `${API_BASE}/appointments`,
+
+    SUCCESS_STORIES: `${API_BASE}/success`,
   },
 };

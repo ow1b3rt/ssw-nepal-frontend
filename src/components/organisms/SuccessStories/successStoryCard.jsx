@@ -26,7 +26,7 @@ export default function SuccessStoryCard({ title, description, image, background
             src={image.src}
             alt={image.alt || title || "Success Story"}
             fill
-            sizes="(max-width: 1024px) 100vw, 650px"
+            sizes="100vw"
             className="object-cover"
           />
         </div>

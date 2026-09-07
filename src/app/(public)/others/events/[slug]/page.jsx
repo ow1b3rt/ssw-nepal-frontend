@@ -1,22 +1,8 @@
-import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { ROUTES } from "@/constants/routes/routes";
 
+import { getEvent } from "@/lib/api/events";
 import { localDate, localTime } from "@/lib/utils";
 import DetailPage from "@/components/detailPage";
-
-async function getEvent(slug) {
-  try {
-    const res = await fetch(ROUTES.API.EVENTS.SINGLE_VIA_SLUG(slug), { cache: "no-store" });
-
-    if (!res.ok) return null;
-
-    const data = await res.json();
-    return data.item ?? null;
-  } catch {
-    return null;
-  }
-}
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
