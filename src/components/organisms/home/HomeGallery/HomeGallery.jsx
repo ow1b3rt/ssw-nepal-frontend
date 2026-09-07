@@ -50,7 +50,7 @@ export function GalleryCard({ image, label, height, theme = "lightblue" }) {
   };
   return (
     <div
-      className="flex w-full flex-col gap-3 rounded-2xl border bg-transparent p-4 shadow-sm"
+      className="bg-faint-blue flex w-full flex-col gap-3 rounded-2xl border p-4 shadow-sm"
       style={{ height: height ? `${height}px` : "auto" }}
     >
       <ImageContainer
@@ -59,7 +59,9 @@ export function GalleryCard({ image, label, height, theme = "lightblue" }) {
         alt={image?.alt || "Gallery Image"}
       />
       {label && (
-        <div className={`rounded-xl border py-4 text-center text-lg font-bold ${THEMES[theme]}`}>
+        <div
+          className={`bg-primary-blue } rounded-xl border py-4 text-center text-lg font-bold text-white`}
+        >
           {label}
         </div>
       )}
@@ -128,8 +130,8 @@ export async function HomeGallery({ section: fallbackData = section }) {
         </h2>
       </AnimatedCard>
       <div className="flex w-full flex-col gap-4 md:hidden">
-        {rawItems.slice(0, 3).map((item, i) => (
-          <GalleryCard key={i} {...item} height={null} />
+        {rawItems?.slice(0, 3).map((item, i) => (
+          <GalleryCard theme="darkblue" key={i} {...item} height={null} />
         ))}
       </div>
 
@@ -142,7 +144,7 @@ export async function HomeGallery({ section: fallbackData = section }) {
         {COLUMNS.map((column) => (
           <div key={column} className="flex flex-1 flex-col gap-4 lg:gap-8">
             {desktopItems
-              .filter((item) => item.column === column)
+              ?.filter((item) => item.column === column)
               .map((item, j) => (
                 <GalleryCard key={j} {...item} />
               ))}

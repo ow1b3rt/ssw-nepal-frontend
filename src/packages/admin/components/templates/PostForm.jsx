@@ -1,21 +1,21 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { ChevronDown, Eye, Loader2, Plus } from "lucide-react";
+
 import { useApi, useGet } from "../../contexts/ApiContext.jsx";
 import { useAuth } from "../../contexts/AuthContext.jsx";
 import { useToast } from "../../contexts/ToastContext.jsx";
-import { isUuid, removeEmptyFields, slugify } from "../../utils/utils.js";
-import { getRuntimeConfig } from "../../lib/runtime.config.js";
-import { ChevronDown, Eye, Loader2, Plus } from "lucide-react";
-
 import { articleSchema, newsArticleSchema } from "../../lib/jsonld.js";
+import { getRuntimeConfig } from "../../lib/runtime.config.js";
+import { isUuid, removeEmptyFields, slugify } from "../../utils/utils.js";
 import { Textarea } from "../atoms/Input.jsx";
 import { Form } from "../molecules/Form.jsx";
-import { ImageUploader } from "./ImageUploader.jsx";
 import { InputFields } from "../molecules/InputFields.jsx";
-import { DateTime } from "../organisms/DateTime.jsx";
 import ArticleEditor from "../organisms/BlockNote.jsx";
+import { DateTime } from "../organisms/DateTime.jsx";
 import { SchemaEditor } from "../organisms/SchemaEditor.jsx";
+import { ImageUploader } from "./ImageUploader.jsx";
 
 const publishroles = ["admin", "editor", "junior_editor"];
 
@@ -41,7 +41,9 @@ export function PostForm({ defaults = null, onSubmit }) {
   // --- controlled fields needed for live JSON-LD schema generation ---
   const [title, setTitle] = useState(defaults?.title ?? "");
   const [excerpt, setExcerpt] = useState(defaults?.metaDescription ?? defaults?.excerpt ?? "");
-  const [ogDescription, setOgDescription] = useState(defaults?.ogDescription ?? defaults?.og_description ?? "");
+  const [ogDescription, setOgDescription] = useState(
+    defaults?.ogDescription ?? defaults?.og_description ?? "",
+  );
   const [contentType, setContentType] = useState(defaults?.content_type ?? "news");
   const [authorId, setAuthorId] = useState(defaults?.authorId ?? defaults?.author_id ?? "");
   const [authorUrl, setAuthorUrl] = useState(defaults?.authorUrl ?? defaults?.author_url ?? "");
@@ -103,15 +105,7 @@ export function PostForm({ defaults = null, onSubmit }) {
     }
 
     return newsArticleSchema({ ...shared, images: schemaImages });
-  }, [
-    contentType,
-    slug,
-    schemaImages,
-    title,
-    schemaDescription,
-    defaults,
-    siteUrl,
-  ]);
+  }, [contentType, slug, schemaImages, title, schemaDescription, defaults, siteUrl]);
 
   const handleSubmit = async (formDataValues) => {
     // 1. Extract rich text HTML content from ArticleEditor ref
@@ -158,22 +152,24 @@ export function PostForm({ defaults = null, onSubmit }) {
 
     try {
       const url = isEdit ? `/blogs/${defaults?.id}` : `/blogs`;
-      const res = isEdit ?
-        await patch(url, cleanPayload, {
-          success: (res) => {
-            toast.success(isEdit ? "Blog updated successfully!" : "Blog created successfully!");
-            setFormKey((prev) => prev + 1);
-            onSubmit?.(res);
-        } })
-        :
-        await post(url, cleanPayload, {
-          success: (res) => {
-            toast.success(isEdit ? "Blog updated successfully!" : "Blog created successfully!");
-            setFormKey((prev) => prev + 1);
-            onSubmit?.(res);
-        } })
+      const res = isEdit
+        ? await patch(url, cleanPayload, {
+            success: (res) => {
+              toast.success(isEdit ? "Blog updated successfully!" : "Blog created successfully!");
+              setFormKey((prev) => prev + 1);
+              onSubmit?.(res);
+            },
+          })
+        : await post(url, cleanPayload, {
+            success: (res) => {
+              toast.success(isEdit ? "Blog updated successfully!" : "Blog created successfully!");
+              setFormKey((prev) => prev + 1);
+              onSubmit?.(res);
+            },
+          });
     } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : "Unable to save blog. Please try again.";
+      const errorMessage =
+        err instanceof Error ? err.message : "Unable to save blog. Please try again.";
       toast.error(errorMessage);
     } finally {
       setLoading(false);
@@ -181,7 +177,7 @@ export function PostForm({ defaults = null, onSubmit }) {
   };
 
   return (
-    <div className="flex h-[85vh] flex-col overflow-hidden rounded-sm mt-6 p-4 bg-white font-sans text-gray-900">
+    <div className="mt-6 flex h-[85vh] flex-col overflow-hidden rounded-sm bg-white p-4 font-sans text-gray-900">
       <Form
         key={defaults?.id ?? `new-${formKey}`}
         defaults={defaults ?? {}}
@@ -282,7 +278,7 @@ export function PostForm({ defaults = null, onSubmit }) {
         {/* Main Content Split */}
         <div className="flex flex-1 overflow-hidden">
           {/* Main Editor Area (Left) */}
-          <div className="flex-1 overflow-y-auto scrollbar-none scroll-smooth bg-white">
+          <div className="flex-1 scrollbar-none overflow-y-auto scroll-smooth bg-white">
             <div className="mx-auto w-full max-w-[840px] px-8 py-12 lg:px-12">
               <textarea
                 name="title"
@@ -326,7 +322,7 @@ export function PostForm({ defaults = null, onSubmit }) {
             </div>
 
             {/* Sidebar Scrollable Content */}
-            <div className="flex-1 overflow-y-auto scrollbar-none">
+            <div className="flex-1 scrollbar-none overflow-y-auto">
               {activeTab === 0 && (
                 <div className="flex flex-col divide-y divide-gray-100">
                   <div className="flex flex-col gap-4 p-4">

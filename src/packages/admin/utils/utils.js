@@ -1,5 +1,6 @@
 import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
+
 import { getHost } from "../lib/runtime.config.js";
 
 export function cn(...inputs) {
@@ -89,9 +90,9 @@ export function removeEmptyFields(obj) {
 
 export async function fetcher(url) {
   const res = await fetch(process.env.NEXT_PUBLIC_API + url, {
-    credentials: 'include'
-  })
-  return res.ok ? await res.json(): null
+    credentials: "include",
+  });
+  return res.ok ? await res.json() : null;
 }
 
 export function setPath(obj, path, value) {

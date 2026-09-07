@@ -65,6 +65,10 @@ export function PayloadField({ field }) {
     return <Input name={name} type="number" placeholder={label} required={required} />;
   }
 
+  if (type === "time") {
+    return <Input name={name} type="time" placeholder={label} required={required} />;
+  }
+
   // Updated Password field using the new PasswordInput wrapper
   if (type === "password") {
     return <PasswordInput name={name} placeholder={label} required={required} />;
@@ -72,6 +76,10 @@ export function PayloadField({ field }) {
 
   if (type === "text") {
     return <Input name={name} type="text" placeholder={label} required={required} />;
+  }
+
+  if (type === "date-time") {
+    return <Input name={name} type="datetime-local" aria-label={label} required={required} />;
   }
 
   if (type === "relationship") {
