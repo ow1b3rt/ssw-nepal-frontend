@@ -5,9 +5,9 @@ import { ROUTES } from "@/constants/routes/routes";
 import { localDate, localTime } from "@/lib/utils";
 import DetailPage from "@/components/detailPage";
 
-async function getEvent(id) {
+async function getEvent(slug) {
   try {
-    const res = await fetch(ROUTES.API.EVENT(id), { cache: "no-store" });
+    const res = await fetch(ROUTES.API.EVENTS.SINGLE_VIA_SLUG(slug), { cache: "no-store" });
 
     if (!res.ok) return null;
 
@@ -19,8 +19,8 @@ async function getEvent(id) {
 }
 
 export async function generateMetadata({ params }) {
-  const { id } = await params;
-  const event = await getEvent(id);
+  const { slug } = await params;
+  const event = await getEvent(slug);
   return {
     title: event ? `${event.title} | SSW` : "Event | SSW",
     description: event?.description ?? undefined,
@@ -28,8 +28,8 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function EventDetailsPage({ params }) {
-  const { id } = await params;
-  const event = await getEvent(id);
+  const { slug } = await params;
+  const event = await getEvent(slug);
 
   const eventsData = {
     title: event.title,

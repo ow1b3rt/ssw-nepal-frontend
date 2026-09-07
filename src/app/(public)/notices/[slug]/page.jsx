@@ -4,10 +4,9 @@ import { notFound } from "next/navigation";
 import { ROUTES } from "@/constants/routes/routes";
 import { CalendarDays } from "lucide-react";
 
-async function getNotice(id) {
+async function getNotice(slug) {
   try {
-    const res = await fetch(ROUTES.API.NOTICE(id), { cache: "no-store" });
-
+    const res = await fetch(ROUTES.API.NOTICES.NOTICE_VIA_SLUG(slug), { cache: "no-store" });
     if (!res.ok) return null;
 
     const data = await res.json();
@@ -18,12 +17,10 @@ async function getNotice(id) {
 }
 
 export async function generateMetadata({ params }) {
-  const { id } = await params;
-  const notice = await getNotice(id);
+  const { slug } = await params;
+  const notice = await getNotice(slug);
   return {
-    title: notice
-      ? `${notice.title} | Enlighten Int'l Education`
-      : "Notice | Enlighten Int'l Education",
+    title: notice ? `${notice.title} | SSW` : "Notice | SSW",
     description: notice?.description ?? undefined,
   };
 }
@@ -39,7 +36,7 @@ function formatDate(dateStr) {
 function NoticeMedia({ url, type, title }) {
   if (type?.startsWith("image")) {
     return (
-      <div className="flex w-full items-center justify-center">
+      <div className="flex h-auto w-full items-center justify-center">
         <Image
           src={url}
           alt={title}
@@ -63,8 +60,8 @@ function NoticeMedia({ url, type, title }) {
 }
 
 export default async function NoticeDetailPage({ params }) {
-  const { id } = await params;
-  const notice = await getNotice(id);
+  const { slug } = await params;
+  const notice = await getNotice(slug);
 
   if (!notice) notFound();
 

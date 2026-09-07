@@ -12,7 +12,7 @@ export const metadata = {
 
 async function getNotices(page = 1, limit = 9) {
   try {
-    const res = await fetch(ROUTES.API.NOTICES(page, limit), {
+    const res = await fetch(ROUTES.API.NOTICES.HOME(page, limit), {
       cache: "no-store",
     });
     if (!res.ok) {
@@ -69,7 +69,7 @@ export default async function NoticePage({ searchParams }) {
                     },
                     title: notice.title,
                     desc: notice.description,
-                    url: ROUTES.NOTICES.SINGLE_VIA_ID(notice.id),
+                    url: ROUTES.NOTICES.SINGLE_VIA_SLUG(notice.slug),
                   }}
                 />
               ))}
