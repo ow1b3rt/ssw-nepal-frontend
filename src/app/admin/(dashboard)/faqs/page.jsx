@@ -7,7 +7,6 @@ import { FaqEditable } from "@/components/organisms/Faq/FaqEditable";
 export default function FaqPage() {
   const { data } = useGet("/layouts/faqs");
   const { post } = useApi();
-  console.log("faq data", data);
 
   const handleChange = async (updatedSection) => {
     const response = await post("/layouts/faqs", updatedSection);

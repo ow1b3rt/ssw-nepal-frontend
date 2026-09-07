@@ -6,7 +6,6 @@ import DetailPage from "@/components/detailPage";
 export default async function SingleBlog({ params }) {
   const { slug } = await params;
   const blog = await getBlog(slug);
-  console.log("dogendra", blog);
 
   const blogData = {
     title: blog.title,
