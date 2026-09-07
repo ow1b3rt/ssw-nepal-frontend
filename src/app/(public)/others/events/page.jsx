@@ -11,7 +11,7 @@ export const metadata = {
 
 async function getEvents(page = 1, limit = 999) {
   try {
-    const res = await fetch(ROUTES.API.EVENTS(page, limit), {
+    const res = await fetch(ROUTES.API.EVENTS.HOME(page, limit), {
       cache: "no-store",
     });
     if (!res.ok) {
@@ -55,7 +55,7 @@ function eventToBlog(event) {
     },
     title: event.title,
     desc: event.description,
-    url: ROUTES.OTHERS.EVENTS.SINGLE_VIA_ID(event.id),
+    url: ROUTES.OTHERS.EVENTS.SINGLE_VIA_SLUG(event.slug),
   };
 }
 
