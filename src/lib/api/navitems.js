@@ -3,7 +3,7 @@ import { ROUTES } from "@/constants/routes/routes";
 
 async function fetchLayoutItems(endpoint, name) {
   const res = await fetch(endpoint, {
-    next: { revalidate: 3600, tags: [endpoint] },
+    next: { cache: "no-store", tags: [endpoint] },
   });
 
   if (!res.ok) return [];
