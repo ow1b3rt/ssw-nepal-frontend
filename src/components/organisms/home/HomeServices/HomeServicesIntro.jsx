@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ROUTES } from "@/constants/routes/routes";
 import { ArrowRight } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -9,7 +10,7 @@ const defaultSection = {
   title: "What We Offer",
   desc: "Explore our wide range of services crafted to help you grow and succeed.",
   ctaLabel: "Explore More",
-  ctaURL: "#",
+  ctaURL: ROUTES.SERVICES.HOME,
   image: { src: "/images/home/wholeteam.jpg", alt: "SSW team group photo" },
 };
 

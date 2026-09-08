@@ -1,7 +1,7 @@
 import { ImageContainer } from "@/components/molecules/ImageContainer";
 
 const section = {
-  title: "Lorem Ipsum",
+  title: "Lorem Ipfadshfsum",
   quote:
     "Lorem ipsum dolor sit amet consectetur. Varius elementum ac enim sem dolor sit. Nulla ultricies sit gravida.",
   author: {
@@ -12,6 +12,8 @@ const section = {
 };
 
 export function TestimonialCard({ section: data = section, dark = false }) {
+  console.log("section", section);
+  console.log("data", data);
   return (
     <div
       className={`group flex flex-col overflow-hidden rounded-2xl border border-gray-200 shadow-sm transition-all duration-300 ${
