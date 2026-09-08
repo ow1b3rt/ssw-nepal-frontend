@@ -7,42 +7,35 @@ import { TestimonialCard } from "@/components/molecules/cards/TestimonialCard";
 
 const testimonials = [
   {
-    title: "Lorem ipsum dolor sit amet consectetur. ",
-    quote: "Lorem ipsum dolor sit amet consectetur. Gravida faucibus sit dignissim tortor lorem.",
+    title: "JLPT N4 + Caregiving",
+    quote:
+      "The teachers here helped me pass JLPT N4 in just six months. I am now working in Osaka.",
     author: {
-      name: "Trainee in kimono presenting",
+      name: "Sunita Rai",
       since: "SSW Trainee",
       avatar: "/favicon.jpg",
     },
   },
   {
-    title: "Lorem ipsum dolor sit amet consectetur. ",
-    quote: "Lorem ipsum dolor sit amet consectetur. Gravida faucibus sit dignissim tortor lorem.",
+    title: "Construction Skill Training",
+    quote: "The practical training was exactly what my employer in Japan expected on day one.",
     author: {
-      name: "Trainee in kimono presenting",
+      name: "Bishal Tamang",
       since: "SSW Trainee",
       avatar: "/favicon.jpg",
     },
   },
   {
-    title: "Lorem ipsum dolor sit amet consectetur. ",
-    quote: "Lorem ipsum dolor sit amet consectetur. Gravida faucibus sit dignissim tortor lorem.",
+    title: "JFT-Basic",
+    quote: "Small class sizes meant I got real speaking practice every day. Highly recommended.",
     author: {
-      name: "Trainee in kimono presenting",
-      since: "SSW Trainee",
-      avatar: "/favicon.jpg",
-    },
-  },
-  {
-    title: "Lorem ipsum dolor sit amet consectetur. ",
-    quote: "Lorem ipsum dolor sit amet consectetur. Gravida faucibus sit dignissim tortor lorem.",
-    author: {
-      name: "Trainee in kimono presenting",
+      name: "Anita Gurung",
       since: "SSW Trainee",
       avatar: "/favicon.jpg",
     },
   },
 ];
+
 const HomeTestimonials = () => {
   return (
     <div
@@ -64,7 +57,7 @@ const HomeTestimonials = () => {
           items={testimonials}
           transition="marquee"
           itemClassName="flex items-center justify-center basis-full sm:basis-1/2 lg:basis-1/3 md:px-7"
-          renderItem={(testimonial, index) => <TestimonialCard {...testimonial} key={index} />}
+          renderItem={(testimonial, index) => <TestimonialCard section={testimonial} key={index} />}
           marqueeSpeed={50}
           loop={true}
           showControls={false}
@@ -76,7 +69,7 @@ const HomeTestimonials = () => {
           items={testimonials}
           transition="marquee"
           itemClassName="flex items-center justify-center basis-full sm:basis-1/2 lg:basis-1/3 md:px-7"
-          renderItem={(testimonial, index) => <TestimonialCard {...testimonial} key={index} />}
+          renderItem={(testimonial, index) => <TestimonialCard section={testimonial} key={index} />}
           marqueeSpeed={50}
           loop={true}
           reverse

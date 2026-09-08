@@ -1,3 +1,4 @@
+import { ROUTES } from "@/constants/routes/routes";
 import {
   HardHat,
   HeartHandshake,
@@ -25,7 +26,7 @@ const trainingIntro = {
   title: "Our Training Courses",
   desc: "Learn practical skills, gain confidence, and prepare for career opportunities in Japan with SSW Training Centre Nepal.",
   ctaLabel: "Explore More",
-  ctaURL: "#",
+  ctaURL: ROUTES.TRAININGS.HOME,
   image: { src: "/images/home/class-room.jpg", alt: "SSW team group photo" },
 };
 const section = {
