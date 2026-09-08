@@ -69,7 +69,7 @@ export default async function NoticePage({ searchParams }) {
                     },
                     title: notice.title,
                     desc: notice.description,
-                    url: ROUTES.NOTICES.SINGLE_VIA_SLUG(notice.slug),
+                    url: ROUTES.OTHERS.NOTICES.SINGLE_VIA_SLUG(notice.slug),
                   }}
                 />
               ))}
