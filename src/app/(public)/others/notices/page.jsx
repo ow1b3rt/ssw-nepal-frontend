@@ -43,8 +43,8 @@ export default async function NoticePage({ searchParams }) {
             Notices
           </h1>
           <p className="text-text-color text-xl leading-relaxed">
-            Discover upcoming programs, seminars, and community initiatives at Everest Hospital.
-            Stay engaged and join us in shaping a healthier future.
+            Discover upcoming programs, seminars, and community initiatives at SSW. Stay engaged and
+            join us in shaping a healthier future.
           </p>
         </AnimatedCard>
       </div>
