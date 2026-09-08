@@ -111,6 +111,10 @@ export function buildNavConfig({ languages, training, services }) {
           href: ROUTES.OTHERS.GALLERY,
           label: "Gallery",
         },
+        {
+          href: ROUTES.OTHERS.NOTICES.HOME,
+          label: "Notices",
+        },
       ],
     },
     {

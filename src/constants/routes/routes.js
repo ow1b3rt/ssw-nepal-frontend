@@ -15,9 +15,9 @@ export const ROUTES = {
   },
 
   NOTICES: {
-    HOME: "/notices",
-    SINGLE_VIA_ID: (id) => `/notices/${id}`,
-    SINGLE_VIA_SLUG: (slug) => `/notices/${slug}`,
+    HOME: "/others/notices",
+    SINGLE_VIA_ID: (id) => `/others/notices/${id}`,
+    SINGLE_VIA_SLUG: (slug) => `/others/notices/${slug}`,
   },
 
   LANGUAGE: {
@@ -47,6 +47,12 @@ export const ROUTES = {
     EVENTS: {
       HOME: "/others/events",
       SINGLE_VIA_SLUG: (slug) => `/others/events/${slug}`,
+    },
+
+    NOTICES: {
+      HOME: "/others/notices",
+      SINGLE_VIA_ID: (id) => `/others/notices/${id}`,
+      SINGLE_VIA_SLUG: (slug) => `/others/notices/${slug}`,
     },
 
     FAQS: "/others/faqs",

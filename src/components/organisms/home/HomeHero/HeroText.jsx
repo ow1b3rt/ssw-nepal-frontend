@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ROUTES } from "@/constants/routes/routes";
 import { ChevronRight } from "lucide-react";
 
 import { AnimatedWords } from "@/components/ui/animated-words";
@@ -10,7 +11,7 @@ const section = {
   description:
     "Empowering you with practical training, language skills, and career guidance to unlock better opportunities in Nepal and abroad.",
   ctaLabel: "Book an Appointment",
-  ctaURL: "#",
+  ctaURL: ROUTES.APPOINTMENT,
 };
 
 export function HeroText({ section: data = section }) {
