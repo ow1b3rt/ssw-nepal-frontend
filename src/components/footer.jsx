@@ -4,7 +4,7 @@ import { Mail, MapPin, Phone } from "lucide-react";
 
 import Divider from "./ui/divider";
 
-export default function Footer({ data }) {
+export default function FooterView({ data }) {
   const currentYear = new Date().getFullYear();
 
   return (

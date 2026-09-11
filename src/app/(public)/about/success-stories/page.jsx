@@ -22,7 +22,7 @@ export default async function SuccessStoryPage() {
   return (
     <main className="flex flex-col pt-8">
       <div className="container mx-auto flex flex-col gap-8 lg:px-0">
-        {data.items.map((story, index) => (
+        {data?.items?.map((story, index) => (
           <StoryRow
             key={`${story.name}-${index}`}
             story={story}

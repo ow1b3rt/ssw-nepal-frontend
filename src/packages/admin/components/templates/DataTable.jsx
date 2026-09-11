@@ -51,8 +51,6 @@ export default function DataTable({
   const { name, mutate } = useEntity();
   const { items, total, page, totalPages, hasNextPage, hasPrevPage } =
     normalizePayloadResponse(data);
-  console.log("data", normalizePayloadResponse(data));
-  console.log("fields", fields);
 
   const [selectedIds, setSelectedIds] = useState(() => new Set());
   const [isDeleting, setIsDeleting] = useState(false);
@@ -114,7 +112,6 @@ export default function DataTable({
   };
 
   const renderCell = (item, field) => {
-    console.log("field key", field);
     const [key, type, ...rest] = field.key.split(":");
     const value = item[key];
 

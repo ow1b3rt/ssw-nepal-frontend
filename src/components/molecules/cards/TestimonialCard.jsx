@@ -12,8 +12,6 @@ const section = {
 };
 
 export function TestimonialCard({ section: data = section, dark = false }) {
-  console.log("section", section);
-  console.log("data", data);
   return (
     <div
       className={`group flex flex-col overflow-hidden rounded-2xl border border-gray-200 shadow-sm transition-all duration-300 ${

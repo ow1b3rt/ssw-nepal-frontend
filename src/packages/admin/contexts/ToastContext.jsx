@@ -60,7 +60,6 @@ export function ToastProvider({ children }) {
   );
   const error = useCallback(
     (message, duration) => {
-      console.log("toast error");
       addToast(message, "error", duration);
     },
     [addToast],

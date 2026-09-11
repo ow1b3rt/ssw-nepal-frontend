@@ -14,7 +14,6 @@ function tableFields(config) {
 export default function EntityListPage() {
   const { entity } = useParams();
   const config = entities[entity];
-  console.log("config", config);
 
   if (!config) notFound();
 

@@ -9,7 +9,6 @@ import { useApi, useGet } from "./ApiContext.jsx";
 const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
-  console.log("heres");
   const [user, setUser] = useState(null);
   const { data, isLoading, mutate } = useGet("/auth/me");
   const { post } = useApi();
