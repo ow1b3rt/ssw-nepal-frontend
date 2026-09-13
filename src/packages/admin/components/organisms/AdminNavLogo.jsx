@@ -1,10 +1,12 @@
+import Image from "next/image";
+
 export function Logo({ panel }) {
   return (
-    <div className="flex h-10 items-center">
+    <div className="flex max-h-24 items-center overflow-hidden">
       {panel ? (
-        <img src="/logo.png" alt="Logo" className="h-7 w-auto object-contain" />
+        <img src="/logo.png" alt="Logo" className="h-auto w-full object-contain" />
       ) : (
-        <img src="/favicon.jpg" alt="Logo" className="h-7 w-7 rounded-md object-contain" />
+        <img src="/logo.png" alt="Logo" className="h-12 w-full rounded-md object-contain" />
       )}
     </div>
   );
