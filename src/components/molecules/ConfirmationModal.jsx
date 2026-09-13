@@ -3,15 +3,14 @@
 import { useState } from "react";
 import { Loader2 } from "lucide-react";
 
+
+
 import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+
+
+
+
 
 export function ConfirmationDialog({
   open,
@@ -45,7 +44,7 @@ export function ConfirmationDialog({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="border-none shadow-lg ring-0 outline-none sm:max-w-md">
+      <DialogContent className="border-none bg-white shadow-lg ring-0 outline-none sm:max-w-md">
         <DialogHeader>
           <DialogTitle className="text-xl font-medium">{title}</DialogTitle>
           {description && (
@@ -56,7 +55,7 @@ export function ConfirmationDialog({
         <DialogFooter className="gap-4 sm:gap-0">
           <Button
             variant="outline"
-            className="cursor-pointer text-base underline"
+            className="cursor-pointer border-none text-base underline ring-0 outline-none"
             onClick={handleCancel}
             disabled={isLoading}
           >
