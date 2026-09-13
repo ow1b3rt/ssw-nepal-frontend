@@ -88,14 +88,14 @@ export function AdminChildrenLayout({ name, tablefields, actions }) {
       <div className="flex flex-col gap-5">
         <div className="flex items-center justify-between rounded-xl border border-gray-200 bg-white px-5 py-4 shadow-sm">
           <div>
-            <h2 className="text-lg font-semibold text-gray-900">{capitalise(name)}</h2>
+            <h2 className="text-xl font-semibold text-black">{capitalise(name)}</h2>
             {typeof entity?.data?.totalDocs === "number" && (
               <p className="text-sm text-gray-500">{entity.data.totalDocs} total</p>
             )}
           </div>
           <Link
             href={`/admin/${name}/new`}
-            className="flex items-center gap-1.5 rounded-md bg-black px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-gray-800"
+            className="bg-primary-green-dark flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-gray-800"
           >
             <Plus size={16} />
             New {capitalise(name)}
@@ -108,14 +108,14 @@ export function AdminChildrenLayout({ name, tablefields, actions }) {
             {/* Search */}
             <div className="relative">
               <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
-                <Search size={16} />
+                <Search size={20} />
               </div>
               <input
                 type="text"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder={`Search ${name}...`}
-                className="w-full rounded-md border border-gray-300 bg-white py-1.5 pr-3 pl-9 text-sm text-gray-700 focus:border-gray-900 focus:ring-1 focus:ring-gray-900 focus:outline-none sm:w-64"
+                className="w-full rounded-md border border-gray-300 bg-white py-1.5 pr-3 pl-9 text-base text-gray-700 focus:border-gray-900 focus:ring-gray-900 focus:outline-none sm:w-64"
               />
             </div>
 
@@ -125,7 +125,7 @@ export function AdminChildrenLayout({ name, tablefields, actions }) {
                 key={filter.field}
                 value={activeFilters[filter.field] || ""}
                 onChange={(e) => handleFilterChange(filter.field, e.target.value)}
-                className="rounded-md border border-gray-300 bg-white py-1.5 pr-8 pl-3 text-sm font-medium text-gray-700 focus:border-gray-900 focus:ring-1 focus:ring-gray-900 focus:outline-none"
+                className="rounded-md border border-gray-300 bg-white py-1.5 pr-8 pl-3 text-base font-medium text-gray-700 focus:border-gray-900 focus:ring-1 focus:ring-gray-900 focus:outline-none"
               >
                 <option value="">All {filter.label}</option>
                 {filter.options.map((opt) => {
@@ -161,7 +161,7 @@ export function AdminChildrenLayout({ name, tablefields, actions }) {
               id="limit-select"
               value={limit}
               onChange={handleLimitChange}
-              className="rounded-md border border-gray-300 bg-white py-1.5 pr-8 pl-3 text-sm font-medium text-gray-700 focus:border-gray-900 focus:ring-1 focus:ring-gray-900 focus:outline-none"
+              className="rounded-md border border-gray-300 bg-white py-1.5 pr-8 pl-3 text-base font-medium text-gray-700 focus:border-gray-900 focus:ring-1 focus:ring-gray-900 focus:outline-none"
             >
               <option value={10}>10</option>
               <option value={20}>20</option>
