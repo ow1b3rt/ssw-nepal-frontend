@@ -2,7 +2,9 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { LogOut, PanelLeftClose, PanelLeftOpen } from "lucide-react";
+import { LogOut, PanelLeftClose, PanelLeftOpen, User2 } from "lucide-react";
+
+import { ConfirmationDialog } from "@/components/molecules/ConfirmationModal";
 
 import { useApi } from "../../contexts/ApiContext.jsx";
 import { useAuth } from "../../contexts/AuthContext.jsx";
@@ -13,6 +15,7 @@ import { Logo } from "../organisms/AdminNavLogo.jsx";
 
 export function AdminShell({ children }) {
   const [panel, setPanel] = useState(true);
+  const [logoutOpen, setLogoutOpen] = useState(false);
   const { user, logout } = useAuth();
   const { post } = useApi();
   const router = useRouter();
@@ -25,11 +28,16 @@ export function AdminShell({ children }) {
     }),
   );
 
+  const handleLogout = async () => {
+    await logout();
+    router.push("/admin/login");
+  };
+
   return (
     <div className="bg-black-500 flex h-screen text-xs">
       <div
         className={`relative flex flex-col gap-1 border-r border-gray-200 bg-white p-3 transition-all duration-200 ${
-          panel ? "w-[220px]" : "w-[72px]"
+          panel ? "w-55" : "w-18"
         }`}
       >
         <button
@@ -54,21 +62,36 @@ export function AdminShell({ children }) {
       </div>
 
       <div className="flex flex-1 justify-center overflow-y-auto bg-gray-50 p-4">
-        <div className="flex max-w-[1100px] flex-1 flex-col overflow-y-auto">
+        <div className="flex max-w-275 flex-1 flex-col overflow-y-auto">
           <div className="flex w-full justify-between">
             <Breadcrumb />
             <div className="flex items-center gap-4 pr-4">
-              <span className="rounded-sm border border-blue-500 bg-blue-50 px-2 py-1 text-xs text-blue-500">
+              <span className="border-primary-blue-dark bg-faint-blue text-primary-blue flex rounded-full border px-2 py-1 text-xs">
+                <User2 size={18} fill />
                 {user?.role?.toUpperCase() || "USER"}
               </span>
-              <button className="wrapper-btn" title="Logout" onClick={logout}>
-                <LogOut size={18} />
+              <button
+                className="wrapper-btn cursor-pointer"
+                title="Logout"
+                onClick={() => setLogoutOpen(true)}
+              >
+                <LogOut size={18} className="text-primary-red" />
               </button>
             </div>
           </div>
           <div className="flex-1">{children}</div>
         </div>
       </div>
+
+      <ConfirmationDialog
+        open={logoutOpen}
+        onOpenChange={setLogoutOpen}
+        title="Are you sure to Logout?"
+        description="You'll need to sign in again to access the admin panel."
+        confirmLabel="Confirm"
+        variant="destructive"
+        onConfirm={handleLogout}
+      />
     </div>
   );
 }

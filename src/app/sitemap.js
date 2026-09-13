@@ -1,5 +1,6 @@
 import { env } from "@/config/env";
 import { ROUTES } from "@/constants/routes/routes";
+
 import { getNavData } from "@/lib/api/navitems";
 
 const BASE_URL = env.hostUrl;

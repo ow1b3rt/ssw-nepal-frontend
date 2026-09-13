@@ -76,7 +76,7 @@ export function AppointmentForm({ onSubmit, loading = false }) {
       appointmentType: "",
       preferredTime: "",
       additionalInformation: "",
-    })
+    });
   };
 
   return (

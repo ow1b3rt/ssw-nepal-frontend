@@ -54,7 +54,10 @@ function FilePreview({ label, kind }) {
   return (
     <div className="flex h-full w-full flex-col items-center justify-center gap-1.5 bg-gray-50 p-2 text-center">
       {iconMap[kind] ?? iconMap.file}
-      <span className="w-full truncate text-[11px] leading-tight font-medium text-gray-600" title={label}>
+      <span
+        className="w-full truncate text-[11px] leading-tight font-medium text-gray-600"
+        title={label}
+      >
         {label}
       </span>
       {kind !== "file" && (
@@ -274,7 +277,9 @@ export function MediaLibraryModal({ onClose, onSelect, name }) {
               </div>
             ) : items.length === 0 ? (
               <p className="flex items-center justify-center gap-2 px-4 py-10 text-sm text-gray-500">
-                {search || typeFilter ? "No media matches your filters." : "No images uploaded yet."}
+                {search || typeFilter
+                  ? "No media matches your filters."
+                  : "No images uploaded yet."}
               </p>
             ) : (
               <div className="flex flex-col gap-2.5 overflow-y-scroll">
@@ -298,7 +303,10 @@ export function MediaLibraryModal({ onClose, onSelect, name }) {
                               fill
                             />
                           ) : (
-                            <FilePreview label={item.title || item.filename || "Untitled"} kind={kind} />
+                            <FilePreview
+                              label={item.title || item.filename || "Untitled"}
+                              kind={kind}
+                            />
                           )}
                           <button
                             type="button"
@@ -396,7 +404,9 @@ export function MediaLibraryModal({ onClose, onSelect, name }) {
                 <>
                   <Upload size={28} />
                   <span>Click to choose a file</span>
-                  <span className="text-xs text-gray-500">Images, PDF, DOCX, or video up to 10MB</span>
+                  <span className="text-xs text-gray-500">
+                    Images, PDF, DOCX, or video up to 10MB
+                  </span>
                 </>
               )}
               <input

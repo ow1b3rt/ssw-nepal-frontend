@@ -15,7 +15,7 @@ export default function Breadcrumb() {
   }));
 
   return (
-    <div className="flex items-center gap-3">
+    <div className="flex items-center gap-3 py-4">
       <button
         type="button"
         onClick={() => router.back()}
@@ -39,7 +39,7 @@ export default function Breadcrumb() {
           <div key={crumb.path} className="flex items-center gap-1">
             <ChevronRight size={16} className="text-gray-400" />
             {i === crumbs.length - 1 ? (
-              <span className="text-sm font-semibold text-gray-900">{crumb.label}</span>
+              <span className="text-primary-green text-sm font-semibold">{crumb.label}</span>
             ) : (
               <button
                 type="button"
