@@ -149,16 +149,16 @@ export default function DataTable({
         const labelKey = rest[0] ?? "name";
         const resolved = resolveRelationValue(value, labelKey);
         return resolved ? (
-          <span className="text-sm text-gray-700">{resolved.label}</span>
+          <span className="text-base text-gray-700">{resolved.label}</span>
         ) : (
-          <span className="text-sm text-gray-400">—</span>
+          <span className="text-base text-gray-400">—</span>
         );
       }
 
       case "date":
-        if (!value) return <span className="text-sm text-gray-400">—</span>;
+        if (!value) return <span className="text-base text-gray-400">—</span>;
         return (
-          <span className="text-sm text-gray-600">
+          <span className="text-base text-gray-600">
             {new Date(value).toLocaleString("en-US", {
               year: "numeric",
               month: "short",
@@ -170,14 +170,14 @@ export default function DataTable({
         );
 
       case "bold":
-        return <span className="text-sm font-semibold text-gray-900">{value}</span>;
+        return <span className="text-base font-semibold text-gray-900">{value}</span>;
 
       case "status":
         return <Badge value={value} variant={value === "published" ? "success" : "default"} />;
 
       default:
         return (
-          <span className="text-sm text-gray-600" title={value}>
+          <span className="text-base text-gray-600" title={value}>
             {value}
           </span>
         );
@@ -205,7 +205,7 @@ export default function DataTable({
     <div className="flex flex-col gap-3">
       {selectionEnabled && selectedCount > 0 && (
         <div className="flex items-center justify-between rounded-lg border border-gray-200 bg-gray-50 px-4 py-2.5">
-          <span className="text-sm text-gray-600">
+          <span className="text-base text-gray-600">
             <span className="font-medium text-gray-900">{selectedCount}</span>{" "}
             {selectedCount === 1 ? "record" : "records"} selected
           </span>
@@ -213,7 +213,7 @@ export default function DataTable({
             <button
               type="button"
               onClick={() => setSelectedIds(new Set())}
-              className="text-sm font-medium text-gray-500 hover:text-gray-700"
+              className="text-base font-medium text-gray-500 hover:text-gray-700"
             >
               Clear
             </button>
@@ -221,7 +221,7 @@ export default function DataTable({
               type="button"
               onClick={handleBulkDelete}
               disabled={isDeleting}
-              className="flex items-center gap-1.5 rounded-md bg-red-600 px-3 py-1.5 text-sm font-medium text-white transition-colors hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-60"
+              className="flex items-center gap-1.5 rounded-md bg-red-600 px-3 py-1.5 text-base font-medium text-white transition-colors hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-60"
             >
               <Trash2 size={14} />
               {isDeleting ? "Deleting…" : "Delete"}
@@ -251,7 +251,7 @@ export default function DataTable({
                 {fields.map((field, i) => (
                   <th
                     key={i}
-                    className="text-xs font-medium tracking-wide whitespace-nowrap text-gray-500 uppercase"
+                    className="text-sm font-medium tracking-wide whitespace-nowrap text-gray-500 uppercase"
                   >
                     {field.head}
                   </th>
@@ -301,7 +301,7 @@ export default function DataTable({
                 <tr>
                   <td
                     colSpan={(selectionEnabled ? 1 : 0) + fields.length + (renderActions ? 1 : 0)}
-                    className="px-4 py-12 text-center text-sm text-gray-400"
+                    className="px-4 py-12 text-center text-base text-gray-400"
                   >
                     No records found.
                   </td>
@@ -313,7 +313,7 @@ export default function DataTable({
       </div>
 
       {onPageChange && totalPages > 1 && (
-        <div className="flex items-center justify-between text-sm">
+        <div className="flex items-center justify-between text-base">
           <span className="text-gray-500">
             Page <span className="font-medium text-gray-700">{page}</span> of{" "}
             <span className="font-medium text-gray-700">{totalPages}</span>{" "}
