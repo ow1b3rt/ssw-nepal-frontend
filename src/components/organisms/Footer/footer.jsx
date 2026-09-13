@@ -1,5 +1,6 @@
-import { getNavData } from "@/lib/api/navitems";
 import { footerData as staticFooterData } from "@/data/footer";
+
+import { getNavData } from "@/lib/api/navitems";
 
 export async function getFooterData() {
   const { training, services } = await getNavData();
