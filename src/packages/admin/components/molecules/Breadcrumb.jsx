@@ -3,6 +3,10 @@
 import { usePathname, useRouter } from "next/navigation";
 import { ArrowLeft, ChevronRight, House } from "lucide-react";
 
+
+
+
+
 export default function Breadcrumb() {
   const pathname = usePathname();
   const router = useRouter();
@@ -39,7 +43,7 @@ export default function Breadcrumb() {
           <div key={crumb.path} className="flex items-center gap-1">
             <ChevronRight size={16} className="text-gray-400" />
             {i === crumbs.length - 1 ? (
-              <span className="text-primary-green text-sm font-semibold">{crumb.label}</span>
+              <span className="text-primary-green-dark text-sm font-semibold">{crumb.label}</span>
             ) : (
               <button
                 type="button"
