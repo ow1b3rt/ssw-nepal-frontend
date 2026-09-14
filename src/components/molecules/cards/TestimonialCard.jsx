@@ -14,7 +14,7 @@ const section = {
 export function TestimonialCard({ section: data = section, dark = false }) {
   return (
     <div
-      className={`group flex flex-col overflow-hidden rounded-2xl border border-gray-200 shadow-sm transition-all duration-300 ${
+      className={`group flex h-full w-full flex-col overflow-hidden rounded-2xl border border-gray-200 shadow-sm transition-all duration-300 ${
         dark ? "bg-primary-blue-dark/5" : "bg-faint-blue grayscale hover:grayscale-0"
       }`}
     >

@@ -1,3 +1,4 @@
+import { env } from "@/config/env";
 import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -19,4 +20,9 @@ export function localTime(date) {
     minute: "2-digit",
     hour12: true,
   });
+}
+
+export function getMediaUrl(path) {
+  if (!path) return "";
+  return `${env.hostUrl}${path}`;
 }

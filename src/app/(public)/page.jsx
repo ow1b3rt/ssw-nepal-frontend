@@ -1,5 +1,6 @@
 import { env } from "@/config/env";
 
+import { getTestimonials } from "@/lib/api/testimonials";
 import { HomeAbout } from "@/components/organisms/home/HomeAbout/HomeAbout";
 import HomeBlogs from "@/components/organisms/home/HomeBlogs";
 import HomeEvents from "@/components/organisms/home/HomeEvents/HomeEvents";
@@ -56,7 +57,16 @@ export const metadata = {
   },
 };
 
-export default function Home() {
+export default async function Home() {
+  let testimonials = [];
+
+  try {
+    const { items } = await getTestimonials({ page: 1, limit: 10 });
+    testimonials = items;
+  } catch {
+    testimonials = [];
+  }
+
   return (
     <div className="flex w-full flex-col gap-16 pt-12">
       <HomeHero />
@@ -65,7 +75,7 @@ export default function Home() {
       <HomeServices />
       <HomeGallery />
       <HomeTrainings />
-      <HomeTestimonials />
+      <HomeTestimonials testimonials={testimonials} />
       <HomeBlogs />
     </div>
   );
