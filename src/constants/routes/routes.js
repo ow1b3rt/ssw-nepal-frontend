@@ -12,6 +12,7 @@ export const ROUTES = {
   TRAININGS: {
     HOME: "/training",
     SINGLE_VIA_ID: (id) => `/trainings/${id}`,
+    SINGLE_VIA_SLUG: (slug) => `/training/${slug}`,
   },
 
   NOTICES: {

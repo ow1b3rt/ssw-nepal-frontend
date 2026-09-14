@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { ROUTES } from "@/constants/routes/routes";
 import {
   BedDouble,
   CreditCard,
@@ -12,6 +14,8 @@ import {
   UtensilsCrossed,
 } from "lucide-react";
 
+import { ImageContainer } from "@/components/molecules/ImageContainer";
+
 const ICONS = {
   UserCheck,
   FileText,
@@ -24,33 +28,20 @@ const ICONS = {
   UtensilsCrossed,
   PlaneTakeoff,
   HeartHandshake,
-  Languages,
 };
 
 const THEMES = {
   green: {
     bg: "bg-primary-green",
     hoverBg: "hover:bg-primary-green/10",
-    iconBg: "bg-white",
-    iconHoverBg: "group-hover:bg-primary-green",
-    iconColor: "text-primary-green",
-    iconHoverColor: "group-hover:text-white",
   },
   red: {
     bg: "bg-primary-red",
     hoverBg: "hover:bg-primary-red/10",
-    iconBg: "bg-white",
-    iconHoverBg: "group-hover:bg-primary-red",
-    iconColor: "text-primary-red",
-    iconHoverColor: "group-hover:text-white",
   },
   blue: {
     bg: "bg-primary-blue-dark",
     hoverBg: "hover:bg-faint-blue",
-    iconBg: "bg-white",
-    iconHoverBg: "group-hover:bg-primary-blue-dark",
-    iconColor: "text-primary-blue-dark",
-    iconHoverColor: "group-hover:text-white",
   },
 };
 
@@ -58,71 +49,83 @@ const section = {
   theme: "blue",
   list: [
     {
-      icon: "UserCheck",
+      image: { src: "/favicon.jpg", alt: "Career Counselling" },
       title: "Career Counselling",
       desc: "International English Language Testing System or IELTS",
+      url: ROUTES.SERVICES.HOME,
     },
     {
-      icon: "FileText",
+      image: { src: "/favicon.jpg", alt: "Test Preparations" },
       title: "Test Preparations",
       desc: "Preparing for tests can be stressful, but SSW Training Centre Nepal is here to help.",
+      url: ROUTES.SERVICES.HOME,
     },
     {
-      icon: "BedDouble",
+      image: { src: "/favicon.jpg", alt: "Hostel Faculty" },
       title: "Hostel Faculty",
       desc: "We understand that finding a comfortable place to stay is essential for our trainees.",
+      url: ROUTES.SERVICES.HOME,
     },
     {
-      icon: "RotateCw",
+      image: { src: "/favicon.jpg", alt: "SSW Training" },
       title: "SSW Training",
       desc: "We provide training programs to equip you with needed for the SSW visa.",
+      url: ROUTES.SERVICES.HOME,
     },
     {
-      icon: "Languages",
+      image: { src: "/favicon.jpg", alt: "JFT" },
       title: "JFT",
       desc: "Japanese language is crucial for a successful life and career in Japan.",
+      url: ROUTES.SERVICES.HOME,
     },
     {
-      icon: "CreditCard",
+      image: { src: "/favicon.jpg", alt: "Visa Guidance" },
       title: "Visa Guidance",
       desc: "Navigating the visa process can be complex and time-consuming, but at SSW.",
+      url: ROUTES.SERVICES.HOME,
     },
   ],
 };
 
-function ServiceCard({ icon, title, desc, theme }) {
+function ServiceCard({ image, icon, title, desc, url, theme }) {
   const Icon = ICONS[icon];
   const t = THEMES[theme] ?? THEMES.blue;
 
   return (
-    <div
+    <Link
+      href={url || ROUTES.SERVICES.HOME}
       className={`group flex w-full flex-col gap-1 rounded-3xl p-4 shadow-sm transition-colors duration-600 sm:gap-4 sm:p-6 ${t.bg} ${t.hoverBg}`}
     >
-      <div
-        className={`flex h-8 w-8 items-center justify-center rounded-md p-2 transition-colors duration-300 md:h-16 md:w-16 md:rounded-2xl lg:h-10 lg:w-10 lg:rounded-xl xl:h-16 xl:w-16 xl:rounded-2xl ${t.iconBg} ${t.iconHoverBg}`}
-      >
-        {Icon && (
-          <Icon
-            size={28}
-            className={`transition-colors duration-300 ${t.iconColor} ${t.iconHoverColor}`}
+      <div className="flex items-start">
+        {image?.src ? (
+          <ImageContainer
+            className="h-16 w-16 border-2 border-white"
+            src={image.src}
+            alt={image.alt || title}
           />
-        )}
+        ) : Icon ? (
+          <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white">
+            <Icon size={28} className="transition-colors duration-300" />
+          </div>
+        ) : null}
       </div>
-      <h3 className="text-base font-extrabold text-white transition-colors duration-300 group-hover:text-black md:text-2xl lg:text-xl xl:text-2xl">
+      <h3 className="truncate text-base font-extrabold text-white transition-colors duration-300 group-hover:text-black md:text-2xl lg:text-xl xl:text-2xl">
         {title}
       </h3>
-      <p className="text-sm text-white/70 transition-colors duration-300 group-hover:text-black/60 md:text-lg lg:text-base xl:text-lg">
+      <p className="line-clamp-3 text-sm text-white/70 transition-colors duration-300 group-hover:text-black/60 md:text-lg lg:text-base xl:text-lg">
         {desc}
       </p>
-    </div>
+    </Link>
   );
 }
 
 export function ServicesGrid({ section: data = section, className }) {
+  const { theme, list = [] } = data ?? {};
+
   return (
     <div className={`grid grid-cols-2 gap-2 sm:gap-4 ${className}`}>
-      {data.list.map((item, i) => (
-        <ServiceCard key={i} {...item} theme={data.theme} />
+      {list.map((item, i) => (
+        <ServiceCard key={i} {...item} theme={theme} />
       ))}
     </div>
   );
