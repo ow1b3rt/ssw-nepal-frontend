@@ -1,3 +1,6 @@
+import { env } from "@/config/env";
+
+import { getTestimonials } from "@/lib/api/testimonials";
 import { HomeAbout } from "@/components/organisms/home/HomeAbout/HomeAbout";
 import HomeBlogs from "@/components/organisms/home/HomeBlogs";
 import HomeEvents from "@/components/organisms/home/HomeEvents/HomeEvents";
@@ -6,7 +9,6 @@ import { HomeHero } from "@/components/organisms/home/HomeHero/HomeHero";
 import { HomeServices } from "@/components/organisms/home/HomeServices/HomeServices";
 import HomeTestimonials from "@/components/organisms/home/HomeTestimonials";
 import HomeTrainings from "@/components/organisms/home/HomeTrainings";
-import { env } from "@/config/env";
 
 export const metadata = {
   title: "SSW Training Centre Nepal | Career Counselling, Visa & Japanese Language Training",
@@ -55,7 +57,16 @@ export const metadata = {
   },
 };
 
-export default function Home() {
+export default async function Home() {
+  let testimonials = [];
+
+  try {
+    const { items } = await getTestimonials({ page: 1, limit: 10 });
+    testimonials = items;
+  } catch {
+    testimonials = [];
+  }
+
   return (
     <div className="flex w-full flex-col gap-16 pt-12">
       <HomeHero />
@@ -64,7 +75,7 @@ export default function Home() {
       <HomeServices />
       <HomeGallery />
       <HomeTrainings />
-      <HomeTestimonials />
+      <HomeTestimonials testimonials={testimonials} />
       <HomeBlogs />
     </div>
   );

@@ -1,11 +1,12 @@
 "use client";
 
+import { getMediaUrl } from "@/lib/utils";
 import AnimatedCard from "@/components/ui/animated-card";
 import { AutoCarousel } from "@/components/molecules/AutoCarousel";
 import { BlogCard } from "@/components/molecules/cards/BlogCard";
 import { TestimonialCard } from "@/components/molecules/cards/TestimonialCard";
 
-const testimonials = [
+const testimonialsData = [
   {
     title: "JLPT N4 + Caregiving",
     quote:
@@ -36,7 +37,20 @@ const testimonials = [
   },
 ];
 
-const HomeTestimonials = () => {
+const HomeTestimonials = ({ testimonials }) => {
+  const items =
+    testimonials?.length > 0
+      ? testimonials.map(({ title, mediaUrl, name, description, batch }) => ({
+          title: title,
+          quote: description,
+          author: {
+            name,
+            since: batch,
+            avatar: getMediaUrl(mediaUrl),
+          },
+        }))
+      : testimonialsData;
+
   return (
     <div
       id="home-testimonials"
@@ -54,10 +68,10 @@ const HomeTestimonials = () => {
       </AnimatedCard>
       <div className="flex w-full flex-col gap-6">
         <AutoCarousel
-          items={testimonials}
+          items={items}
           transition="marquee"
           itemClassName="flex items-center justify-center basis-full sm:basis-1/2 lg:basis-1/3 md:px-7"
-          renderItem={(testimonial, index) => <TestimonialCard section={testimonial} key={index} />}
+          renderItem={(items, index) => <TestimonialCard section={items} key={index} />}
           marqueeSpeed={50}
           loop={true}
           showControls={false}
@@ -65,11 +79,12 @@ const HomeTestimonials = () => {
           showGradientMask={true}
           draggable={false}
         />
+
         <AutoCarousel
-          items={testimonials}
+          items={items}
           transition="marquee"
           itemClassName="flex items-center justify-center basis-full sm:basis-1/2 lg:basis-1/3 md:px-7"
-          renderItem={(testimonial, index) => <TestimonialCard section={testimonial} key={index} />}
+          renderItem={(items, index) => <TestimonialCard section={items} key={index} />}
           marqueeSpeed={50}
           loop={true}
           reverse
