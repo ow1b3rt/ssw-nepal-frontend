@@ -46,18 +46,18 @@ export const ROUTES = {
 
   OTHERS: {
     EVENTS: {
-      HOME: "/others/events",
-      SINGLE_VIA_SLUG: (slug) => `/others/events/${slug}`,
+      HOME: "/events",
+      SINGLE_VIA_SLUG: (slug) => `/events/${slug}`,
     },
 
     NOTICES: {
-      HOME: "/others/notices",
-      SINGLE_VIA_ID: (id) => `/others/notices/${id}`,
-      SINGLE_VIA_SLUG: (slug) => `/others/notices/${slug}`,
+      HOME: "/notices",
+      SINGLE_VIA_ID: (id) => `/notices/${id}`,
+      SINGLE_VIA_SLUG: (slug) => `/notices/${slug}`,
     },
 
-    FAQS: "/others/faqs",
-    GALLERY: "/others/gallery",
+    FAQS: "/faqs",
+    GALLERY: "/gallery",
   },
 
   LANGUAGE: {
