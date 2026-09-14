@@ -1,26 +1,10 @@
 import { ROUTES } from "@/constants/routes/routes";
-import {
-  HardHat,
-  HeartHandshake,
-  Languages,
-  PlaneTakeoff,
-  Sprout,
-  UtensilsCrossed,
-} from "lucide-react";
 
 import AnimatedCard from "@/components/ui/animated-card";
+import { getTrainings } from "@/lib/api/trainings";
 
 import { ServicesGrid } from "./HomeServices/HomeServicesGrid";
 import { ServicesIntro } from "./HomeServices/HomeServicesIntro";
-
-const ICONS = {
-  HardHat,
-  Sprout,
-  UtensilsCrossed,
-  PlaneTakeoff,
-  HeartHandshake,
-  Languages,
-};
 
 const trainingIntro = {
   title: "Our Training Courses",
@@ -29,49 +13,88 @@ const trainingIntro = {
   ctaURL: ROUTES.TRAININGS.HOME,
   image: { src: "/images/home/class-room.jpg", alt: "SSW team group photo" },
 };
-const section = {
+
+const trainingsSection = {
   theme: "red",
   list: [
     {
       icon: "HardHat",
       title: "Construction",
       desc: "Gain practical skills and industry knowledge for construction-related work",
+      url: ROUTES.TRAININGS.HOME,
     },
     {
       icon: "Sprout",
       title: "Agriculture",
       desc: "Develop essential agricultural skills and knowledge to prepare for",
+      url: ROUTES.TRAININGS.HOME,
     },
     {
       icon: "UtensilsCrossed",
       title: "Food Service",
       desc: "Learn essential food service skills, workplace practices, and knowledge required",
+      url: ROUTES.TRAININGS.HOME,
     },
     {
       icon: "PlaneTakeoff",
       title: "Aviation Ground Handling",
       desc: "Build practical knowledge and skills for airport ground",
+      url: ROUTES.TRAININGS.HOME,
     },
     {
       icon: "HeartHandshake",
       title: "Nursing Caregiver",
       desc: "Develop the essential knowledge, skills, and care practices needed to support",
+      url: ROUTES.TRAININGS.HOME,
     },
     {
       icon: "Languages",
       title: "JLPT N5 Preparation",
       desc: "Build your Japanese language foundation",
+      url: ROUTES.TRAININGS.HOME,
     },
   ],
 };
 
-export default function HomeTrainings() {
+export default async function HomeTrainings() {
+  let section = trainingsSection;
+
+  try {
+    const trainings = await getTrainings();
+    if (trainings?.length) {
+      section = {
+        theme: trainingsSection.theme,
+        list: trainings.slice(0, 6).map((training) => ({
+          image: training.image,
+          title: training.title,
+          desc: training.description,
+          url: ROUTES.TRAININGS.SINGLE_VIA_SLUG(training.slug),
+        })),
+      };
+    }
+  } catch {
+    section = trainingsSection;
+  }
+
   return (
-    <section id="home-trainings" className="grid gap-8 gap-y-8 md:pt-10 lg:grid-cols-2 xl:gap-y-16">
-      <AnimatedCard className="order-2 lg:order-1" direction="down" distance={12} triggerOnView>
+    <section
+      id="home-trainings"
+      className="grid gap-8 gap-y-8 md:pt-10 lg:grid-cols-2 xl:gap-y-16"
+    >
+      <AnimatedCard
+        className="order-2 lg:order-1"
+        direction="down"
+        distance={12}
+        triggerOnView
+      >
         <ServicesGrid section={section} />
       </AnimatedCard>
-      <AnimatedCard className="order-1 lg:order-2" direction="up" distance={12} triggerOnView>
+      <AnimatedCard
+        className="order-1 lg:order-2"
+        direction="up"
+        distance={12}
+        triggerOnView
+      >
         <ServicesIntro
           className="bg-faint-red"
           section={trainingIntro}

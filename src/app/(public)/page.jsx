@@ -1,5 +1,6 @@
 import { env } from "@/config/env";
 
+import { getServices } from "@/lib/api/services";
 import { getTestimonials } from "@/lib/api/testimonials";
 import { HomeAbout } from "@/components/organisms/home/HomeAbout/HomeAbout";
 import HomeBlogs from "@/components/organisms/home/HomeBlogs";
@@ -61,8 +62,8 @@ export default async function Home() {
   let testimonials = [];
 
   try {
-    const { items } = await getTestimonials({ page: 1, limit: 10 });
-    testimonials = items;
+    const { items: testimonialItems } = await getTestimonials({ page: 1, limit: 10 });
+    testimonials = testimonialItems;
   } catch {
     testimonials = [];
   }

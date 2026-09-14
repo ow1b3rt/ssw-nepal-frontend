@@ -1,30 +1,13 @@
 import { ROUTES } from "@/constants/routes/routes";
 
+import { getServices } from "@/lib/api/services";
 import AnimatedCard from "@/components/ui/animated-card";
 import { BlogCard } from "@/components/molecules/cards/BlogCard";
 
 export const metadata = {
-  title: "Services | Enlighten Int'l Education",
-  description: "Services provided by Enlighten International Education",
+  title: "Services | SSW",
+  description: "Services provided by SSW",
 };
-
-async function getServices() {
-  try {
-    const res = await fetch(ROUTES.API.SERVICES, {
-      cache: "no-store",
-    });
-    if (!res.ok) {
-      return [];
-    }
-    const data = await res.json();
-    if (data?.success && data?.layout?.items) {
-      return data.layout.items;
-    }
-    return [];
-  } catch {
-    return [];
-  }
-}
 
 export default async function ServicesPage() {
   const services = await getServices();
