@@ -18,10 +18,22 @@ function humanize(name = "") {
     .join(" ");
 }
 
+function toLocalDatetimeString(isoString) {
+  if (!isoString) return "";
+  const date = new Date(isoString);
+  if (isNaN(date.getTime())) return isoString;
+  const pad = (n) => String(n).padStart(2, "0");
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}T${pad(date.getHours())}:${pad(date.getMinutes())}`;
+}
+
 export function useResolvedDefault(name, rest) {
   const contextDefaults = useContext(DefaultsContext);
   const isControlled = "value" in rest;
-  const resolvedDefaultValue = "defaultValue" in rest ? rest.defaultValue : contextDefaults?.[name];
+  let resolvedDefaultValue = "defaultValue" in rest ? rest.defaultValue : contextDefaults?.[name];
+
+  if (rest.type === "datetime-local" && resolvedDefaultValue) {
+    resolvedDefaultValue = toLocalDatetimeString(resolvedDefaultValue);
+  }
 
   return isControlled ? {} : { defaultValue: resolvedDefaultValue };
 }
