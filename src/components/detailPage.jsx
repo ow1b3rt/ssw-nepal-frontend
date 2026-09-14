@@ -24,7 +24,7 @@ export default function DetailPage({ data, isBlog = false, isEvent = false }) {
       {data.image?.src && (
         <AnimatedCard
           direction="down"
-          className="relative mb-5 w-full overflow-hidden rounded-[12px]"
+          className="relative mx-auto mb-5 w-3/4 overflow-hidden rounded-[12px]"
         >
           <ImageContainer
             src={data.image.src}
@@ -37,7 +37,7 @@ export default function DetailPage({ data, isBlog = false, isEvent = false }) {
         </AnimatedCard>
       )}{" "}
       {isEvent && (
-        <div className="mb-6 grid grid-cols-1 gap-4 px-8 sm:grid-cols-3">
+        <div className="mx-auto mb-6 grid w-3/4 grid-cols-1 gap-4 px-8 sm:grid-cols-3">
           {data.time && (
             <div className="text-primary-blue-dark border-primary-blue flex items-center justify-center gap-2 rounded-lg border bg-white px-4 py-3 text-[15px] font-semibold">
               <Clock className="text-primary-blue-dark h-4 w-4" />
@@ -60,16 +60,19 @@ export default function DetailPage({ data, isBlog = false, isEvent = false }) {
           )}
         </div>
       )}
-      {data.content?.length > 0 &&
-        (isBlog ? (
-          <ArticleBody html={data.content} />
-        ) : (
-          <AnimatedCard className="text-text-color mt-8 space-y-6 text-lg leading-relaxed whitespace-pre-line">
-            {data.content.map((block, index) => (
-              <ContentBlock key={index} block={block} />
-            ))}
-          </AnimatedCard>
-        ))}
+      {data.content?.length > 0 && (
+        <div className="mx-auto w-3/4">
+          {isBlog ? (
+            <ArticleBody html={data.content} />
+          ) : (
+            <AnimatedCard className="text-text-color mt-8 space-y-6 text-lg leading-relaxed whitespace-pre-line">
+              {data.content.map((block, index) => (
+                <ContentBlock key={index} block={block} />
+              ))}
+            </AnimatedCard>
+          )}
+        </div>
+      )}
     </main>
   );
 }
