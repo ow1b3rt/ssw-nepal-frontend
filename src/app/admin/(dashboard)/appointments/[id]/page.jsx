@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useParams, useRouter } from "next/navigation";
+import { AdminLayout, useApi, useGet, useToast } from "@/packages/admin";
 import {
   CalendarClock,
   CalendarDays,
@@ -15,8 +16,6 @@ import {
   Phone,
   Target,
 } from "lucide-react";
-
-import { AdminLayout, useApi, useGet, useToast } from "@/packages/admin";
 
 const STATUS_SELECT_STYLES = {
   warning: "border-yellow-200 bg-yellow-50 text-yellow-800",
@@ -42,7 +41,7 @@ function FieldTile({ icon: Icon, label, value, fullWidth = false }) {
         {Icon && <Icon size={14} className="text-gray-400" />}
         {label}
       </div>
-      <div className="mt-2 whitespace-pre-wrap text-sm text-gray-900">
+      <div className="mt-2 text-sm whitespace-pre-wrap text-gray-900">
         {value || <span className="text-gray-400">—</span>}
       </div>
     </div>
@@ -69,7 +68,7 @@ function StatusSelect({ defaultValue, disabled }) {
         name="status"
         defaultValue={defaultValue}
         disabled={disabled}
-        className={`cursor-pointer appearance-none rounded-full border px-4 py-1.5 pr-8 text-sm font-medium capitalize outline-none transition-colors disabled:cursor-not-allowed disabled:opacity-60 ${STATUS_SELECT_STYLES[styleKey]}`}
+        className={`cursor-pointer appearance-none rounded-full border px-4 py-1.5 pr-8 text-sm font-medium capitalize transition-colors outline-none disabled:cursor-not-allowed disabled:opacity-60 ${STATUS_SELECT_STYLES[styleKey]}`}
       >
         {Object.entries(STATUS_LABEL).map(([val, label]) => (
           <option key={val} value={val}>
@@ -96,9 +95,7 @@ export default function AppointmentDetailPage() {
 
   const [saving, setSaving] = useState(false);
 
-  const fullName = record
-    ? [record.firstName, record.lastName].filter(Boolean).join(" ")
-    : "";
+  const fullName = record ? [record.firstName, record.lastName].filter(Boolean).join(" ") : "";
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -140,7 +137,9 @@ export default function AppointmentDetailPage() {
               <CalendarClock size={22} />
             </div>
             <div className="min-w-0 flex-1">
-              <h2 className="truncate text-lg font-semibold text-gray-900">{fullName || "Appointment"}</h2>
+              <h2 className="truncate text-lg font-semibold text-gray-900">
+                {fullName || "Appointment"}
+              </h2>
               <p className="truncate text-sm text-gray-500">{record.email}</p>
             </div>
             <div className="flex shrink-0 items-center gap-3">
@@ -155,7 +154,11 @@ export default function AppointmentDetailPage() {
             <FieldTile icon={Phone} label="Phone" value={record.phone} />
             <FieldTile icon={MapPin} label="Location" value={record.location} />
             <FieldTile icon={Target} label="Purpose" value={record.purpose} />
-            <FieldTile icon={ClipboardList} label="Appointment Type" value={record.appointmentType} />
+            <FieldTile
+              icon={ClipboardList}
+              label="Appointment Type"
+              value={record.appointmentType}
+            />
             <FieldTile icon={Clock} label="Preferred Time" value={record.preferredTime} />
             <FieldTile
               icon={CalendarDays}

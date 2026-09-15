@@ -32,21 +32,21 @@ function GalleryCardEditable({
     >
       <div className="absolute top-2 left-2 z-10 flex items-center gap-1">
         <span
-          className="cursor-move rounded bg-white/80 p-1 text-black/50 shadow"
+          className="cursor-move rounded bg-white/80 p-2 text-black/50 shadow"
           draggable
           onDragStart={(e) => {
             e.dataTransfer.setDragImage(cardRef.current, 20, 20);
             dragHandleProps.onDragStart(e);
           }}
         >
-          <FaGripVertical size={14} />
+          <FaGripVertical size={20} />
         </span>
         <button
           type="button"
           onClick={onRemove}
-          className="rounded bg-white/80 p-1 text-black/50 shadow hover:text-red-600"
+          className="rounded bg-white/80 p-2 text-black/50 shadow hover:text-red-600"
         >
-          <FaTrash size={14} />
+          <FaTrash size={20} />
         </button>
       </div>
 
@@ -131,7 +131,7 @@ export const HomeGalleryEditable = ({ section: initialSection, onChange, onSave 
 
   return (
     <div className="flex flex-col gap-6">
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid max-h-190 grid-cols-1 gap-6 overflow-y-scroll md:grid-cols-2 lg:grid-cols-3">
         {section.items.map((item, i) => (
           <GalleryCardEditable
             key={i}
@@ -159,7 +159,7 @@ export const HomeGalleryEditable = ({ section: initialSection, onChange, onSave 
         <button
           type="button"
           onClick={addItem}
-          className="flex w-fit items-center gap-2 rounded-lg border border-dashed border-gray-300 px-4 py-2 text-sm font-bold text-black/60"
+          className="flex w-fit items-center gap-2 rounded-full border border-dashed border-gray-400 px-4 py-2 text-sm font-bold text-black/60"
         >
           <FaPlus size={12} /> Add image
         </button>
@@ -168,7 +168,7 @@ export const HomeGalleryEditable = ({ section: initialSection, onChange, onSave 
           type="button"
           onClick={handleSave}
           disabled={saving}
-          className="bg-primary-green rounded-lg px-6 py-2 font-bold text-white disabled:opacity-60"
+          className="bg-primary-green-dark rounded-full px-6 py-2 text-sm font-bold text-white disabled:opacity-60"
         >
           {saving ? "Saving…" : "Save Gallery"}
         </button>

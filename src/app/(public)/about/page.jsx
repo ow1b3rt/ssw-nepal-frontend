@@ -1,7 +1,6 @@
 import Link from "next/link";
-import { ChevronRight } from "lucide-react";
-
 import { ROUTES } from "@/constants/routes/routes";
+import { ChevronRight } from "lucide-react";
 
 import AnimatedCard from "@/components/ui/animated-card";
 import { AnimatedWords } from "@/components/ui/animated-words";
@@ -42,7 +41,7 @@ export const metadata = {
 
 export default function AboutPage() {
   return (
-    <section className="container mx-auto px-4 pb-16 pt-8 xl:px-0">
+    <section className="container mx-auto px-4 pt-8 pb-16 xl:px-0">
       <div className="mb-10 flex flex-col items-center text-center">
         <AnimatedCard className="w-fit" direction="up" distance={12} triggerOnView>
           <h1 className="mb-2 text-3xl font-black tracking-[1px] text-black md:text-4xl xl:text-5xl">
@@ -85,7 +84,12 @@ export default function AboutPage() {
         ))}
       </AnimatedCard>
 
-      <AnimatedCard className="mt-16 flex justify-center" direction="up" distance={12} triggerOnView>
+      <AnimatedCard
+        className="mt-16 flex justify-center"
+        direction="up"
+        distance={12}
+        triggerOnView
+      >
         <Link
           href={ROUTES.APPOINTMENT}
           className="hover:bg-primary-red inline-flex items-center gap-3 rounded-2xl bg-black px-6 py-2.5 text-base font-bold text-white transition-colors duration-300 ease-in-out md:text-lg"

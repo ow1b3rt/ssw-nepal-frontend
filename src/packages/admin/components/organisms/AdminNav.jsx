@@ -22,13 +22,13 @@ export function AdminNav({ items, panel }) {
           <li key={key} title={key} className="w-full outline-none">
             <Link href={`/admin/${key}`} className="block w-full">
               <div
-                className={`flex items-center gap-3 rounded-lg border p-2 text-sm font-medium transition-colors ${
+                className={`flex items-center gap-3 rounded-b-lg p-2 pl-4 text-sm font-medium transition-colors duration-500 ${
                   isactive
-                    ? "border-gray-200 bg-white text-gray-900 shadow-sm"
-                    : "border-transparent text-gray-500 hover:bg-white hover:text-gray-900"
-                } ${panel ? "" : "justify-center"}`}
+                    ? " bg-primary-green text-white shadow-sm"
+                    : "border-transparent text-white hover:bg-black hover:text-white"
+                } ${panel ? "" : "justify-center pl-0!"}`}
               >
-                <value.icon size={18} className={isactive ? "text-gray-900" : "text-gray-400"} />
+                <value.icon size={18} className={isactive ? "text-white" : "text-white"} />
                 {panel && <span>{value.label}</span>}
               </div>
             </Link>

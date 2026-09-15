@@ -63,33 +63,57 @@ export function PayloadField({ field }) {
   }
 
   if (type === "email") {
-    return <Input name={name} type="email" placeholder={label} required={required} disabled={disabled} />;
+    return (
+      <Input name={name} type="email" placeholder={label} required={required} disabled={disabled} />
+    );
   }
 
   if (type === "number") {
-    return <Input name={name} type="number" placeholder={label} required={required} disabled={disabled} />;
+    return (
+      <Input
+        name={name}
+        type="number"
+        placeholder={label}
+        required={required}
+        disabled={disabled}
+      />
+    );
   }
 
   if (type === "date") {
-    return <Input name={name} type="date" placeholder={label} required={required} disabled={disabled} />;
+    return (
+      <Input name={name} type="date" placeholder={label} required={required} disabled={disabled} />
+    );
   }
 
   if (type === "time") {
-    return <Input name={name} type="time" placeholder={label} required={required} disabled={disabled} />;
+    return (
+      <Input name={name} type="time" placeholder={label} required={required} disabled={disabled} />
+    );
   }
 
   // Updated Password field using the new PasswordInput wrapper
   if (type === "password") {
-    return <PasswordInput name={name} placeholder={label} required={required} disabled={disabled} />;
+    return (
+      <PasswordInput name={name} placeholder={label} required={required} disabled={disabled} />
+    );
   }
 
   if (type === "text") {
-    return <Input name={name} type="text" placeholder={label} required={required} disabled={disabled} />;
+    return (
+      <Input name={name} type="text" placeholder={label} required={required} disabled={disabled} />
+    );
   }
 
   if (type === "date-time") {
     return (
-      <Input name={name} type="datetime-local" aria-label={label} required={required} disabled={disabled} />
+      <Input
+        name={name}
+        type="datetime-local"
+        aria-label={label}
+        required={required}
+        disabled={disabled}
+      />
     );
   }
 

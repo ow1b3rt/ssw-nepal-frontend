@@ -1,4 +1,6 @@
-import Footer from "@/components/organisms/Footer/Footer";
+import { footerData } from "@/data/footer";
+
+import FooterView from "@/components/footer";
 import Breadcrumb from "@/components/molecules/BreadCrumb";
 import Nav from "@/components/organisms/Navbar/Nav";
 
@@ -15,7 +17,7 @@ export default function PublicLayout({ children }) {
       </main>
 
       <section className="bg-[linear-gradient(0deg,#DF1F26_0%,#2B2422_35.58%)]">
-        <Footer />
+        <FooterView data={footerData} />
       </section>
     </div>
   );
