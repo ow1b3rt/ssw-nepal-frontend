@@ -1,8 +1,10 @@
 "use client";
 
 import { notFound, useParams, useRouter } from "next/navigation";
+import { Loader2 } from "lucide-react";
 import {
   AdminLayout,
+  Badge,
   PayloadEntityForm,
   RecordDetail,
   removeEmptyFields,
@@ -10,9 +12,17 @@ import {
   useGet,
   useToast,
 } from "@/packages/admin";
-import { Loader2 } from "lucide-react";
 
 import { entities } from "@/app/admin/entities";
+
+const STATUS_VARIANT = {
+  pending: "warning",
+  confirmed: "success",
+  cancelled: "danger",
+  completed: "primary",
+  published: "success",
+  draft: "default",
+};
 
 function coerceRelationshipIds(values, fields) {
   const relationshipFields = fields.filter((f) => f.type === "relationship");
@@ -27,6 +37,50 @@ function coerceRelationshipIds(values, fields) {
     coerced[field.name] = Array.isArray(raw) ? raw.map(toNumberOrKeep) : toNumberOrKeep(raw);
   }
   return coerced;
+}
+
+function firstAvailable(item, keys) {
+  for (const key of keys) {
+    if (item[key]) return item[key];
+  }
+  return "";
+}
+
+function DetailHero({ entity, item, isNew, saveButton }) {
+  const Icon = entity.icon;
+  const title = isNew ? "New record" : firstAvailable(item, [entity.titleField, "name", "email", "subject"]);
+  const subtitle = isNew ? "Fill in the fields below and save." : firstAvailable(item, ["email", "name", "title"]);
+  const accentValue = item.status;
+
+  return (
+    <header className="flex flex-wrap items-center gap-4 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+      {Icon && (
+        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gray-900 text-white shadow-sm">
+          <Icon size={22} />
+        </div>
+      )}
+
+      <div className="min-w-0 flex-1">
+        <p className="text-xs font-medium tracking-widest text-gray-400 uppercase">{entity.label}</p>
+        <h2 className="truncate text-lg font-semibold text-gray-900">{title}</h2>
+        {subtitle && subtitle !== title && (
+          <p className="truncate text-sm text-gray-500">{subtitle}</p>
+        )}
+      </div>
+
+      <div className="flex shrink-0 items-center gap-3">
+        {accentValue && !isNew && (
+          <Badge
+            value={accentValue}
+            variant={STATUS_VARIANT[accentValue] ?? "default"}
+            size="lg"
+            className="shrink-0 capitalize"
+          />
+        )}
+        {saveButton}
+      </div>
+    </header>
+  );
 }
 
 export default function EntityEditPage() {
@@ -50,31 +104,21 @@ export default function EntityEditPage() {
   if (!isNew && loading) {
     return (
       <AdminLayout title={entity.label}>
-        <Loader2 size={18} className="animate-spin text-gray-400" />
-        Loading…
+        <div className="mx-auto flex max-w-4xl">
+          <div className="w-full rounded-xl border border-gray-200 bg-white p-6 text-sm text-gray-500 shadow-sm">
+            <div className="flex items-center gap-2">
+              <Loader2 size={18} className="animate-spin text-gray-400" />
+              Loading…
+            </div>
+          </div>
+        </div>
       </AdminLayout>
     );
   }
 
   const item = data?.item ?? {};
   const hasStatus = entity.fields.some((f) => f.name.split(":")[0] === "status");
-
-  // Fully read-only entity (no editable fields) — render a detail view instead of a form.
-  if (!isNew && editableFields.length === 0) {
-    return (
-      <AdminLayout title={entity.label}>
-        <RecordDetail
-          title={`${entity.label} record`}
-          subtitle={item.email ?? item.subject ?? item.name ?? ""}
-          icon={entity.icon}
-          backHref={`/admin/${entitySlug}`}
-          fields={entity.fields}
-          data={item}
-          accentField={hasStatus ? "status" : null}
-        />
-      </AdminLayout>
-    );
-  }
+  const visibleFields = entity.fields.filter((f) => f.invisible !== true);
 
   async function handleSubmit(values) {
     const definedValues = removeEmptyFields(values);
@@ -92,13 +136,41 @@ export default function EntityEditPage() {
   }
 
   return (
-    <AdminLayout title={`${isNew ? "New" : "Edit"} ${entity.label}`} formId="entity-form">
-      <PayloadEntityForm
-        collectionFields={entity.fields}
-        defaults={item}
-        onSubmit={handleSubmit}
-        externalId="entity-form"
-      />
+    <AdminLayout>
+      <div className="mx-auto flex w-full max-w-4xl flex-col gap-6">
+        <DetailHero
+          entity={entity}
+          item={item}
+          isNew={isNew}
+          saveButton={
+            editableFields.length > 0 && (
+              <button
+                type="submit"
+                form="entity-form"
+                className="shrink-0 rounded-lg bg-gray-900 px-5 py-2 text-sm font-medium text-white shadow-sm transition-colors hover:bg-gray-800"
+              >
+                Save
+              </button>
+            )
+          }
+        />
+
+        {editableFields.length > 0 ? (
+          <PayloadEntityForm
+            collectionFields={entity.fields}
+            defaults={item}
+            onSubmit={handleSubmit}
+            externalId="entity-form"
+          />
+        ) : (
+          <RecordDetail
+            hideHeader
+            fields={visibleFields}
+            data={item}
+            accentField={hasStatus ? "status" : null}
+          />
+        )}
+      </div>
     </AdminLayout>
   );
 }

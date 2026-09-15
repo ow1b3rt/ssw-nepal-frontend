@@ -80,48 +80,42 @@ function renderValue(field, value) {
   return <span className="whitespace-pre-wrap">{displayValue(value)}</span>;
 }
 
-export function RecordDetail({
-  title,
-  subtitle,
-  icon: Icon,
-  backHref,
-  fields,
-  data = {},
-  accentField,
-}) {
+export function RecordDetail({ title, subtitle, icon: Icon, backHref, fields, data = {}, accentField, hideHeader = false }) {
   const accentValue = accentField ? data[accentField] : null;
 
   return (
     <div className="flex flex-col gap-6">
-      <div className="flex items-center gap-4 rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
-        <Link
-          href={backHref}
-          aria-label="Back"
-          className="rounded-full border border-gray-200 p-2 text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-900"
-        >
-          <ArrowLeft size={18} />
-        </Link>
+      {!hideHeader && (
+        <div className="flex items-center gap-4 rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+          <Link
+            href={backHref}
+            aria-label="Back"
+            className="rounded-full border border-gray-200 p-2 text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-900"
+          >
+            <ArrowLeft size={18} />
+          </Link>
 
-        {Icon && (
-          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gray-900 text-white">
-            <Icon size={22} />
+          {Icon && (
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gray-900 text-white">
+              <Icon size={22} />
+            </div>
+          )}
+
+          <div className="min-w-0 flex-1">
+            <h2 className="truncate text-lg font-semibold text-gray-900">{title}</h2>
+            {subtitle && <p className="truncate text-sm text-gray-500">{subtitle}</p>}
           </div>
-        )}
 
-        <div className="min-w-0 flex-1">
-          <h2 className="truncate text-lg font-semibold text-gray-900">{title}</h2>
-          {subtitle && <p className="truncate text-sm text-gray-500">{subtitle}</p>}
+          {accentValue && (
+            <Badge
+              value={accentValue}
+              variant={STATUS_VARIANT[accentValue] ?? "default"}
+              size="lg"
+              className="shrink-0 capitalize"
+            />
+          )}
         </div>
-
-        {accentValue && (
-          <Badge
-            value={accentValue}
-            variant={STATUS_VARIANT[accentValue] ?? "default"}
-            size="lg"
-            className="shrink-0 capitalize"
-          />
-        )}
-      </div>
+      )}
 
       <div className="grid gap-4 sm:grid-cols-2">
         {fields.map((field) => {
