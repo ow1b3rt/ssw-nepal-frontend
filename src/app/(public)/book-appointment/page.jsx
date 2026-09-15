@@ -25,6 +25,15 @@ export default function Appointment() {
       return;
     }
 
+    if (!/^(\d{10}|\+\d{1,13}|\+\d{1,3} \d{10})$/.test(data.phone)) {
+      toast.add({
+        type: "error",
+        description:
+          "Phone number must be exactly 10 digits, or a '+' followed by country code (e.g. +911234567890 or +91 1234567890).",
+      });
+      return;
+    }
+
     setLoading(true);
 
     try {
