@@ -67,7 +67,7 @@ export function AdminShell({ children }) {
             <Breadcrumb />
             <div className="flex items-center gap-4 pr-4">
               <span className="border-primary-blue-dark bg-faint-blue text-primary-blue flex rounded-full border px-2 py-1 text-xs">
-                <User2 size={18} fill />
+                <User2 size={18} fill="currentColor" />
                 {user?.role?.toUpperCase() || "USER"}
               </span>
               <button
