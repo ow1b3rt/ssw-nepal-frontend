@@ -4,13 +4,7 @@ import { useRef, useState } from "react";
 import { MediaLibraryModal, resolveUrl, setPath } from "@/packages/admin";
 import { FaGripVertical, FaPlus, FaTrash } from "react-icons/fa";
 
-
-
 import { ImageContainer } from "@/components/molecules/ImageContainer";
-
-
-
-
 
 const THEMES = {
   lightblue: "bg-primary-blue-dark/10 text-primary-blue-dark",
