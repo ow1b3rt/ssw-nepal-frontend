@@ -3,10 +3,6 @@
 import { usePathname, useRouter } from "next/navigation";
 import { ArrowLeft, ChevronRight, House } from "lucide-react";
 
-
-
-
-
 export default function Breadcrumb() {
   const pathname = usePathname();
   const router = useRouter();
