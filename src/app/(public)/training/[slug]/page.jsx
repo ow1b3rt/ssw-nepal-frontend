@@ -24,8 +24,8 @@ export async function generateMetadata({ params }) {
   const training = await getTrainingBySlug(slug);
   return {
     title: training
-      ? `${training.title} | Enlighten Int'l Education`
-      : "Training | Enlighten Int'l Education",
+      ? `${training.title} | SSW Training Centre Nepal`
+      : "Training | SSW Training Centre Nepal",
     description: training?.description || undefined,
   };
 }

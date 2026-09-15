@@ -4,8 +4,8 @@ import AnimatedCard from "@/components/ui/animated-card";
 import { BlogCard } from "@/components/molecules/cards/BlogCard";
 
 export const metadata = {
-  title: "Training | Enlighten Int'l Education",
-  description: "Training programs provided by Enlighten International Education",
+  title: "Training | SSW Training Centre Nepal",
+  description: "Training programs provided by SSW Training Centre Nepal",
 };
 
 async function getTraining() {

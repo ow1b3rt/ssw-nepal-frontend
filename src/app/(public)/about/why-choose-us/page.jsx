@@ -3,6 +3,12 @@ import { whyChooseUsData } from "@/data/whyus";
 import SuccessStoryText from "@/components/organisms/SuccessStories/successStoryText";
 import StatCard from "@/components/statImage";
 
+export const metadata = {
+  title: "Why Choose Us | SSW Training Centre Nepal",
+  description:
+    "Discover why SSW Training Centre Nepal is the go-to consultancy for career counselling, visa guidance, and Japanese language training.",
+};
+
 export default function WhyChooseUsPage() {
   const { showcase, content } = whyChooseUsData;
 

@@ -96,7 +96,7 @@ export function ContactForm() {
             title="Email"
             body={
               <a
-                href="mailto:info@enlighten.edu.np"
+                href="mailto:ssw@gmail.com"
                 className="text-muted-foreground hover:text-primary-red transition-colors"
               >
                 ssw@gmail.com

@@ -2,6 +2,12 @@ import AnimatedCard from "@/components/ui/animated-card";
 import { AnimatedWords } from "@/components/ui/animated-words";
 import { ContactForm } from "@/components/organisms/forms/ContactForm";
 
+export const metadata = {
+  title: "Contact Us | SSW Training Centre Nepal",
+  description:
+    "Get in touch with SSW Training Centre Nepal. Our team is happy to answer your questions about career counselling, visa guidance, and Japanese language training.",
+};
+
 export default function Contact() {
   return (
     <section className="container mx-auto max-w-6xl pb-16 md:py-12">
