@@ -55,7 +55,7 @@ export function AppointmentForm({ onSubmit, loading = false }) {
     purpose: "",
     appointmentType: "",
     preferredTime: "",
-    additionalInformation: "",
+    additionalInfo: "",
   });
 
   const handleChange = (field, value) => {
@@ -77,7 +77,7 @@ export function AppointmentForm({ onSubmit, loading = false }) {
       purpose: "",
       appointmentType: "",
       preferredTime: "",
-      additionalInformation: "",
+      additionalInfo: "",
     });
   };
 
@@ -110,7 +110,7 @@ export function AppointmentForm({ onSubmit, loading = false }) {
         {/* Personal Information */}
         <AnimatedCard direction="up" distance={12} triggerOnView>
           <section>
-            <h2 className="mb-7 text-xl font-bold text-primary-blue-dark sm:text-[21px]">
+            <h2 className="text-primary-blue-dark mb-7 text-xl font-bold sm:text-[21px]">
               Personal Information
             </h2>
 
@@ -126,7 +126,7 @@ export function AppointmentForm({ onSubmit, loading = false }) {
                   onChange={(e) => handleChange("firstName", e.target.value)}
                   placeholder="Enter your first name"
                   required
-                  className="h-12 w-full rounded-md border-primary-blue/50 px-4 text-sm sm:h-14 sm:text-base"
+                  className="border-primary-blue/50 h-12 w-full rounded-md px-4 text-sm sm:h-14 sm:text-base"
                 />
               </div>
 
@@ -141,7 +141,7 @@ export function AppointmentForm({ onSubmit, loading = false }) {
                   onChange={(e) => handleChange("lastName", e.target.value)}
                   placeholder="Enter your last name"
                   required
-                  className="h-12 w-full rounded-md border-primary-blue/50 px-4 text-sm sm:h-14 sm:text-base"
+                  className="border-primary-blue/50 h-12 w-full rounded-md px-4 text-sm sm:h-14 sm:text-base"
                 />
               </div>
 
@@ -157,7 +157,7 @@ export function AppointmentForm({ onSubmit, loading = false }) {
                   onChange={(e) => handleChange("email", e.target.value)}
                   placeholder="Enter your email address"
                   required
-                  className="h-12 w-full rounded-md border-primary-blue/50 px-4 text-sm sm:h-14 sm:text-base"
+                  className="border-primary-blue/50 h-12 w-full rounded-md px-4 text-sm sm:h-14 sm:text-base"
                 />
               </div>
 
@@ -177,7 +177,7 @@ export function AppointmentForm({ onSubmit, loading = false }) {
                   onChange={(e) => handleChange("phone", e.target.value)}
                   placeholder="Enter your phone number"
                   required
-                  className="h-12 w-full rounded-md border-primary-blue/50 px-4 text-sm sm:h-14 sm:text-base"
+                  className="border-primary-blue/50 h-12 w-full rounded-md px-4 text-sm sm:h-14 sm:text-base"
                 />
               </div>
 
@@ -191,7 +191,7 @@ export function AppointmentForm({ onSubmit, loading = false }) {
                   value={formData.location}
                   onChange={(e) => handleChange("location", e.target.value)}
                   placeholder="City, Country"
-                  className="h-12 w-full rounded-md border-primary-blue/50 px-4 text-sm sm:h-14 sm:text-base"
+                  className="border-primary-blue/50 h-12 w-full rounded-md px-4 text-sm sm:h-14 sm:text-base"
                 />
               </div>
             </div>
@@ -200,8 +200,8 @@ export function AppointmentForm({ onSubmit, loading = false }) {
 
         {/* Purpose of Appointment */}
         <AnimatedCard direction="up" distance={12} triggerOnView>
-          <section className="mt-8 border-t border-primary-blue/25 pt-6">
-            <h2 className="mb-6 text-xl font-bold text-primary-blue-dark sm:text-[21px]">
+          <section className="border-primary-blue/25 mt-8 border-t pt-6">
+            <h2 className="text-primary-blue-dark mb-6 text-xl font-bold sm:text-[21px]">
               Purpose of Appointment
             </h2>
 
@@ -221,8 +221,8 @@ export function AppointmentForm({ onSubmit, loading = false }) {
 
         {/* Preferred Appointment Type */}
         <AnimatedCard direction="up" distance={12} triggerOnView>
-          <section className="mt-8 border-t border-primary-blue/25 pt-6">
-            <h2 className="mb-6 text-xl font-bold text-primary-blue-dark sm:text-[21px]">
+          <section className="border-primary-blue/25 mt-8 border-t pt-6">
+            <h2 className="text-primary-blue-dark mb-6 text-xl font-bold sm:text-[21px]">
               Preferred Appointment Type
             </h2>
 
@@ -242,8 +242,10 @@ export function AppointmentForm({ onSubmit, loading = false }) {
 
         {/* Preferred Time */}
         <AnimatedCard direction="up" distance={12} triggerOnView>
-          <section className="mt-8 border-t border-primary-blue/25 pt-6">
-            <h2 className="mb-6 text-xl font-bold text-primary-blue-dark sm:text-[21px]">Preferred Time</h2>
+          <section className="border-primary-blue/25 mt-8 border-t pt-6">
+            <h2 className="text-primary-blue-dark mb-6 text-xl font-bold sm:text-[21px]">
+              Preferred Time
+            </h2>
 
             <div className="space-y-4">
               {preferredTimes.map((option) => (
@@ -261,16 +263,16 @@ export function AppointmentForm({ onSubmit, loading = false }) {
 
         {/* Additional Information */}
         <AnimatedCard direction="up" distance={12} triggerOnView>
-          <section className="mt-8 border-t border-primary-blue/25 pt-6">
-            <h2 className="mb-5 text-xl font-bold text-primary-blue-dark sm:text-[21px]">
+          <section className="border-primary-blue/25 mt-8 border-t pt-6">
+            <h2 className="text-primary-blue-dark mb-5 text-xl font-bold sm:text-[21px]">
               Additional Information
             </h2>
 
             <Textarea
-              value={formData.additionalInformation}
-              onChange={(e) => handleChange("additionalInformation", e.target.value)}
+              value={formData.additionalInfo}
+              onChange={(e) => handleChange("additionalInfo", e.target.value)}
               placeholder="Tell us anything else you would like to know about your appointment."
-              className="min-h-[180px] w-full resize-none rounded-md border-primary-blue/50 px-4 py-4 text-sm leading-6 sm:min-h-[220px] sm:text-base"
+              className="border-primary-blue/50 min-h-[180px] w-full resize-none rounded-md px-4 py-4 text-sm leading-6 sm:min-h-[220px] sm:text-base"
             />
           </section>
         </AnimatedCard>
@@ -281,7 +283,7 @@ export function AppointmentForm({ onSubmit, loading = false }) {
             <Button
               type="submit"
               disabled={loading}
-              className="h-11 min-w-[120px] rounded-md bg-primary-green px-6 text-sm font-semibold text-white hover:bg-primary-green-dark sm:h-12 sm:min-w-[140px] sm:text-base"
+              className="bg-primary-green hover:bg-primary-green-dark h-11 min-w-[120px] rounded-md px-6 text-sm font-semibold text-white sm:h-12 sm:min-w-[140px] sm:text-base"
             >
               {loading ? (
                 <>

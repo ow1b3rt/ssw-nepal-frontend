@@ -10,10 +10,17 @@ export const appointments = defineEntity({
   fields: [
     { name: "firstName", type: "text", label: "Name" },
     { name: "email", type: "text", label: "Email" },
+    { name: "phone", type: "text", label: "Phone", invisible: "true" },
     { name: "createdAt:date", type: "date", label: "Received at" },
     { name: "appointmentType", type: "text", label: "Appointment Type", invisible: true },
     { name: "preferredTime", type: "text", label: "Time", invisible: true },
-    { name: "status", type: "text", label: "Status", invisible: true },
+    {
+      name: "status",
+      type: "select",
+      label: "Status",
+      invisible: true,
+      options: ["pending", "completed"],
+    },
     {
       name: "additionalInfo",
       type: "textarea",
