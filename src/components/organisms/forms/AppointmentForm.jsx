@@ -169,6 +169,10 @@ export function AppointmentForm({ onSubmit, loading = false }) {
                 <Input
                   id="phone"
                   type="tel"
+                  inputMode="tel"
+                  pattern="(\d{10}|\+[0-9]{1,13}|\+[0-9]{1,3} [0-9]{10})"
+                  maxLength={15}
+                  title="Enter exactly 10 digits, or a '+' with country code (e.g. +911234567890 or +91 1234567890)"
                   value={formData.phone}
                   onChange={(e) => handleChange("phone", e.target.value)}
                   placeholder="Enter your phone number"
