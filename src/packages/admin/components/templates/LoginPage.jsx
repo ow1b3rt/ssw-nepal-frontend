@@ -53,7 +53,7 @@ export function LoginPage({ loginUrl = "/auth/login", redirectTo = "/admin/dashb
             name="email"
             type="email"
             placeholder="Email"
-            autocomplete="off"
+            autoComplete="off"
             required
           />
 
@@ -63,7 +63,7 @@ export function LoginPage({ loginUrl = "/auth/login", redirectTo = "/admin/dashb
               inputClassName="text-primary-blue text-lg! pr-10"
               type={showPassword ? "text" : "password"}
               placeholder="Password"
-              autocomplete="off"
+              autoComplete="off"
               required
               className="w-full"
             />

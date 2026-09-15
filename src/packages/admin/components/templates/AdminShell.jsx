@@ -4,12 +4,13 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { ChevronDown, LogOut, PanelLeftClose, PanelLeftOpen, User2 } from "lucide-react";
 
-
-
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { ConfirmationDialog } from "@/components/molecules/ConfirmationModal";
-
-
 
 import { useApi } from "../../contexts/ApiContext.jsx";
 import { useAuth } from "../../contexts/AuthContext.jsx";
@@ -17,7 +18,6 @@ import { getEntities } from "../../lib/runtime.config.js";
 import Breadcrumb from "../molecules/Breadcrumb.jsx";
 import { AdminNav } from "../organisms/AdminNav.jsx";
 import { Logo } from "../organisms/AdminNavLogo.jsx";
-
 
 export function AdminShell({ children }) {
   const [panel, setPanel] = useState(true);
@@ -73,18 +73,13 @@ export function AdminShell({ children }) {
             <Breadcrumb />
             <div className="flex items-center gap-4 pr-4">
               <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <button
-                    type="button"
-                    className="border-primary-blue-dark text-primary-blue hover:bg-faint-blue flex cursor-pointer items-center gap-2 rounded-full border bg-white px-2 py-1 text-sm font-semibold transition-colors outline-none"
-                  >
-                    <User2
-                      size={20}
-                      className="border-primary-blue-dark rounded-full border-2 bg-white"
-                    />
-                    Hello {user?.role?.toUpperCase() || "USER"}
-                    <ChevronDown size={14} className="text-primary-blue/70" />
-                  </button>
+                <DropdownMenuTrigger className="border-primary-blue-dark text-primary-blue hover:bg-faint-blue flex cursor-pointer items-center gap-2 rounded-full border bg-white px-2 py-1 text-sm font-semibold transition-colors outline-none">
+                  <User2
+                    size={20}
+                    className="border-primary-blue-dark rounded-full border-2 bg-white"
+                  />
+                  Hello {user?.role?.toUpperCase() || "USER"}
+                  <ChevronDown size={14} className="text-primary-blue/70" />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-40 bg-white ring-0">
                   <DropdownMenuItem
