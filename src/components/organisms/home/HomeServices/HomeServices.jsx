@@ -1,6 +1,7 @@
 import { ROUTES } from "@/constants/routes/routes";
-import AnimatedCard from "@/components/ui/animated-card";
+
 import { getServices } from "@/lib/api/services";
+import AnimatedCard from "@/components/ui/animated-card";
 
 import { ServicesGrid } from "./HomeServicesGrid";
 import { ServicesIntro } from "./HomeServicesIntro";

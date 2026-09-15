@@ -32,10 +32,14 @@ export function defineEntity(def) {
       console.warn(`[@lynx/admin-panel] entity "${def.label ?? "?"}" \`filters\` must be an array`);
     }
     if (def.canCreate !== undefined && typeof def.canCreate !== "boolean") {
-      console.warn(`[@lynx/admin-panel] entity "${def.label ?? "?"}" \`canCreate\` must be a boolean`);
+      console.warn(
+        `[@lynx/admin-panel] entity "${def.label ?? "?"}" \`canCreate\` must be a boolean`,
+      );
     }
     if (def.canDelete !== undefined && typeof def.canDelete !== "boolean") {
-      console.warn(`[@lynx/admin-panel] entity "${def.label ?? "?"}" \`canDelete\` must be a boolean`);
+      console.warn(
+        `[@lynx/admin-panel] entity "${def.label ?? "?"}" \`canDelete\` must be a boolean`,
+      );
     }
     if (Array.isArray(def.fields)) {
       for (const field of def.fields) {

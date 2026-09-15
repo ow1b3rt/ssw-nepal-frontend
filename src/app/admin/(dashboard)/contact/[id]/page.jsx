@@ -1,9 +1,8 @@
 "use client";
 
 import { useParams } from "next/navigation";
-import { CalendarDays, Loader2, Mail, MessageSquareText, Phone, UserRound } from "lucide-react";
-
 import { useGet } from "@/packages/admin";
+import { CalendarDays, Loader2, Mail, MessageSquareText, Phone, UserRound } from "lucide-react";
 
 function FieldTile({ icon: Icon, label, value, fullWidth = false }) {
   return (
@@ -14,7 +13,7 @@ function FieldTile({ icon: Icon, label, value, fullWidth = false }) {
         {Icon && <Icon size={14} className="text-gray-400" />}
         {label}
       </div>
-      <div className="mt-2 whitespace-pre-wrap text-sm text-gray-900">
+      <div className="mt-2 text-sm whitespace-pre-wrap text-gray-900">
         {value || <span className="text-gray-400">—</span>}
       </div>
     </div>
