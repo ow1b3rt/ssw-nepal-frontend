@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { Badge } from "../atoms/Badge.jsx";
+
 import { resolveUrl } from "../../utils/utils.js";
+import { Badge } from "../atoms/Badge.jsx";
 
 const STATUS_VARIANT = {
   pending: "warning",
@@ -17,7 +18,7 @@ const STATUS_VARIANT = {
 function displayValue(value) {
   if (Array.isArray(value)) {
     return value
-      .map((v) => (v && typeof v === "object" ? v.name ?? v.title ?? v.filename ?? v.id : v))
+      .map((v) => (v && typeof v === "object" ? (v.name ?? v.title ?? v.filename ?? v.id) : v))
       .filter(Boolean)
       .join(", ");
   }
@@ -38,7 +39,9 @@ function renderValue(field, value) {
   const kind = field.type || suffix;
 
   if (field.options) {
-    const matched = field.options.find((opt) => (typeof opt === "string" ? opt : opt.value) === value);
+    const matched = field.options.find(
+      (opt) => (typeof opt === "string" ? opt : opt.value) === value,
+    );
     const label = matched ? (typeof matched === "string" ? matched : matched.label) : value;
     return <span className="capitalize">{label}</span>;
   }
@@ -58,17 +61,34 @@ function renderValue(field, value) {
   }
 
   if (kind === "image" || kind === "upload") {
-    const src = typeof value === "string" ? resolveUrl({ url: value }) : value?.url ? resolveUrl(value) : null;
+    const src =
+      typeof value === "string"
+        ? resolveUrl({ url: value })
+        : value?.url
+          ? resolveUrl(value)
+          : null;
     if (!src) return <span className="text-gray-400">—</span>;
     return (
-      <img src={src} alt={field.label} className="h-16 w-16 rounded-lg object-cover ring-1 ring-gray-200" />
+      <img
+        src={src}
+        alt={field.label}
+        className="h-16 w-16 rounded-lg object-cover ring-1 ring-gray-200"
+      />
     );
   }
 
   return <span className="whitespace-pre-wrap">{displayValue(value)}</span>;
 }
 
-export function RecordDetail({ title, subtitle, icon: Icon, backHref, fields, data = {}, accentField }) {
+export function RecordDetail({
+  title,
+  subtitle,
+  icon: Icon,
+  backHref,
+  fields,
+  data = {},
+  accentField,
+}) {
   const accentValue = accentField ? data[accentField] : null;
 
   return (
@@ -107,14 +127,17 @@ export function RecordDetail({ title, subtitle, icon: Icon, backHref, fields, da
         {fields.map((field) => {
           const baseName = field.name?.split(":")?.[0];
           const value = data[baseName];
-          const fullWidth = field.type === "textarea" || (typeof value === "string" && value.length > 100);
+          const fullWidth =
+            field.type === "textarea" || (typeof value === "string" && value.length > 100);
 
           return (
             <div
               key={baseName}
               className={`rounded-xl border border-gray-200 bg-white p-4 shadow-sm ${fullWidth ? "sm:col-span-2" : ""}`}
             >
-              <p className="text-xs font-medium tracking-wide text-gray-500 uppercase">{field.label}</p>
+              <p className="text-xs font-medium tracking-wide text-gray-500 uppercase">
+                {field.label}
+              </p>
               <div className="mt-1.5 text-sm text-gray-900">{renderValue(field, value)}</div>
             </div>
           );
