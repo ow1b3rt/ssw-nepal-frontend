@@ -15,6 +15,7 @@ export function ContactForm() {
   const [form, setForm] = useState({
     name: "",
     email: "",
+    phone: "",
     subject: "",
     message: "",
   });
@@ -41,6 +42,14 @@ export function ContactForm() {
       return;
     }
 
+    if (!/^(\d{10}|\+\d{1,13}|\+\d{1,3} \d{10})$/.test(form.phone)) {
+      toast.add({
+        type: "error",
+        description:
+          "Mobile number must be exactly 10 digits, or a '+' followed by country code (e.g. +9771234567890 or +977 1234567890).",
+      });
+      return;
+    }
     setLoading(true);
 
     try {
@@ -59,6 +68,7 @@ export function ContactForm() {
             name: "",
             email: "",
             subject: "",
+            phone: "",
             message: "",
           });
         },
@@ -198,17 +208,29 @@ export function ContactForm() {
             onChange={handleChange}
             required
           />
-
           <ContactInput
-            title="Email Address"
-            name="email"
-            type="email"
-            placeholder="Your email address"
-            value={form.email}
+            title="Mobile Number"
+            name="phone"
+            type="tel"
+            pattern="(\d{10}|\+[0-9]{1,13}|\+[0-9]{1,3} [0-9]{10})"
+            inputMode="tel"
+            maxLength={15}
+            validationTitle="Enter exactly 10 digits, or a '+' with country code (e.g. +9771234567890 or +977 1234567890)"
+            placeholder="+977 9xxxxxxxxxx"
+            value={form.phone}
             onChange={handleChange}
             required
           />
         </div>
+        <ContactInput
+          title="Email Address"
+          name="email"
+          type="email"
+          placeholder="Your email address"
+          value={form.email}
+          onChange={handleChange}
+          required
+        />
 
         <ContactInput
           title="Subject"
@@ -218,7 +240,6 @@ export function ContactForm() {
           onChange={handleChange}
           required
         />
-
         <div className="flex flex-1 flex-col gap-2">
           <label
             htmlFor="contact-message"
@@ -264,8 +285,12 @@ function ContactInput({
   type = "text",
   placeholder,
   value,
+  pattern,
   onChange,
   required = false,
+  maxLength,
+  inputMode,
+  validationTitle,
 }) {
   return (
     <div className="flex flex-1 flex-col gap-2">
@@ -281,9 +306,13 @@ function ContactInput({
         type={type}
         name={name}
         placeholder={placeholder}
+        pattern={pattern}
         value={value}
         onChange={onChange}
         required={required}
+        maxLength={maxLength}
+        inputMode={inputMode}
+        title={validationTitle}
         className="border-input bg-background/50 focus-visible:ring-destructive/30 h-12 rounded-xl px-3.5 text-base transition-colors"
       />
     </div>

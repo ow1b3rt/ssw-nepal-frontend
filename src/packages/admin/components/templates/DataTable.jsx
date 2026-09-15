@@ -47,10 +47,15 @@ export default function DataTable({
   actions,
   onPageChange, // optional: (nextPage: number) => void
   selectable = true, // set false to hide the checkbox column entirely
+  canEdit = true, // set false to hide the per-row edit action
+  canDelete = true, // set false to hide the per-row + bulk delete actions
 }) {
   const { name, mutate } = useEntity();
   const { items, total, page, totalPages, hasNextPage, hasPrevPage } =
     normalizePayloadResponse(data);
+
+  // Bulk selection (and the checkbox column) is pointless without delete.
+  const selectionEnabled = selectable && canDelete;
 
   const [selectedIds, setSelectedIds] = useState(() => new Set());
   const [isDeleting, setIsDeleting] = useState(false);
@@ -181,15 +186,16 @@ export default function DataTable({
 
   const defaultActions = (item) => (
     <>
-      {editHref && (
+      {canEdit && editHref && (
         <Link
           href={typeof editHref === "function" ? editHref(item) : editHref + item.id}
+          title="Edit"
           className="rounded-md p-1.5 text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-700"
         >
           <EditButton />
         </Link>
       )}
-      <DeleteAction route={`/${name}/${item.id}`} mutate={mutate} />
+      {canDelete && <DeleteAction route={`/${name}/${item.id}`} mutate={mutate} />}
     </>
   );
 
@@ -197,7 +203,7 @@ export default function DataTable({
 
   return (
     <div className="flex flex-col gap-3">
-      {selectable && selectedCount > 0 && (
+      {selectionEnabled && selectedCount > 0 && (
         <div className="flex items-center justify-between rounded-lg border border-gray-200 bg-gray-50 px-4 py-2.5">
           <span className="text-sm text-gray-600">
             <span className="font-medium text-gray-900">{selectedCount}</span>{" "}
@@ -229,7 +235,7 @@ export default function DataTable({
           <table className="w-full border-collapse text-left">
             <thead>
               <tr className="border-b border-gray-200 bg-gray-50">
-                {selectable && (
+                {selectionEnabled && (
                   <th className="w-10">
                     <input
                       ref={headerCheckboxRef}
@@ -265,7 +271,7 @@ export default function DataTable({
                     key={item.id ?? index}
                     className={`transition-colors hover:bg-gray-50 ${isSelected ? "bg-gray-50" : ""}`}
                   >
-                    {selectable && (
+                    {selectionEnabled && (
                       <td className="align-middle">
                         <input
                           type="checkbox"
@@ -294,7 +300,7 @@ export default function DataTable({
               {items.length === 0 && (
                 <tr>
                   <td
-                    colSpan={(selectable ? 1 : 0) + fields.length + (renderActions ? 1 : 0)}
+                    colSpan={(selectionEnabled ? 1 : 0) + fields.length + (renderActions ? 1 : 0)}
                     className="px-4 py-12 text-center text-sm text-gray-400"
                   >
                     No records found.

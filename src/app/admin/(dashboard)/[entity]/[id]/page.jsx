@@ -4,6 +4,7 @@ import { notFound, useParams, useRouter } from "next/navigation";
 import {
   AdminLayout,
   PayloadEntityForm,
+  RecordDetail,
   removeEmptyFields,
   useApi,
   useGet,
@@ -36,6 +37,13 @@ export default function EntityEditPage() {
   const router = useRouter();
   if (!entity) notFound();
   const isNew = id === "new";
+  const canCreate = entity.canCreate !== false;
+  if (isNew && !canCreate) notFound();
+
+  const editableFields = entity.fields.filter((f) => f.editable !== false);
+  const editableNames = new Set(editableFields.map((f) => f.name.split(":")[0]));
+  if (!isNew && editableFields.length === 0) notFound();
+
   const apiPath = `/${entity.slug}`;
   const { data, loading } = useGet(isNew ? null : `${apiPath}/${id}`);
 
@@ -48,10 +56,33 @@ export default function EntityEditPage() {
     );
   }
 
+  const item = data?.item ?? {};
+  const hasStatus = entity.fields.some((f) => f.name.split(":")[0] === "status");
+
+  // Fully read-only entity (no editable fields) — render a detail view instead of a form.
+  if (!isNew && editableFields.length === 0) {
+    return (
+      <AdminLayout title={entity.label}>
+        <RecordDetail
+          title={`${entity.label} record`}
+          subtitle={item.email ?? item.subject ?? item.name ?? ""}
+          icon={entity.icon}
+          backHref={`/admin/${entitySlug}`}
+          fields={entity.fields}
+          data={item}
+          accentField={hasStatus ? "status" : null}
+        />
+      </AdminLayout>
+    );
+  }
+
   async function handleSubmit(values) {
     const definedValues = removeEmptyFields(values);
+    const editableValues = Object.fromEntries(
+      Object.entries(definedValues).filter(([key]) => editableNames.has(key)),
+    );
     const url = isNew ? apiPath : `${apiPath}/${id}`;
-    const payload = coerceRelationshipIds(definedValues, entity.fields);
+    const payload = coerceRelationshipIds(editableValues, editableFields);
     const res = isNew ? await post(url, payload) : await patch(url, payload);
     if (res?.ok) {
       toast.success(`${entity.label} ${isNew ? "created" : "updated"} successfully`);
@@ -64,7 +95,7 @@ export default function EntityEditPage() {
     <AdminLayout title={`${isNew ? "New" : "Edit"} ${entity.label}`} formId="entity-form">
       <PayloadEntityForm
         collectionFields={entity.fields}
-        defaults={data?.item ?? {}}
+        defaults={item}
         onSubmit={handleSubmit}
         externalId="entity-form"
       />

@@ -35,6 +35,13 @@ export function useResolvedDefault(name, rest) {
     resolvedDefaultValue = toLocalDatetimeString(resolvedDefaultValue);
   }
 
+  if (rest.type === "date" && resolvedDefaultValue) {
+    const date = new Date(resolvedDefaultValue);
+    if (!isNaN(date)) {
+      resolvedDefaultValue = toLocalDatetimeString(date).slice(0, 10);
+    }
+  }
+
   return isControlled ? {} : { defaultValue: resolvedDefaultValue };
 }
 
@@ -106,8 +113,9 @@ export function Select({ placeholder, children, className, name, required, ...re
         key={defaultProps.defaultValue}
         id={name}
         name={name}
-        className="w-full cursor-pointer appearance-none rounded-sm border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 shadow-sm transition-colors focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none"
+        className="w-full cursor-pointer appearance-none rounded-sm border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 shadow-sm transition-colors focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500"
         {...defaultProps}
+        {...rest}
       >
         {!hasDefault && <option value="">Select...</option>}
         {children}

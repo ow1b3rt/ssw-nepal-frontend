@@ -18,6 +18,11 @@ export function AdminChildrenLayout({ name, tablefields, actions }) {
   const entityConfig = entities[name];
   const filterConfig = entityConfig?.filters || [];
 
+  // 2. Capability flags from the entity definition
+  const canCreate = entityConfig?.canCreate !== false;
+  const canDelete = entityConfig?.canDelete !== false;
+  const canEdit = entityConfig?.canEdit !== false;
+
   // Pagination state
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
@@ -93,13 +98,15 @@ export function AdminChildrenLayout({ name, tablefields, actions }) {
               <p className="text-sm text-gray-500">{entity.data.totalDocs} total</p>
             )}
           </div>
-          <Link
-            href={`/admin/${name}/new`}
-            className="flex items-center gap-1.5 rounded-md bg-black px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-gray-800"
-          >
-            <Plus size={16} />
-            New {capitalise(name)}
-          </Link>
+          {canCreate && (
+            <Link
+              href={`/admin/${name}/new`}
+              className="flex items-center gap-1.5 rounded-md bg-black px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-gray-800"
+            >
+              <Plus size={16} />
+              New {capitalise(name)}
+            </Link>
+          )}
         </div>
 
         <div className="flex flex-wrap items-center justify-between gap-4">
@@ -176,6 +183,8 @@ export function AdminChildrenLayout({ name, tablefields, actions }) {
           fields={tablefields}
           editHref={`/admin/${name}/`}
           actions={actions}
+          canEdit={canEdit}
+          canDelete={canDelete}
           onPageChange={(nextPage) => setPage(nextPage)}
         />
       </div>

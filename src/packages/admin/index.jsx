@@ -20,6 +20,7 @@ export { allowed } from "./lib/access.js";
 
 // --- Templates ---
 export { default as DataTable } from "./components/templates/DataTable.jsx";
+export { RecordDetail } from "./components/templates/RecordDetail.jsx";
 export { ImageUploader } from "./components/templates/ImageUploader.jsx";
 export { LoginPage } from "./components/templates/LoginPage.jsx";
 

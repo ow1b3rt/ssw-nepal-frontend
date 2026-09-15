@@ -9,7 +9,7 @@ import { RelationshipField } from "../atoms/RelationshipField.jsx";
 import { ImageUploader } from "../templates/ImageUploader.jsx";
 
 // Dedicated Password component to handle show/hide state
-function PasswordInput({ name, placeholder, required }) {
+function PasswordInput({ name, placeholder, required, disabled }) {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
@@ -19,6 +19,7 @@ function PasswordInput({ name, placeholder, required }) {
         type={showPassword ? "text" : "password"}
         placeholder={placeholder}
         required={required}
+        disabled={disabled}
         className="pr-10" // Ensure padding so text doesn't overlap the icon
       />
       <button
@@ -37,9 +38,13 @@ export function PayloadField({ field }) {
   let { name, type, label, required, options } = field;
   name = name?.split(":")?.[0];
 
+  // Fields marked `editable: false` render as disabled inputs — visible on the
+  // form but never submitted with the payload.
+  const disabled = field.editable === false;
+
   if (type === "select") {
     return (
-      <Select name={name} placeholder={label} required={required}>
+      <Select name={name} placeholder={label} required={required} disabled={disabled}>
         {options.map((opt) => {
           const value = typeof opt === "string" ? opt : opt.value;
           const optLabel = typeof opt === "string" ? opt : opt.label;
@@ -54,32 +59,38 @@ export function PayloadField({ field }) {
   }
 
   if (type === "textarea") {
-    return <Textarea name={name} placeholder={label} required={required} />;
+    return <Textarea name={name} placeholder={label} required={required} disabled={disabled} />;
   }
 
   if (type === "email") {
-    return <Input name={name} type="email" placeholder={label} required={required} />;
+    return <Input name={name} type="email" placeholder={label} required={required} disabled={disabled} />;
   }
 
   if (type === "number") {
-    return <Input name={name} type="number" placeholder={label} required={required} />;
+    return <Input name={name} type="number" placeholder={label} required={required} disabled={disabled} />;
+  }
+
+  if (type === "date") {
+    return <Input name={name} type="date" placeholder={label} required={required} disabled={disabled} />;
   }
 
   if (type === "time") {
-    return <Input name={name} type="time" placeholder={label} required={required} />;
+    return <Input name={name} type="time" placeholder={label} required={required} disabled={disabled} />;
   }
 
   // Updated Password field using the new PasswordInput wrapper
   if (type === "password") {
-    return <PasswordInput name={name} placeholder={label} required={required} />;
+    return <PasswordInput name={name} placeholder={label} required={required} disabled={disabled} />;
   }
 
   if (type === "text") {
-    return <Input name={name} type="text" placeholder={label} required={required} />;
+    return <Input name={name} type="text" placeholder={label} required={required} disabled={disabled} />;
   }
 
   if (type === "date-time") {
-    return <Input name={name} type="datetime-local" aria-label={label} required={required} />;
+    return (
+      <Input name={name} type="datetime-local" aria-label={label} required={required} disabled={disabled} />
+    );
   }
 
   if (type === "relationship") {
