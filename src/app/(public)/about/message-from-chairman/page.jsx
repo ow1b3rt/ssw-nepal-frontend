@@ -1,6 +1,12 @@
 import { HomeAboutGallery } from "@/components/organisms/home/HomeAbout/HomeAboutGallery";
 import SuccessStoryText from "@/components/organisms/SuccessStories/successStoryText";
 
+export const metadata = {
+  title: "Message from Chairman | SSW Training Centre Nepal",
+  description:
+    "Read the vision and commitment of our Executive Chairman, Anil Bhandari, as he shares SSW Training Centre Nepal's mission.",
+};
+
 const section = {
   aboutDesc: {
     name: "Anil Bhandari",

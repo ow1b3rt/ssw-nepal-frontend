@@ -3,6 +3,15 @@ import { notFound } from "next/navigation";
 import { getBlog } from "@/lib/api/blogs";
 import DetailPage from "@/components/detailPage";
 
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  const blog = await getBlog(slug);
+  return {
+    title: blog ? `${blog.title} | SSW Training Centre Nepal` : "Blog | SSW Training Centre Nepal",
+    description: blog?.description ?? undefined,
+  };
+}
+
 export default async function SingleBlog({ params }) {
   const { slug } = await params;
   const blog = await getBlog(slug);

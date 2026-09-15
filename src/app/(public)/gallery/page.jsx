@@ -3,6 +3,12 @@ import { fetcher } from "@/packages/admin";
 import AnimatedCard from "@/components/ui/animated-card";
 import { GalleryCard } from "@/components/organisms/home/HomeGallery/HomeGallery";
 
+export const metadata = {
+  title: "Gallery | SSW Training Centre Nepal",
+  description:
+    "Explore photos and moments from SSW Training Centre Nepal — our training sessions, events, and student activities.",
+};
+
 const galleryData = {
   items: [
     {

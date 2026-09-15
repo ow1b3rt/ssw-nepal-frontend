@@ -21,7 +21,7 @@ export default async function EventDetailsPage({ params }) {
     title: event.title,
     image: {
       src: event.mediaUrl ? `${process.env.NEXT_PUBLIC_HOST}${event.mediaUrl}` : "/favicon.jpg",
-      alt: event.mediaAlt ? blog.mediaAlt : "alt",
+      alt: event.mediaAlt ? event.mediaAlt : "alt",
     },
     content: [event.description],
     date: localDate(event.time),

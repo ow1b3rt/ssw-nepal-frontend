@@ -2,6 +2,12 @@ import { fetcher } from "@/packages/admin";
 
 import { FaqSection } from "@/components/organisms/Faq/Faq";
 
+export const metadata = {
+  title: "FAQs | SSW Training Centre Nepal",
+  description:
+    "Frequently asked questions about SSW Training Centre Nepal's career counselling, visa guidance, and Japanese language training programs.",
+};
+
 export default async function FaqPage() {
   const data = await fetcher("/layouts/faqs");
 

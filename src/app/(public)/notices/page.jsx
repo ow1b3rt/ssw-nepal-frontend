@@ -6,8 +6,8 @@ import { BlogCard } from "@/components/molecules/cards/BlogCard";
 import { Pagenav } from "@/components/Reusables";
 
 export const metadata = {
-  title: "Notice | Enlighten Int'l Education",
-  description: "Important notices from Enlighten International Education",
+  title: "Notices | SSW Training Centre Nepal",
+  description: "Important notices from SSW Training Centre Nepal",
 };
 
 async function getNotices(page = 1, limit = 9) {

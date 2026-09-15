@@ -24,8 +24,8 @@ export async function generateMetadata({ params }) {
   const language = await getLanguageBySlug(slug);
   return {
     title: language
-      ? `${language.title} | Enlighten Int'l Education`
-      : "Language | Enlighten Int'l Education",
+      ? `${language.title} | SSW Training Centre Nepal`
+      : "Language | SSW Training Centre Nepal",
     description: language?.description || undefined,
   };
 }

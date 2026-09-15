@@ -4,6 +4,12 @@ import { successStoryData } from "@/data/successStory";
 import SuccessStoryCard from "@/components/organisms/SuccessStories/successStoryCard";
 import SuccessStoryText from "@/components/organisms/SuccessStories/successStoryText";
 
+export const metadata = {
+  title: "Success Stories | SSW Training Centre Nepal",
+  description:
+    "Meet the students who have achieved their dreams of studying and working in Japan with SSW Training Centre Nepal.",
+};
+
 export async function getSuccessStories() {
   try {
     const res = await fetch(ROUTES.API.SUCCESS_STORIES, { cache: "no-store" });
