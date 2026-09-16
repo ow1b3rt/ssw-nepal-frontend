@@ -8,8 +8,8 @@
  * - All schema injected as <script type="application/ld+json"> in <head>
  */
 
-const SITE_URL = "https://abroadkhabar.com";
-const SITE_NAME = "Abroad Khabar";
+const SITE_URL = "https://sswtrainingcentre.com.np";
+const SITE_NAME = "SSW Training Centre Nepal";
 const LOGO_URL = `${SITE_URL}/favicon.ico`;
 
 /**
