@@ -76,7 +76,7 @@ export function Input({
       style={{ display: hidden ? "none" : "flex", ...style }}
     >
       {resolvedPlaceholder && (
-        <label htmlFor={name} className="text-xl font-medium text-gray-700">
+        <label htmlFor={name} className="text-sm font-medium text-gray-700">
           {resolvedPlaceholder}
           {required && <span className="ml-1 text-red-500">*</span>}
         </label>
@@ -86,7 +86,7 @@ export function Input({
         id={name}
         name={name}
         required={required}
-        className={`w-full rounded-sm border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 shadow-sm transition-colors focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none ${inputClassName || ""}`}
+        className={`w-full rounded-md border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 shadow-sm transition-colors placeholder:text-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none ${inputClassName || ""}`}
         {...defaultProps}
         {...rest}
       />
@@ -113,7 +113,7 @@ export function Select({ placeholder, children, className, name, required, ...re
         key={defaultProps.defaultValue}
         id={name}
         name={name}
-        className="w-full cursor-pointer appearance-none rounded-sm border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 shadow-sm transition-colors focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500"
+        className="w-full cursor-pointer appearance-none rounded-md border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 shadow-sm transition-colors focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500"
         {...defaultProps}
         {...rest}
       >
@@ -141,7 +141,7 @@ export function Textarea({ placeholder, className, name, required, ...rest }) {
         ref={textareaRef}
         id={name}
         name={name}
-        className="min-h-[100px] w-full rounded-sm border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 shadow-sm transition-colors focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none"
+        className="min-h-[100px] w-full rounded-md border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 shadow-sm transition-colors placeholder:text-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none"
         {...defaultProps}
         {...rest}
       />

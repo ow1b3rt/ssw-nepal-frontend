@@ -6,7 +6,7 @@ export const blogs = defineEntity({
   label: "Blogs",
   icon: Newspaper,
   titleField: "title",
-  roles: ["admin", "staff"],
+  roles: ["admin", "author"],
   fields: [
     { name: "title:bold", type: "text", label: "Title", required: true },
     { name: "viewCount", type: "number", label: "View Count" },

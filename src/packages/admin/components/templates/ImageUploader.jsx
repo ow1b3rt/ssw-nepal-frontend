@@ -53,7 +53,7 @@ export function ImageUploader({
 
   return (
     <div className="flex flex-col gap-2">
-      <label className="text-sm font-semibold text-gray-700">{caption}</label>
+      <label className="text-sm font-medium text-gray-700">{caption}</label>
 
       {coverPreview ? (
         <div className="relative h-40 w-full overflow-hidden rounded-lg border border-gray-200">
