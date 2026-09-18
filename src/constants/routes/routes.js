@@ -35,7 +35,7 @@ export const ROUTES = {
     HOME: "/about",
     WHY_CHOOSE_US: "/about/why-choose-us",
     SUCCESS_STORY: "/about/success-stories",
-    MESSAGE_FROM_CHAIRMAN: "/about/message-from-chairman",
+    MESSAGE_FROM_CHAIRMAN: "/about/message-from-directors",
     CONTACT_US: "/contact",
   },
 

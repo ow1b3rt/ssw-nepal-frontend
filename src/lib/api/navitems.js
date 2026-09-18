@@ -39,7 +39,7 @@ export function buildNavConfig({ languages, training, services }) {
         },
         {
           href: ROUTES.ABOUT_US.MESSAGE_FROM_CHAIRMAN,
-          label: "Message from Chairman",
+          label: "Message from Directors",
         },
         {
           href: ROUTES.ABOUT_US.SUCCESS_STORY,
