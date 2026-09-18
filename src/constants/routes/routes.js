@@ -7,7 +7,7 @@ export const ROUTES = {
   ADMIN_DASHBOARD: "/admin",
 
   HOME: "/",
-  GALLERY: "/others/gallery",
+  GALLERY: "/gallery",
 
   TRAININGS: {
     HOME: "/training",
