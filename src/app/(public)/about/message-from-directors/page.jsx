@@ -44,21 +44,6 @@ We are committed to guiding each candidate with care, patience, and sincerity. I
 export default function MessageFromDirectors() {
   return (
     <div className="flex w-full flex-col gap-16">
-      {/* Managing Director */}
-      <section className="flex w-full flex-col items-center justify-between gap-8 lg:flex-row">
-        <HomeAboutGallery
-          extraPercentWidth={0}
-          statClass="bg-primary-red"
-          className="order-1! md:order-2!"
-        />
-
-        <SuccessStoryText
-          {...managingDirectorSection.aboutDesc}
-          showDivider={false}
-          batchClass="mb-0"
-          className="bg-transparent"
-        />
-      </section>
 
       {/* Executive Managing Director */}
       <section className="flex w-full flex-col items-center justify-between gap-8 lg:flex-row">
@@ -75,6 +60,24 @@ export default function MessageFromDirectors() {
           className="order-1! md:order-2!"
         />
       </section>
+
+      {/* Managing Director */}
+      <section className="flex w-full flex-col items-center justify-between gap-8 lg:flex-row">
+        <HomeAboutGallery
+          extraPercentWidth={0}
+          statClass="bg-primary-red"
+          className="order-1! md:order-2!"
+        />
+
+        <SuccessStoryText
+          {...managingDirectorSection.aboutDesc}
+          showDivider={false}
+          batchClass="mb-0"
+          className="bg-transparent"
+        />
+      </section>
+
+      
     </div>
   );
 }
