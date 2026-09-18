@@ -8,8 +8,7 @@ export const footerData = {
 
   about: {
     title: "About SSW Training Centre",
-    description:
-      "We are many variations of passages available but the majority have suffered alteration in some form by injected humour words believable.",
+    description: "SSW Training Centre Nepal empowers candidates to pursue higher education and career opportunities in Japan through personalized career counselling, practical guidance, and dedicated support. We help candidates identify the right path and build a strong foundation for a successful academic and professional future in Japan."
   },
 
   columns: [
@@ -23,11 +22,11 @@ export const footerData = {
         },
         {
           label: "Japanese Language Preparation",
-          href: "/services/japanese-language",
+          href: "/services/jft",
         },
         { label: "SSW Training", href: "/services/ssw-training" },
-        { label: "Hostel Facility", href: "/services/hostel" },
-        { label: "Test Preparations", href: "/services/test-preparation" },
+        { label: "Hostel Facility", href: "/services/hostel-facility" },
+        { label: "Test Preparations", href: "/services/test-preparations" },
       ],
     },
 
@@ -41,10 +40,10 @@ export const footerData = {
           label: "Aviation ground handling",
           href: "/training/aviation-ground-handling",
         },
-        { label: "Nursing care giver", href: "/training/nursing-care" },
+        { label: "Nursing care giver", href: "/training/nursing-caregiver" },
         {
           label: "JLPT-N5 Test Preparation",
-          href: "/training/jlpt-n5",
+          href: "/training/jlpt-n5-preparation",
         },
       ],
     },
@@ -65,8 +64,8 @@ export const footerData = {
       },
       {
         type: "email",
-        text: "ssw@gmail.com",
-        href: "mailto:ssw@gmail.com",
+        text: "sswtrainingcenternepal@gmail.com",
+        href: "mailto:sswtrainingcenternepal@gmail.com",
       },
     ],
   },
@@ -80,12 +79,12 @@ export const footerData = {
     {
       name: "Facebook",
       type: "facebook",
-      href: "https://facebook.com",
+      href: "https://facebook.com/SSWtrainingcentrenepal",
     },
     {
       name: "TikTok",
       type: "tiktok",
-      href: "https://tiktok.com",
+      href: "https://tiktok.com/@sswtc.nepal",
     },
     {
       name: "Instagram",
