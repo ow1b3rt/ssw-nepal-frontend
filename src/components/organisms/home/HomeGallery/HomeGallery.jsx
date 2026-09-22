@@ -115,52 +115,56 @@ export async function HomeGallery({ section: fallbackData = section }) {
   const ctaURL = ROUTES.GALLERY;
 
   return (
-    <div
-      id="home-gallery"
-      className="flex w-full flex-col items-center gap-2 gap-y-8 md:pt-10 xl:gap-y-16"
-    >
-      <AnimatedCard
-        className="rounded-lg bg-black px-10 py-2.5"
-        direction="up"
-        distance={12}
-        triggerOnView
-      >
-        <h2 className="mb-1 text-3xl leading-none font-black tracking-[1px] text-white md:text-4xl xl:text-5xl">
-          Gallery
-        </h2>
-      </AnimatedCard>
-      <div className="flex w-full flex-col gap-4 md:hidden">
-        {rawItems?.slice(0, 3).map((item, i) => (
-          <GalleryCard theme="darkblue" key={i} {...item} height={null} />
-        ))}
-      </div>
-
-      <AnimatedCard
-        className="relative hidden w-full flex-col gap-4 md:flex md:flex-row lg:gap-8"
-        direction="down"
-        distance={12}
-        triggerOnView
-      >
-        {COLUMNS.map((column) => (
-          <div key={column} className="flex flex-1 flex-col gap-4 lg:gap-8">
-            {desktopItems
-              ?.filter((item) => item.column === column)
-              .map((item, j) => (
-                <GalleryCard key={j} {...item} />
-              ))}
-          </div>
-        ))}
-        <div className="absolute inset-x-0 bottom-0 h-1/3 bg-linear-to-t from-white to-transparent" />
-      </AnimatedCard>
-
-      <AnimatedCard direction="up" distance={12} triggerOnView>
-        <Link
-          href={ctaURL}
-          className="bg-primary-red rounded-lg px-10 py-4 text-lg font-bold text-white transition duration-500 ease-in-out hover:bg-black"
+    <>
+      {desktopItems?.length > 0 && (
+        <div
+          id="home-gallery"
+          className="flex w-full flex-col items-center gap-2 gap-y-8 md:pt-10 xl:gap-y-16"
         >
-          {ctaLabel}
-        </Link>
-      </AnimatedCard>
-    </div>
+          <AnimatedCard
+            className="rounded-lg bg-black px-10 py-2.5"
+            direction="up"
+            distance={12}
+            triggerOnView
+          >
+            <h2 className="mb-1 text-3xl leading-none font-black tracking-[1px] text-white md:text-4xl xl:text-5xl">
+              Gallery
+            </h2>
+          </AnimatedCard>
+          <div className="flex w-full flex-col gap-4 md:hidden">
+            {rawItems?.slice(0, 3).map((item, i) => (
+              <GalleryCard theme="darkblue" key={i} {...item} height={null} />
+            ))}
+          </div>
+
+          <AnimatedCard
+            className="relative hidden w-full flex-col gap-4 md:flex md:flex-row lg:gap-8"
+            direction="down"
+            distance={12}
+            triggerOnView
+          >
+            {COLUMNS.map((column) => (
+              <div key={column} className="flex flex-1 flex-col gap-4 lg:gap-8">
+                {desktopItems
+                  ?.filter((item) => item.column === column)
+                  .map((item, j) => (
+                    <GalleryCard key={j} {...item} />
+                  ))}
+              </div>
+            ))}
+            <div className="absolute inset-x-0 bottom-0 h-1/3 bg-linear-to-t from-white to-transparent" />
+          </AnimatedCard>
+
+          <AnimatedCard direction="up" distance={12} triggerOnView>
+            <Link
+              href={ctaURL}
+              className="bg-primary-red rounded-lg px-10 py-4 text-lg font-bold text-white transition duration-500 ease-in-out hover:bg-black"
+            >
+              {ctaLabel}
+            </Link>
+          </AnimatedCard>
+        </div>
+      )}
+    </>
   );
 }

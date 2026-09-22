@@ -3,29 +3,72 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
-import { getRuntimeConfig } from "../lib/runtime.config.js";
 import { useApi, useGet } from "./ApiContext.jsx";
 
 const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
-  const { data, isLoading, mutate } = useGet("/auth/me");
+  const [isServiceDown, setIsServiceDown] = useState(false);
+
+  const { data, error, isLoading, mutate } = useGet("/auth/me");
+
   const { post } = useApi();
   const router = useRouter();
 
   useEffect(() => {
-    if (!data) return;
+    if (isLoading) {
+      return;
+    }
+
+    if (error) {
+      setUser(null);
+      setIsServiceDown(true);
+      return;
+    }
+
+    if (!data) {
+      return;
+    }
+
+    setIsServiceDown(false);
+
     if (!data.success) {
       setUser(null);
       router.replace("/admin/login");
       return;
     }
-    setUser(data?.user);
-  }, [data]);
+
+    setUser(data.user);
+  }, [data, error, isLoading, router]);
+
+  const checkAuth = async () => {
+    const result = await mutate();
+
+    if (!result) {
+      setUser(null);
+      setIsServiceDown(true);
+
+      return false;
+    }
+
+    setIsServiceDown(false);
+
+    if (!result.success) {
+      setUser(null);
+      router.replace("/admin/login");
+
+      return true;
+    }
+
+    setUser(result.user);
+
+    return true;
+  };
 
   const logout = async () => {
     const res = await post("/auth/logout");
+
     if (res?.success) {
       setUser(null);
       router.push("/login");
@@ -33,7 +76,17 @@ export function AuthProvider({ children }) {
   };
 
   return (
-    <AuthContext.Provider value={{ user, isLoading, logout }}>{children}</AuthContext.Provider>
+    <AuthContext.Provider
+      value={{
+        user,
+        isLoading,
+        isServiceDown,
+        logout,
+        checkAuth,
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
   );
 }
 

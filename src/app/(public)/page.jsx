@@ -76,7 +76,7 @@ export default async function Home() {
       <HomeServices />
       <HomeGallery />
       <HomeTrainings />
-      <HomeTestimonials testimonials={testimonials} />
+      {testimonials.length > 0 && <HomeTestimonials testimonials={testimonials} />}
       <HomeBlogs />
     </div>
   );

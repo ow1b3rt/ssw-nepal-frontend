@@ -15,24 +15,41 @@ const ApiContext = createContext(null);
 export function useGet(path) {
   const toast = useToast();
   const { apiBaseUrl: BASE_URL } = getRuntimeConfig();
+
   const [data, setData] = useState(null);
+  const [error, setError] = useState(null);
   const [localLoading, setLocalLoading] = useState(false);
 
   const fetch_ = useCallback(async () => {
+    if (!path) return null;
+
     setLocalLoading(true);
+    setError(null);
+
     try {
-      if (!path) return;
-      let res = await fetch(BASE_URL + path, { credentials: "include" });
+      const res = await fetch(BASE_URL + path, {
+        credentials: "include",
+      });
 
       if (!res.ok) {
-        const data = await res.json().catch(() => ({}));
-        setData(data);
-        throw new Error(data.message || `Request failed (${res.status})`);
+        const responseData = await res.json().catch(() => ({}));
+
+        setData(responseData);
+
+        throw new Error(responseData.message || `Request failed (${res.status})`);
       }
-      setData(await res.json());
+
+      const responseData = await res.json();
+
+      setData(responseData);
+      setError(null);
+
+      return responseData;
     } catch (err) {
-      toast.error(err);
+      setError(err);
       console.error(err);
+
+      return null;
     } finally {
       setLocalLoading(false);
     }
@@ -42,7 +59,12 @@ export function useGet(path) {
     fetch_();
   }, [fetch_]);
 
-  return { data, isLoading: localLoading, mutate: fetch_ };
+  return {
+    data,
+    error,
+    isLoading: localLoading,
+    mutate: fetch_,
+  };
 }
 
 async function request(method, path, body, baseUrl) {
