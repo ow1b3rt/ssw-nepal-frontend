@@ -8,7 +8,8 @@ export const footerData = {
 
   about: {
     title: "About SSW Training Centre",
-    description: "SSW Training Centre Nepal empowers candidates to pursue higher education and career opportunities in Japan through personalized career counselling, practical guidance, and dedicated support. We help candidates identify the right path and build a strong foundation for a successful academic and professional future in Japan."
+    description:
+      "SSW Training Centre Nepal empowers candidates to pursue higher education and career opportunities in Japan through personalized career counselling, practical guidance, and dedicated support. We help candidates identify the right path and build a strong foundation for a successful academic and professional future in Japan.",
   },
 
   columns: [

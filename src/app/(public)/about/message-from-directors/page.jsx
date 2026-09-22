@@ -44,7 +44,6 @@ We are committed to guiding each candidate with care, patience, and sincerity. I
 export default function MessageFromDirectors() {
   return (
     <div className="flex w-full flex-col gap-16">
-
       {/* Executive Managing Director */}
       <section className="flex w-full flex-col items-center justify-between gap-8 lg:flex-row">
         <SuccessStoryText
@@ -76,8 +75,6 @@ export default function MessageFromDirectors() {
           className="bg-transparent"
         />
       </section>
-
-      
     </div>
   );
 }

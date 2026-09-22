@@ -1,12 +1,13 @@
-// components/admin/DataTable.jsx
 "use client";
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { Trash2 } from "lucide-react";
 
+import Badge from "@/components/molecules/Badge";
+import { ConfirmationDialog } from "@/components/molecules/ConfirmationModal";
+
 import { resolveUrl } from "../../utils/utils.js";
-import { Badge } from "../atoms/Badge.jsx";
 import { EditButton, ViewButton } from "../atoms/Buttons.jsx";
 import { DeleteAction } from "../organisms/DeleteAction.jsx";
 import { useEntity } from "./AdminChildrenLayout.jsx";
@@ -59,6 +60,7 @@ export default function DataTable({
 
   const [selectedIds, setSelectedIds] = useState(() => new Set());
   const [isDeleting, setIsDeleting] = useState(false);
+  const [confirmBulkDeleteOpen, setConfirmBulkDeleteOpen] = useState(false);
   const headerCheckboxRef = useRef(null);
 
   // Selection is scoped to what's currently on screen — clear it whenever
@@ -93,13 +95,14 @@ export default function DataTable({
     });
   };
 
-  const handleBulkDelete = async () => {
+  // Opens the confirmation dialog instead of deleting immediately.
+  const handleBulkDelete = () => {
     if (selectedCount === 0) return;
-    const confirmed = window.confirm(
-      `Delete ${selectedCount} selected ${selectedCount === 1 ? "record" : "records"}? This can't be undone.`,
-    );
-    if (!confirmed) return;
+    setConfirmBulkDeleteOpen(true);
+  };
 
+  // Actual delete logic — runs only after the user confirms in the dialog.
+  const performBulkDelete = async () => {
     setIsDeleting(true);
     try {
       const results = await Promise.allSettled(
@@ -113,6 +116,7 @@ export default function DataTable({
       setSelectedIds(new Set());
     } finally {
       setIsDeleting(false);
+      setConfirmBulkDeleteOpen(false);
     }
   };
 
@@ -156,24 +160,57 @@ export default function DataTable({
       }
 
       case "date":
-        if (!value) return <span className="text-base text-gray-400">—</span>;
-        return (
-          <span className="text-base text-gray-600">
-            {new Date(value).toLocaleString("en-US", {
-              year: "numeric",
-              month: "short",
-              day: "numeric",
-              hour: "2-digit",
-              minute: "2-digit",
-            })}
-          </span>
-        );
+        if (!value) {
+          return <span className="text-sm text-gray-400">—</span>;
+        }
 
+        const date = new Date(value);
+
+        const dateText = date.toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "short",
+          day: "2-digit",
+        });
+
+        const timeText = date.toLocaleTimeString("en-US", {
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: false,
+        });
+
+        const period = date
+          .toLocaleTimeString("en-US", {
+            hour: "2-digit",
+            hour12: true,
+          })
+          .slice(-2);
+
+        const weekday = date.toLocaleDateString("en-US", {
+          weekday: "short",
+        });
+
+        return (
+          <div className="flex items-center gap-2">
+            <div className="bg-faint-blue flex items-center rounded-full px-2 py-1">
+              <span className="text-base font-medium tracking-tight text-slate-700">
+                {dateText}, {timeText}
+              </span>
+
+              <span className="bg-primary-blue ml-4 flex h-9 min-w-12 items-center justify-center rounded-full px-2.5 text-sm font-medium text-white">
+                {period}
+              </span>
+            </div>
+
+            <span className="bg-primary-red flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-sm font-medium text-white">
+              {weekday}
+            </span>
+          </div>
+        );
       case "bold":
         return <span className="text-base font-semibold text-gray-900">{value}</span>;
 
       case "status":
-        return <Badge value={value} variant={value === "published" ? "success" : "default"} />;
+        return <Badge value={value} className="text-sm!" />;
 
       default:
         return (
@@ -339,6 +376,18 @@ export default function DataTable({
           </div>
         </div>
       )}
+
+      <ConfirmationDialog
+        open={confirmBulkDeleteOpen}
+        onOpenChange={(open) => {
+          if (!open) setConfirmBulkDeleteOpen(false);
+        }}
+        title={`Delete ${selectedCount} ${selectedCount === 1 ? "record" : "records"}?`}
+        description="This action can't be undone."
+        confirmLabel={isDeleting ? "Deleting…" : "Delete"}
+        variant="destructive"
+        onConfirm={performBulkDelete}
+      />
     </div>
   );
 }

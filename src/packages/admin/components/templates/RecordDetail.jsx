@@ -80,7 +80,16 @@ function renderValue(field, value) {
   return <span className="whitespace-pre-wrap">{displayValue(value)}</span>;
 }
 
-export function RecordDetail({ title, subtitle, icon: Icon, backHref, fields, data = {}, accentField, hideHeader = false }) {
+export function RecordDetail({
+  title,
+  subtitle,
+  icon: Icon,
+  backHref,
+  fields,
+  data = {},
+  accentField,
+  hideHeader = false,
+}) {
   const accentValue = accentField ? data[accentField] : null;
 
   return (

@@ -10,6 +10,7 @@ export const blogs = defineEntity({
   fields: [
     { name: "title:bold", type: "text", label: "Title", required: true },
     { name: "viewCount", type: "number", label: "View Count" },
+    { name: "publishedAt:date", type: "date", label: "Published At" },
     {
       name: "status:status",
       type: "select",
@@ -17,7 +18,6 @@ export const blogs = defineEntity({
       options: ["draft", "published"],
       required: true,
     },
-    { name: "publishedAt:date", type: "date", label: "Published At" },
   ],
   filters: [
     {

@@ -168,7 +168,7 @@ export function AdminChildrenLayout({ name, tablefields, actions }) {
               id="limit-select"
               value={limit}
               onChange={handleLimitChange}
-              className="rounded-md border border-gray-300 bg-white py-1.5 pr-8 pl-3 text-base font-medium text-gray-700 focus:border-gray-900 focus:ring-1 focus:ring-gray-900 focus:outline-none"
+              className="rounded-lg border border-gray-300 bg-white py-1.5 pr-8 pl-3 text-base font-medium text-gray-700 focus:border-gray-900 focus:ring-1 focus:ring-gray-900 focus:outline-none"
             >
               <option value={10}>10</option>
               <option value={20}>20</option>

@@ -28,7 +28,7 @@ export default function Breadcrumb() {
       <div className="flex flex-wrap items-center gap-1">
         <button
           type="button"
-          onClick={() => router.push("/")}
+          onClick={() => router.push("/admin/dashboard")}
           className="flex items-center gap-1.5 rounded-md px-1 py-1 text-gray-500 transition-colors hover:text-gray-900"
         >
           <House size={14} />
