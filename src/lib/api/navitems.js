@@ -2,18 +2,29 @@ import { env } from "@/config/env";
 import { ROUTES } from "@/constants/routes/routes";
 
 async function fetchLayoutItems(endpoint, name) {
-  const res = await fetch(endpoint, {
-    next: { cache: "no-store", tags: [endpoint] },
-  });
+  try {
+    const res = await fetch(endpoint, {
+      next: {
+        revalidate: 60,
+        tags: [endpoint],
+      },
+    });
 
-  if (!res.ok) return [];
+    if (!res.ok) {
+      console.error(`Failed to fetch ${name}: ${res.status}`);
+      return [];
+    }
 
-  const json = await res.json();
+    const json = await res.json();
 
-  return (json?.layout?.items ?? []).map((item) => ({
-    href: `/${name}/${item.slug}`,
-    label: item.title || "Untitled",
-  }));
+    return (json?.layout?.items ?? []).map((item) => ({
+      href: `/${name}/${item.slug}`,
+      label: item.title || "Untitled",
+    }));
+  } catch (error) {
+    console.error(`Unable to fetch ${name}:`, error);
+    return [];
+  }
 }
 
 export async function getNavData() {

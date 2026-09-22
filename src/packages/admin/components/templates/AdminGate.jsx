@@ -5,9 +5,10 @@ import { usePathname, useRouter } from "next/navigation";
 
 import { useAuth } from "../../contexts/AuthContext.jsx";
 import { getEntities } from "../../lib/runtime.config.js";
+import { ServerDownScreen } from "../organisms/ServerDownScreen.jsx";
 
 export function AdminGate({ children }) {
-  const { user, isLoading } = useAuth();
+  const { user, isLoading, isServiceDown, checkAuth } = useAuth();
   const pathname = usePathname();
   const entities = getEntities();
   const router = useRouter();
@@ -22,12 +23,16 @@ export function AdminGate({ children }) {
 
   const allowed = matched?.roles ? matched.roles.includes(user?.role) : true;
 
+  console.log("isServiceDown", isServiceDown);
+
   useEffect(() => {
     if (isLoading || !user) return;
     if (!allowed) {
       router.replace("/admin/dashboard");
     }
   }, [isLoading, user, allowed, router]);
+
+  if (isServiceDown) return <ServerDownScreen onRetry={checkAuth} />;
 
   if (isLoading || !user || !allowed) return null;
 
