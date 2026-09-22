@@ -1,7 +1,6 @@
 "use client";
 
 import { notFound, useParams, useRouter } from "next/navigation";
-import { Loader2 } from "lucide-react";
 import {
   AdminLayout,
   Badge,
@@ -12,6 +11,7 @@ import {
   useGet,
   useToast,
 } from "@/packages/admin";
+import { Loader2 } from "lucide-react";
 
 import { entities } from "@/app/admin/entities";
 
@@ -48,8 +48,12 @@ function firstAvailable(item, keys) {
 
 function DetailHero({ entity, item, isNew, saveButton }) {
   const Icon = entity.icon;
-  const title = isNew ? "New record" : firstAvailable(item, [entity.titleField, "name", "email", "subject"]);
-  const subtitle = isNew ? "Fill in the fields below and save." : firstAvailable(item, ["email", "name", "title"]);
+  const title = isNew
+    ? "New record"
+    : firstAvailable(item, [entity.titleField, "name", "email", "subject"]);
+  const subtitle = isNew
+    ? "Fill in the fields below and save."
+    : firstAvailable(item, ["email", "name", "title"]);
   const accentValue = item.status;
 
   return (
@@ -61,7 +65,9 @@ function DetailHero({ entity, item, isNew, saveButton }) {
       )}
 
       <div className="min-w-0 flex-1">
-        <p className="text-xs font-medium tracking-widest text-gray-400 uppercase">{entity.label}</p>
+        <p className="text-xs font-medium tracking-widest text-gray-400 uppercase">
+          {entity.label}
+        </p>
         <h2 className="truncate text-lg font-semibold text-gray-900">{title}</h2>
         {subtitle && subtitle !== title && (
           <p className="truncate text-sm text-gray-500">{subtitle}</p>
@@ -137,7 +143,7 @@ export default function EntityEditPage() {
 
   return (
     <AdminLayout>
-      <div className="mx-auto flex w-full max-w-4xl flex-col gap-6">
+      <div className="mx-auto flex w-full flex-col gap-6">
         <DetailHero
           entity={entity}
           item={item}
@@ -147,7 +153,7 @@ export default function EntityEditPage() {
               <button
                 type="submit"
                 form="entity-form"
-                className="shrink-0 rounded-lg bg-gray-900 px-5 py-2 text-sm font-medium text-white shadow-sm transition-colors hover:bg-gray-800"
+                className="bg-primary-green-dark shrink-0 rounded-full px-8 py-2 text-sm font-medium text-white shadow-sm transition-colors hover:bg-gray-800"
               >
                 Save
               </button>

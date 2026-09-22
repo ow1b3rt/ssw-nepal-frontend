@@ -183,11 +183,11 @@ export function MediaLibraryModal({ onClose, onSelect, name }) {
 
   return (
     <div
-      className="fixed inset-0 z-[1000] flex items-center justify-center bg-black/50 p-4"
+      className="fixed inset-0 z-1000 flex items-center justify-center bg-black/50 p-4"
       onClick={onClose}
     >
       <div
-        className="flex max-h-[85vh] w-full max-w-[720px] flex-col gap-4 overflow-auto rounded-xl bg-white p-5 shadow-2xl"
+        className="flex max-h-[85vh] w-full max-w-180 flex-col gap-4 overflow-auto rounded-xl bg-white p-5 shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-between">
@@ -355,7 +355,7 @@ export function MediaLibraryModal({ onClose, onSelect, name }) {
         ) : (
           <div className={`flex flex-col gap-2 ${uploading ? "opacity-70" : ""}`}>
             <label
-              className={`relative flex h-[200px] w-full cursor-pointer flex-col items-center justify-center gap-1.5 overflow-hidden rounded-lg border-2 border-dashed border-gray-300 ${
+              className={`relative flex h-50 w-full cursor-pointer flex-col items-center justify-center gap-1.5 overflow-hidden rounded-lg border-2 border-dashed border-gray-300 ${
                 uploading ? "cursor-default opacity-70" : ""
               } ${selectedFile ? "border-solid p-0" : ""}`}
             >
@@ -402,7 +402,7 @@ export function MediaLibraryModal({ onClose, onSelect, name }) {
                 </>
               ) : (
                 <>
-                  <Upload size={28} />
+                  <Upload className="text-primary-green-dark" size={28} />
                   <span>Click to choose a file</span>
                   <span className="text-xs text-gray-500">
                     Images, PDF, DOCX, or video up to 10MB
@@ -420,21 +420,25 @@ export function MediaLibraryModal({ onClose, onSelect, name }) {
             </label>
 
             <div ref={uploadFieldsRef} className="flex flex-col gap-2">
+              <div className="grid grid-cols-2 gap-4">
+                <Input name="title" placeholder="Title" disabled={uploading} />
+                <Select name="type" placeholder="Type" disabled={uploading}>
+                  {TYPE_OPTIONS.map((value, index) => (
+                    <option key={index} value={value}>
+                      {value}
+                    </option>
+                  ))}
+                </Select>
+              </div>
+
               <Input name="alt" placeholder="Alt text" disabled={uploading} />
-              <Input name="title" placeholder="Title" disabled={uploading} />
+
               <Input name="caption" placeholder="Caption" disabled={uploading} />
-              <Select name="type" placeholder="Type" disabled={uploading}>
-                {TYPE_OPTIONS.map((value, index) => (
-                  <option key={index} value={value}>
-                    {value}
-                  </option>
-                ))}
-              </Select>
             </div>
 
             <button
               type="button"
-              className="btn btn-primary"
+              className="btn btn-primary bg-primary-green-dark mx-auto mt-4 w-fit cursor-pointer rounded-lg px-8 py-2 text-sm text-white transition duration-500 ease-in-out hover:bg-black"
               onClick={handleUpload}
               disabled={uploading || !selectedFile}
             >

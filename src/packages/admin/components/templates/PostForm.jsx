@@ -223,7 +223,9 @@ export function PostForm({ defaults = null, onSubmit }) {
               </strong>
             </span>
             {defaults?.updatedAt && (
-              <span className="hidden lg:inline">Last saved {formatTimeAgo(defaults.updatedAt)}</span>
+              <span className="hidden lg:inline">
+                Last saved {formatTimeAgo(defaults.updatedAt)}
+              </span>
             )}
             {defaultPublishedAt && (
               <span className="hidden xl:inline">
@@ -342,9 +344,7 @@ export function PostForm({ defaults = null, onSubmit }) {
                   type="button"
                   onClick={() => setActiveTab(index)}
                   className={`relative flex-1 rounded-t-md px-4 py-2.5 text-sm font-medium transition-colors ${
-                    activeTab === index
-                      ? "text-gray-900"
-                      : "text-gray-400 hover:text-gray-700"
+                    activeTab === index ? "text-gray-900" : "text-gray-400 hover:text-gray-700"
                   }`}
                 >
                   {tab}
@@ -356,7 +356,7 @@ export function PostForm({ defaults = null, onSubmit }) {
             </div>
 
             {/* Sidebar Scrollable Content */}
-            <div className="scrollbar-none flex-1 space-y-4 overflow-y-auto p-4">
+            <div className="flex-1 scrollbar-none space-y-4 overflow-y-auto p-4">
               {activeTab === 0 && (
                 <>
                   <SidebarSection title="Status & Visibility">

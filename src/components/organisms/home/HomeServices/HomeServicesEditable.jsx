@@ -5,6 +5,7 @@ import { MediaLibraryModal, resolveUrl, setPath } from "@/packages/admin";
 import { slugify } from "@/packages/admin/utils/utils";
 import { FaPlus, FaTrash } from "react-icons/fa";
 
+import { ConfirmationDialog } from "@/components/molecules/ConfirmationModal";
 import { ImageContainer } from "@/components/molecules/ImageContainer";
 
 function ServiceCardEditable({ item, path, onChange, onImageClick, onRemove }) {
@@ -13,7 +14,7 @@ function ServiceCardEditable({ item, path, onChange, onImageClick, onRemove }) {
       <button
         type="button"
         onClick={onRemove}
-        className="absolute top-3 right-3 z-10 rounded bg-white/90 p-2 text-black/50 shadow hover:text-red-600"
+        className="absolute top-3 right-3 z-10 cursor-pointer rounded bg-white/90 p-2 text-black/50 shadow hover:text-red-600"
       >
         <FaTrash size={14} />
       </button>
@@ -62,6 +63,7 @@ export const HomeServicesEditable = ({
   const [section, setSection] = useState(initialSection);
   const [mediaPath, setMediaPath] = useState(null);
   const [saving, setSaving] = useState(false);
+  const [removeIndex, setRemoveIndex] = useState(null); // index pending removal, or null
 
   if (!section) return null;
 
@@ -132,9 +134,16 @@ export const HomeServicesEditable = ({
     }
   };
 
+  const handleConfirmRemove = () => {
+    if (removeIndex !== null) {
+      removeItem(removeIndex);
+    }
+    setRemoveIndex(null);
+  };
+
   return (
     <div className="flex flex-col gap-6">
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-2">
+      <div className="grid max-h-190 grid-cols-1 gap-6 overflow-y-scroll md:grid-cols-2 lg:grid-cols-2">
         {(section.items ?? []).map((item, i) => (
           <ServiceCardEditable
             key={i}
@@ -142,7 +151,7 @@ export const HomeServicesEditable = ({
             path={`items.${i}`}
             onChange={handleChange}
             onImageClick={() => setMediaPath(`items.${i}.image`)}
-            onRemove={() => removeItem(i)}
+            onRemove={() => setRemoveIndex(i)}
           />
         ))}
       </div>
@@ -151,7 +160,7 @@ export const HomeServicesEditable = ({
         <button
           type="button"
           onClick={addItem}
-          className="flex w-fit items-center gap-2 rounded-lg border border-dashed border-gray-300 px-4 py-2 text-sm font-bold text-black/60"
+          className="flex w-fit items-center gap-2 rounded-full border border-dashed border-gray-400 px-4 py-2 text-sm font-bold text-black/60"
         >
           <FaPlus size={12} />
           Add {sectionName}
@@ -161,7 +170,7 @@ export const HomeServicesEditable = ({
           type="button"
           onClick={handleSave}
           disabled={saving}
-          className="bg-primary-green rounded-lg px-6 py-2 font-bold text-white disabled:opacity-60"
+          className="bg-primary-green-dark rounded-full px-6 py-2 text-sm font-semibold text-white disabled:opacity-60"
         >
           {saving ? "Saving…" : `Save ${sectionName}`}
         </button>
@@ -174,6 +183,18 @@ export const HomeServicesEditable = ({
           onSelect={handleImageSelect}
         />
       )}
+
+      <ConfirmationDialog
+        open={removeIndex !== null}
+        onOpenChange={(open) => {
+          if (!open) setRemoveIndex(null);
+        }}
+        title={`Remove this ${sectionName.replace(/s$/, "")}?`}
+        description="This item will be permanently removed. This action can't be undone."
+        confirmLabel="Remove"
+        variant="destructive"
+        onConfirm={handleConfirmRemove}
+      />
     </div>
   );
 };
