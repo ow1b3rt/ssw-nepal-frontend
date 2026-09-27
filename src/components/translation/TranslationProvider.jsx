@@ -14,18 +14,30 @@ export function useSiteLanguage() {
 
 export default function TranslationProvider({ children }) {
   const [language, setLanguage] = useState("en");
+  const [available, setAvailable] = useState(false);
   const sourcesRef = useRef(new WeakMap());
 
   useEffect(() => {
-    let initialTimer;
-    try {
-      if (localStorage.getItem(STORAGE_KEY) === "ja") initialTimer = setTimeout(() => setLanguage("ja"), 0);
-      const saved = JSON.parse(localStorage.getItem(`${STORAGE_KEY}-cache`) || "{}");
-      for (const [key, value] of Object.entries(saved)) {
-        if (typeof value === "string" && !japaneseOverrides[key]) cache.set(key, value);
-      }
-    } catch { /* Storage may be disabled. */ }
-    return () => clearTimeout(initialTimer);
+    let cancelled = false;
+    fetch("/api/translate", { cache: "no-store" })
+      .then((response) => response.ok ? response.json() : { available: false })
+      .then((status) => {
+        if (cancelled) return;
+        setAvailable(Boolean(status.available));
+        if (!status.available) {
+          localStorage.removeItem(`${STORAGE_KEY}-cache`);
+          localStorage.setItem(STORAGE_KEY, "en");
+          return;
+        }
+        try {
+          const saved = JSON.parse(localStorage.getItem(`${STORAGE_KEY}-cache`) || "{}");
+          for (const [key, value] of Object.entries(saved)) {
+            if (typeof value === "string" && !japaneseOverrides[key]) cache.set(key, value);
+          }
+          if (localStorage.getItem(STORAGE_KEY) === "ja") setLanguage("ja");
+        } catch { /* Storage may be disabled. */ }
+      }).catch(() => { if (!cancelled) setAvailable(false); });
+    return () => { cancelled = true; };
   }, []);
 
   useEffect(() => {
@@ -108,5 +120,5 @@ export default function TranslationProvider({ children }) {
     return () => { clearTimeout(timer); observer.disconnect(); };
   }, [language]);
 
-  return <LanguageContext.Provider value={{ language, setLanguage }}>{children}</LanguageContext.Provider>;
+  return <LanguageContext.Provider value={{ language, setLanguage, available }}>{children}</LanguageContext.Provider>;
 }

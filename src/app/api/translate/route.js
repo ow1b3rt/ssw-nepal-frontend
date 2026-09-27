@@ -5,6 +5,10 @@ const limits = new Map();
 const MAX_ITEMS = 40;
 const MAX_LENGTH = 1000;
 
+export async function GET() {
+  return Response.json({ available: Boolean(process.env.OPENAI_API_KEY) });
+}
+
 export async function POST(request) {
   const origin = request.headers.get("origin");
   if (origin && origin !== new URL(request.url).origin) {

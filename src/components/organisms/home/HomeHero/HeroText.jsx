@@ -1,3 +1,6 @@
+"use client";
+
+import { useSiteLanguage } from "@/components/translation/TranslationProvider";
 import Link from "next/link";
 import { ROUTES } from "@/constants/routes/routes";
 import { ChevronRight } from "lucide-react";
@@ -14,9 +17,19 @@ const section = {
   ctaURL: ROUTES.APPOINTMENT,
 };
 
-export function HeroText({ section: data = section }) {
+const japaneseSection = {
+  badge: "SSWトレーニングセンター・ネパールへようこそ",
+  titleBlack: "未来につながるスキルを",
+  titleRed: "ここで身につけよう。",
+  description: "実践的な研修、日本語学習、キャリア相談を通じて、ネパールと海外での新たな可能性を広げます。",
+  ctaLabel: "相談を予約する",
+};
+
+export function HeroText({ section: original = section }) {
+  const { language } = useSiteLanguage();
+  const data = language === "ja" ? { ...original, ...japaneseSection } : original;
   return (
-    <div className="flex w-full flex-col items-start gap-6">
+    <div data-no-translate className="flex w-full flex-col items-start gap-6">
       <span className="bg-primary-green inline-block rounded-2xl px-7 py-2 text-base font-medium text-white md:text-lg">
         <AnimatedWords
           text={data.badge}

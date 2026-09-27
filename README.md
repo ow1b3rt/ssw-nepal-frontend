@@ -42,7 +42,9 @@ server environment (for example in `.env.local` during development), then
 restart the server. `TRANSLATION_MODEL` is optional and defaults to `gpt-4o-mini`.
 The key stays on the server; do not prefix it with `NEXT_PUBLIC_`.
 
-The first Japanese visit translates visible text in batches, so the original
+The Japanese button stays disabled until the server has `OPENAI_API_KEY`.
+The homepage hero uses reviewed Japanese copy. The first Japanese visit translates
+other visible text in batches, so the original
 English may briefly appear. Translations are cached in the browser and in the
 running server process; the server cache resets on restart. Add preferred
 company terms to `src/lib/translation/overrides.js`. Forms, placeholders,
