@@ -19,7 +19,7 @@ export default function TranslationProvider({ children }) {
 
   useEffect(() => {
     let cancelled = false;
-    fetch("/api/translate", { cache: "no-store" })
+    fetch("/translate", { cache: "no-store" })
       .then((response) => response.ok ? response.json() : { available: false })
       .then((status) => {
         if (cancelled) return;
@@ -89,7 +89,7 @@ export default function TranslationProvider({ children }) {
       const entries = [...pending.entries()];
       for (let i = 0; i < entries.length; i += 40) {
         const batch = entries.slice(i, i + 40);
-        fetch("/api/translate", {
+        fetch("/translate", {
           method: "POST", headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ language: "ja", texts: batch.map(([key]) => key) }),
         }).then((response) => {
