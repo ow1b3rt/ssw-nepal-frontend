@@ -1,5 +1,7 @@
 "use client";
 
+import LanguageSwitcher from "@/components/translation/LanguageSwitcher";
+
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -217,7 +219,8 @@ export default function Navbar({ navItems }) {
       </nav>
 
       {/* Phone + Mobile Menu */}
-      <div className="flex items-center justify-end">
+      <div className="flex items-center justify-end gap-2">
+        <div className="hidden lg:block"><LanguageSwitcher /></div>
         {/* Desktop Phone CTA */}
         <Link
           href={`tel:${PHONE_NUMBER.replace(/-/g, "")}`}
@@ -268,6 +271,7 @@ export default function Navbar({ navItems }) {
 
             {/* Mobile Phone CTA */}
             <div className="border-t px-5 py-4">
+              <div className="mb-3"><LanguageSwitcher /></div>
               <a
                 href={`tel:${PHONE_NUMBER.replace(/-/g, "")}`}
                 onClick={() => setOpen(false)}

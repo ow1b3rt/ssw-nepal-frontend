@@ -1,3 +1,4 @@
+import TranslationProvider from "@/components/translation/TranslationProvider";
 import { footerData } from "@/data/footer";
 
 import FooterView from "@/components/footer";
@@ -6,6 +7,7 @@ import Nav from "@/components/organisms/Navbar/Nav";
 
 export default function PublicLayout({ children }) {
   return (
+    <TranslationProvider>
     <div className="front flex min-h-screen flex-col justify-between">
       <div className="sticky top-0 z-50 backdrop-blur-2xl">
         <Nav />
@@ -20,5 +22,6 @@ export default function PublicLayout({ children }) {
         <FooterView data={footerData} />
       </section>
     </div>
+    </TranslationProvider>
   );
 }

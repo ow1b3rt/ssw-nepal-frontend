@@ -34,3 +34,18 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Japanese translation
+
+The public site includes an EN / 日本語 switch. Set `OPENAI_API_KEY` in the Next.js
+server environment (for example in `.env.local` during development), then
+restart the server. `TRANSLATION_MODEL` is optional and defaults to `gpt-4o-mini`.
+The key stays on the server; do not prefix it with `NEXT_PUBLIC_`.
+
+The first Japanese visit translates visible text in batches, so the original
+English may briefly appear. Translations are cached in the browser and in the
+running server process; the server cache resets on restart. Add preferred
+company terms to `src/lib/translation/overrides.js`. Forms, placeholders,
+image text, page metadata, and Japanese search indexing require separate work.
+The admin area remains English. Translation requests use the configured API
+account and may incur usage charges.
